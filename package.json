@@ -1,0 +1,20 @@
+{
+  "name": "survey-project",
+  "version": "1.0.0",
+  "description": "csu east bay cs 401 project survey app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSU-EB-Survey-App/Survey-Project.git"
+  },
+  "author": "group project",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSU-EB-Survey-App/Survey-Project/issues"
+  },
+  "homepage": "https://github.com/CSU-EB-Survey-App/Survey-Project#readme"
+}
