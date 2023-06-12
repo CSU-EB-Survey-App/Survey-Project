@@ -25,7 +25,7 @@ app.use(Cors());
 connectDB();
 
 
-// Routes
+// Example of a Route
 app.get("/", (req, res) => {
     res.send("Server Up and Running");
   });
