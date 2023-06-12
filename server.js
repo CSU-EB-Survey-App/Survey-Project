@@ -1,7 +1,11 @@
 // Nodejs server package
 const express = require("express");
 // Cors (Cross Origin Resource Sharing for Internet Messaging)
-const cors = require("cors");
+const Cors = require("cors");
+// Import Database connection function
+const connectDB = require("./Config/dbConfig");
+
+
 
 // Port for server to listen on
 const PORT = process.env.PORT || 8080;
@@ -14,7 +18,11 @@ const app = express();
 app.use(express.json());
 
 // Tell app to use cors package
-app.use(cors());
+app.use(Cors());
+
+
+// Connect Database to Appliction
+connectDB();
 
 
 // Routes
