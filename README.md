@@ -130,7 +130,7 @@ Follow accessibility guidelines to ensure the UI is usable by people with disabi
 
 Context Diagram
 
-![Context Map](./images/UserJourneyMapping.jpg?raw=true "Contect Map")
+![Context Map](./images/UserJourneyMapping.jpg?raw=true "Context Map")
 
 8. Use Case Model 
 
