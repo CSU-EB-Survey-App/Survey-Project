@@ -3,7 +3,7 @@ const express = require("express");
 // Cors (Cross Origin Resource Sharing for Internet Messaging)
 const Cors = require("cors");
 // Import Database connection function
-const connectDB = require("./Config/dbConfig");
+const connectDB = require("./config/dbConfig");
 
 
 
@@ -27,8 +27,60 @@ connectDB();
 
 // Example of a Route
 app.get("/", (req, res) => {
-    res.send("Server Up and Running");
+    res.send("Server Is Good");
   });
+
+  // Example of a Route
+app.get("/test", (req, res) => {
+
+  // Get some data from the DB
+  let data = {
+    name: "Stephen",
+    class: "Senior"
+  };
+
+  res.status(200).json({
+    success: true,
+    data
+  })
+});
+
+
+app.get("/create/form", (req, res) => {
+
+  // console.log(req);
+
+  // Get some data from the DB
+  let data = {
+    name: "Stephen",
+    class: "Senior"
+  };
+
+  console.log("Hello World", data);
+
+  res.status(200).json({
+    success: true,
+    data
+  })
+});
+
+app.post("/create/user", (req, res) => {
+
+  console.log(req.body);
+
+  // Get some data from the DB
+  let data = {
+    user: req.body.user
+  }
+  console.log(data);
+
+  res.status(200).json({
+    success: true,
+    data
+  })
+});
+
+
 
 
 // Start Server
