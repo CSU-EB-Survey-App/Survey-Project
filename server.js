@@ -2,6 +2,8 @@
 const express = require("express");
 // Cors (Cross Origin Resource Sharing for Internet Messaging)
 const Cors = require("cors");
+// Import Database connection function
+const connectDB = require("./config/dbConfig");
 
 // DOTENV Variables
 const dotenv = require("dotenv");
@@ -9,8 +11,6 @@ const dotenv = require("dotenv");
 
 // Load environment variables
 dotenv.config({ path: './config/config.env' });
-// Import Database connection function
-const connectDB = require("./config/dbConfig");
 
 
 
