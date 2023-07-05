@@ -26,3 +26,15 @@ exports.getRating = asyncHandler(async (req, res, next) => {
 exports.deleteRating = asyncHandler(async (req, res, next) => {
     
 });
+
+// @desc  this controller will vote on a rating associated with a poll
+// @route PUT /api/v1/rating/vote/:id
+exports.voteRating = asyncHandler(async (req, res, next) => {
+    
+});
+
+// @desc  this controller will mark the rating useful
+// @route DELETE /api/v1/rating/useful/:id
+exports.usefulRating = asyncHandler(async (req, res, next) => {
+    
+});
