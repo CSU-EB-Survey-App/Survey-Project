@@ -22,3 +22,9 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
 exports.createPoll = asyncHandler(async (req, res, next) => {
     
 });
+
+// @desc  this controller will delete a poll
+// @route DELETE /api/v1/polls/:id
+exports.deletePoll = asyncHandler(async (req, res, next) => {
+    
+});
