@@ -28,3 +28,15 @@ exports.createPoll = asyncHandler(async (req, res, next) => {
 exports.deletePoll = asyncHandler(async (req, res, next) => {
     
 });
+
+// @desc  this controller will allow a user to answer a poll
+// @route PUT /api/v1/answer/:id
+exports.answerPoll = asyncHandler(async (req, res, next) => {
+    
+});
+
+// @desc  this controller will allow a user to rate or flag a poll as "useful"
+// @route PUT /api/v1/useful/:id
+exports.usefulVote = asyncHandler(async (req, res, next) => {
+    
+});
