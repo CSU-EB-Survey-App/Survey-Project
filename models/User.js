@@ -6,9 +6,18 @@ const crypto = require('crypto');
 const UserSchema = new mongoose.Schema({
     studentID: {
         type: String,
-        require: [true, 'Please add an email'],
+        require: [true, 'Please provide a student ID'],
         unique: true,
       },
+    email: {
+        type: String,
+        require: [true, "Please provide an email"],
+        unique: true,
+        match: [
+            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            'Please add a valid email'
+          ]
+    },
     password: {
         type: String,
         require: [true, 'Please add a password'],
