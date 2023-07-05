@@ -8,8 +8,21 @@ exports.getRatings = asyncHandler(async (req, res, next) => {
 }); 
 
 
-    // @desc  this controller will create a rating and tie it to a poll
+// @desc  this controller will create a rating and tie it to a poll
 // @route POST /api/v1/rating/
 exports.createRating = asyncHandler(async (req, res, next) => {
+    
+});
+
+
+// @desc  this controller will fetch a rating associated with a poll
+// @route GET /api/v1/rating/:id
+exports.getRating = asyncHandler(async (req, res, next) => {
+    
+});
+
+// @desc  this controller will delete a rating associated with a poll
+// @route DELETE /api/v1/rating/
+exports.deleteRating = asyncHandler(async (req, res, next) => {
     
 });
