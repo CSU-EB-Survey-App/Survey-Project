@@ -5,8 +5,8 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
-  
-    console.log(`MongoDB Connected`);
+
+    console.log("MongoDB Connected");
   };
-  
+
   module.exports = connectDB;
