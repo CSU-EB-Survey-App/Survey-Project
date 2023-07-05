@@ -17,3 +17,8 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
     
 });
 
+// @desc  Create a new poll
+// @route POST /api/v1/polls/
+exports.createPoll = asyncHandler(async (req, res, next) => {
+    
+});
