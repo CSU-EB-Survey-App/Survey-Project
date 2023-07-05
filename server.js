@@ -39,12 +39,6 @@ connectDB();
 
 
 
-// Test Github Names
-stephen klein
-
-
-
-
 // Implement Routes into app
 
 
