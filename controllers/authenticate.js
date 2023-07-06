@@ -15,7 +15,8 @@ const crypto = require("crypto");
 // @desc  Register user with provided information
 // @route POST /api/v1/auth/register
 exports.register = asyncHandler(async (req, res, next) => {
-    
+    // code here
+    console.log("AUTH ROUTE RAN");
 });
 
 // @desc  Login user with provided information

@@ -36,10 +36,11 @@ connectDB();
 
 
 // Import Routes
-
+const authenticate = require("./routes/authenticate");
 
 
 // Implement Routes into app
+app.use("/api/v1/auth", authenticate);
 
 
 // Example of a Route
