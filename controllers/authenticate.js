@@ -17,6 +17,20 @@ const crypto = require("crypto");
 exports.register = asyncHandler(async (req, res, next) => {
     // code here
     console.log("AUTH ROUTE RAN");
+    console.log(req.body);
+
+    let data = {
+        studentID: req.body.studentID,
+        email: req.body.email,
+        password: req.body.password
+    };
+
+    const user = await User.create(data);
+
+    res.status(200).json({
+        success: true
+    })
+
 });
 
 // @desc  Login user with provided information
