@@ -37,10 +37,12 @@ connectDB();
 
 // Import Routes
 const authenticate = require("./routes/authenticate");
+const rating = require("./routes/rate");
 
 
 // Implement Routes into app
 app.use("/api/v1/auth", authenticate);
+app.use("/api/v1/rating", rating);
 
 
 // Example of a Route

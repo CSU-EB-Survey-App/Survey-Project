@@ -1,4 +1,5 @@
-
+// Import Async Handler
+const asyncHandler = require("../middleware/async");
 
 
 
@@ -11,7 +12,11 @@ exports.getRatings = asyncHandler(async (req, res, next) => {
 // @desc  this controller will create a rating and tie it to a poll
 // @route POST /api/v1/rating/
 exports.createRating = asyncHandler(async (req, res, next) => {
-    
+    console.log("CREATING A RATING");
+
+    res.status(200).json({
+        success: true
+    })
 });
 
 
