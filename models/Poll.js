@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const pollSchema = new mongoose.Schema({
+const PollSchema = new mongoose.Schema({
     question:{
         type: String
     },
@@ -36,6 +36,17 @@ const pollSchema = new mongoose.Schema({
         default: 0
     },
     voters: {
-        
+        type: Array
+    },
+    createdAt: {
+        type: Date,
+        default: new Date()
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true
     }
 })
+
+module.exports = mongoose.model('Poll', PollSchema);
