@@ -16,6 +16,7 @@ const crypto = require("crypto");
 // @route POST /api/v1/auth/register
 exports.register = asyncHandler(async (req, res, next) => {
     try {
+        console.log("RUNNING REGISTER");
         // Output req body to terminal
         console.log("INCOMING RESPONSE BODY:", req.body);
         // Grab data from req.body
@@ -62,16 +63,53 @@ exports.register = asyncHandler(async (req, res, next) => {
 // @route POST /api/v1/auth/login
 exports.login = asyncHandler(async (req, res, next) => {
     try {
+        console.log("RUNNING LOGIN");
         // Output request body to terminal
         console.log(req.body);
 
         // Grab data from request body
         const { studentID, password } = req.body;
 
-        // If no student id
+        // If student id and password are empty throw error
+        if (!studentID || !password) {
+            return next(new ErrorResponse("Please provide a student id and password", 400));
+        }
+
+        // Format student id
+        let formattedID = studentID.toUpperCase();
+
+        // Check database for user
+        const user = await User.findOne({ studentID: formattedID }).select("+password");
+
+        // Output user to terminal
+        console.log("DATABASE USER: ", user);
+
+        // Throw error if there is no user
+        if (!user) {
+            return next(new ErrorResponse("Invalid credentials", 401));
+        }
+
+        // check if passwords match
+        const isMatch = await user.matchPassword(password);
+
+        if (!isMatch) {
+            return next(new ErrorResponse('Invalid credentials', 401));
+        }
+
+        // Get authentication token
+        const token = user.getSignedJwtToken();
+
+        res.status(200).json({
+            success: true,
+            token
+        })
 
     } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
 
+        // Send error to client
+        next(err);
     }
 });
 
