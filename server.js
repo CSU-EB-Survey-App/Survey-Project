@@ -53,6 +53,7 @@ app.use("/api/v1/rating", rating);
 // Configure Error Dection Middleware
 app.use(errorHandler);
 
+
 // Example of a Route
 app.get("/", (req, res) => {
     res.send("Server Is Good");

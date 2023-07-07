@@ -21,10 +21,14 @@ exports.register = asyncHandler(async (req, res, next) => {
         // Grab data from req.body
         const { studentID, email, password } = req.body;
 
+        // Format student id and email for consistency
+        let formattedID = studentID.toUpperCase();
+        let formattedEmail = email.toLowerCase();
+
         // Create user in database
         const user = await User.create({
-            studentID,
-            email,
+            studentID: formattedID,
+            email: formattedEmail,
             password
         })
 
@@ -57,7 +61,18 @@ exports.register = asyncHandler(async (req, res, next) => {
 // @desc  Login user with provided information
 // @route POST /api/v1/auth/login
 exports.login = asyncHandler(async (req, res, next) => {
-    
+    try {
+        // Output request body to terminal
+        console.log(req.body);
+
+        // Grab data from request body
+        const { studentID, password } = req.body;
+
+        // If no student id
+
+    } catch(err) {
+
+    }
 });
 
 // @desc  Check if user is authenticated
