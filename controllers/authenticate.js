@@ -51,7 +51,7 @@ exports.register = asyncHandler(async (req, res, next) => {
 
     } catch(err) {
         // Output error for testing
-        // console.log(err);
+        console.log(err);
 
         // Send error to client
         next(err);
@@ -114,8 +114,47 @@ exports.login = asyncHandler(async (req, res, next) => {
 });
 
 // @desc  Check if user is authenticated
-// @route POST /api/v1/auth/isAuth
+// @route POST /api/v1/auth/isauth
 exports.isAuthenticated = asyncHandler(async (req, res, next) => {
+    try {
+        console.log("CHECKING AUTHENTICATION");
+
+        // Output request body to terminal
+        console.log(req.body);
+
+        // Grab data from request body
+        const { token } = req.body;
+
+        // Decode token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+        // Output to terminal decoded authentication token
+        console.log("AUTHENTICATION TOKEN: ", decoded);
+
+        // Check database for user
+        let user = await User.findById(decoded.id);
+
+        // Output database user to terminal
+        console.log("USER: ", user);
+
+        // If ther is no user throw error
+        if (!user) {
+            return next(new ErrorResponse("User profile is not authenticated", 400));
+        }
+
+        res.status(200).json({
+            success: true,
+            user
+        })
+    } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
+
+        // Send error to client
+        next(err);
+    }
+
+
     
 });
 
