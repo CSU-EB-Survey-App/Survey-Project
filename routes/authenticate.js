@@ -6,7 +6,8 @@ const express = require("express");
 const  {
     register,
     login,
-    isAuthenticated
+    isAuthenticated,
+    deleteAccount
 } = require("../controllers/authenticate");
 
 
@@ -18,7 +19,8 @@ router.route("/register").post(register);
 router.route("/login").post(login);
 // Is Authenticated Route
 router.route("/isauth").post(isAuthenticated);
-
+// Delete User Account
+router.route("/delete").post(deleteAccount);
 
 
 
