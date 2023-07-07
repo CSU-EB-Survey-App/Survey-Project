@@ -15,21 +15,42 @@ const crypto = require("crypto");
 // @desc  Register user with provided information
 // @route POST /api/v1/auth/register
 exports.register = asyncHandler(async (req, res, next) => {
-    // code here
-    console.log("AUTH ROUTE RAN");
-    console.log(req.body);
+    try {
+        // Output req body to terminal
+        console.log("INCOMING RESPONSE BODY:", req.body);
+        // Grab data from req.body
+        const { studentID, email, password } = req.body;
 
-    let data = {
-        studentID: req.body.studentID,
-        email: req.body.email,
-        password: req.body.password
-    };
+        // Create user in database
+        const user = await User.create({
+            studentID,
+            email,
+            password
+        })
 
-    const user = await User.create(data);
+        // Output newly created user in database
+        console.log("USER CREATED IN DB: ", user);
 
-    res.status(200).json({
-        success: true
-    })
+        // Generate token for authentication
+        const token = user.getSignedJwtToken();
+
+        // Output authentication token
+        console.log("AUTHENTICATION TOKEN: ", token);
+
+        // Send response back to client with user token for authentication
+        res.status(200).json({
+            success: true,
+            token
+        })
+        
+
+    } catch(err) {
+        // Output error for testing
+        // console.log(err);
+
+        // Send error to client
+        next(err);
+    }
 
 });
 

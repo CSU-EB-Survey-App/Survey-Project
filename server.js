@@ -5,6 +5,8 @@ const express = require("express");
 const Cors = require("cors");
 // Environment Variables
 const dotenv = require("dotenv");
+// Error Handler
+const errorHandler = require("./middleware/error");
 
 
 // -IMPORTED FUNCTIONS-
@@ -35,6 +37,8 @@ app.use(Cors());
 connectDB();
 
 
+
+
 // Import Routes
 const authenticate = require("./routes/authenticate");
 const rating = require("./routes/rate");
@@ -44,6 +48,10 @@ const rating = require("./routes/rate");
 app.use("/api/v1/auth", authenticate);
 app.use("/api/v1/rating", rating);
 
+
+
+// Configure Error Dection Middleware
+app.use(errorHandler);
 
 // Example of a Route
 app.get("/", (req, res) => {

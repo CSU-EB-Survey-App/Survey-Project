@@ -10,7 +10,7 @@ const errorHandler = (err, req, res, next) => {
         If you ever want to test for error conditon log error like below
         to see what comes in the error object
     */
-    // console.log(err);
+    // console.log("MIDDLEWARE ERROR: ", err);
 
 
     // Mongoose bad objectId
@@ -22,7 +22,7 @@ const errorHandler = (err, req, res, next) => {
 
     // mongoose duplicate key
     if(err.code === 11000) {
-        const message = "Duplicate field value entered";
+        const message = "An account with the provided information already exists";
         error = new ErrorResponse(message, 400)
     }
 
