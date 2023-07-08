@@ -7,6 +7,7 @@ const  {
     register,
     login,
     isAuthenticated,
+    getUser,
     deleteAccount
 } = require("../controllers/authenticate");
 
@@ -19,6 +20,8 @@ router.route("/register").post(register);
 router.route("/login").post(login);
 // Is Authenticated Route
 router.route("/isauth").post(isAuthenticated);
+// Get user account details
+router.route("/user").get(getUser);
 // Delete User Account
 router.route("/delete").post(deleteAccount);
 

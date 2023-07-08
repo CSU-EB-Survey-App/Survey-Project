@@ -14,7 +14,10 @@ exports.getRatings = asyncHandler(async (req, res, next) => {
         console.log("GETTING ALL RATINGS");
 
         // Get all ratings from database
-        const ratings = await Ratings.find({});
+        const ratings = await Ratings.find({}).populate({
+            path: "user",
+            select: "studentID"
+        });
 
         // Send to client
         res.status(200).json({

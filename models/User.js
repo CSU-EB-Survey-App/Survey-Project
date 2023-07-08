@@ -30,6 +30,9 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+},{
+    toJSON: { virtuals: true },
+    toObject: { virtuals : true }
 });
 
 // We can encrypt the users password with mongoose pre save middleware
@@ -71,5 +74,14 @@ UserSchema.methods.getResetPasswordToken = function() {
 
     return resetToken;
 }
+
+// Reverse populate with virtuals
+UserSchema.virtual("ratings", {
+    ref: "Rating",
+    localField: '_id',
+    foreignField: 'user',
+    justOne: false
+});
+
 
 module.exports = mongoose.model('User', UserSchema);
