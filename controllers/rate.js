@@ -1,11 +1,34 @@
+// Import Rating model
+const Ratings = require("../models/Rating");
 // Import Async Handler
 const asyncHandler = require("../middleware/async");
+// Error handler
+const ErrorResponse = require("../utils/errorResponse");
 
 
 
 // @desc  this controller will fetch all of the ratings tied to a poll
 // @route GET /api/v1/rating/
 exports.getRatings = asyncHandler(async (req, res, next) => {
+    try {
+        console.log("GETTING ALL RATINGS");
+
+        const ratings = await Ratings.find({});
+
+        // Send to client
+        res.status(200).json({
+            success: true,
+            ratings
+        })
+
+    } catch (err) {
+        // Print error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
+
 }); 
 
 
