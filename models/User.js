@@ -83,5 +83,8 @@ UserSchema.virtual("ratings", {
     justOne: false
 });
 
+// Add reverse populate with polls
+// Code here 
+
 
 module.exports = mongoose.model('User', UserSchema);

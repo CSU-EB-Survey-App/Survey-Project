@@ -219,17 +219,11 @@ exports.getUser = asyncHandler(async (req, res, next) => {
         // Output to terminal decoded authentication token
         console.log("AUTHENTICATION TOKEN: ", decoded);
 
-        // Check database for user
+        // Get user info and all created items
         let user = await User.findById(decoded.id).populate("ratings");
 
         // Output database user to terminal
         console.log("USER: ", user);
-
-        // If ther is no user throw error
-        // if (!user) {
-        //     return next(new ErrorResponse("User profile does not exist", 400));
-        // }
-
 
         res.status(200).json({
             success: true,
