@@ -4,6 +4,7 @@ const Ratings = require("../models/Rating");
 const asyncHandler = require("../middleware/async");
 // Error handler
 const ErrorResponse = require("../utils/errorResponse");
+const Rating = require("../models/Rating");
 
 
 
@@ -141,9 +142,40 @@ exports.getRating = asyncHandler(async (req, res, next) => {
 });
 
 // @desc  this controller will delete a rating associated with a poll
-// @route DELETE /api/v1/rating/
+// @route DELETE /api/v1/rating/:id
 exports.deleteRating = asyncHandler(async (req, res, next) => {
-    
+    try {
+        console.log("DELETING RATING");
+
+        // Get query string parameter
+        let id = req.params.id;
+
+        // Find rating in database
+        const rating = await Rating.findById(id);
+
+        // Printing Rating to terminal
+        console.log("[RATING TO DELETE]", rating);
+
+        // Check for rating
+        if (!rating) {
+            return next(new ErrorResponse(`Sorry, we cannot delete that rating.`), 401);
+        }
+
+        // Remove rating
+        await rating.deleteOne();
+
+        res.status(200).json({
+            success: true,
+            rating
+        })
+
+    } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
 });
 
 // @desc  this controller will vote on a rating associated with a poll

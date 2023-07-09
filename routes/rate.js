@@ -6,7 +6,8 @@ const express = require("express");
 const  {
     getRatings,
     createRating,
-    usefulRating
+    usefulRating,
+    deleteRating
 } = require("../controllers/rate");
 
 
@@ -18,10 +19,11 @@ router.route("/").get(getRatings);
 // Create a rating
 router.route("/").post(createRating);
 
-
 // Vote for usefulness
 router.route("/useful/:id").put(usefulRating);
 
+// Delete rating
+router.route("/:id").delete(deleteRating);
 
 
 module.exports = router;
