@@ -15,7 +15,7 @@ function Home() {
         <div class="stars3" aria-hidden="true"></div>
         <main class="main">
             <section class="contact">
-                <h1 class="title">Something Awesome is Coming...</h1>
+                <h1 class="title">PioneerPolls Coming Soon...</h1>
                 <h2 class="sub-title">Site Under Construction</h2>
             </section>
         </main> 
