@@ -16,6 +16,8 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
             select: "studentID"
         });
 
+        console.log("This is a test of branching");
+
         // Send to client
         res.status(200).json({
             success: true,
@@ -29,6 +31,8 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
         // Forward error to client
         next(err);
     }
+
+
 
 }); 
     
