@@ -77,41 +77,6 @@ exports.createRating = asyncHandler(async (req, res, next) => {
     }
 });
 
-/*
- question: {
-        type: String,
-        required: true
-    },
-    rating: {
-        type: Number,
-        default: 0
-    },
-    useful: {
-        type: Number,
-        default: 0
-    },
-    voters: {
-        type: Array
-    },
-    startDate: {
-        type: Date,
-    },
-    endDate: {
-        type: Date,
-    },
-    createdAt: {
-        type: Date,
-        default: new Date()
-    },
-    user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true
-    }
-*/
-
-
-
 
 // @desc  this controller will fetch a rating associated with a poll
 // @route GET /api/v1/rating/:id
@@ -178,7 +143,7 @@ exports.deleteRating = asyncHandler(async (req, res, next) => {
     }
 });
 
-// @desc  this controller will vote on a rating associated with a poll
+// @desc  this controller will vote on a rating
 // @route PUT /api/v1/rating/vote/:id
 exports.voteRating = asyncHandler(async (req, res, next) => {
     
@@ -219,3 +184,38 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
         next(err);
     }
 });
+
+
+/*
+DATABASE FIELDS FOR RATING
+ question: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        default: 0
+    },
+    useful: {
+        type: Number,
+        default: 0
+    },
+    voters: {
+        type: Array
+    },
+    startDate: {
+        type: Date,
+    },
+    endDate: {
+        type: Date,
+    },
+    createdAt: {
+        type: Date,
+        default: new Date()
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true
+    }
+*/
