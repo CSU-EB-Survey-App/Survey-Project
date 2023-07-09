@@ -1,18 +1,17 @@
+// Package Imports
+import { Routes, Route } from 'react-router-dom';
 
-import './App.css';
-
-
-import RegisterView from "./components/Register/register"
-import Account from "./components/Account/account"
+// Components
+import Home from "./components/Home/home";
 
 function App() {
   return (
-    <div className="App">
-      <p>Hello World</p>
-      <RegisterView />
-      <Account />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
+
+
 
 export default App;
