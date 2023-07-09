@@ -6,6 +6,7 @@ const express = require("express");
 const  {
     getRatings,
     createRating,
+    usefulRating
 } = require("../controllers/rate");
 
 
@@ -16,6 +17,10 @@ router.route("/").get(getRatings);
 
 // Create a rating
 router.route("/").post(createRating);
+
+
+// Vote for usefulness
+router.route("/useful/:id").put(usefulRating);
 
 
 

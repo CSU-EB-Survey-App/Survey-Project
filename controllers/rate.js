@@ -115,6 +115,28 @@ exports.createRating = asyncHandler(async (req, res, next) => {
 // @desc  this controller will fetch a rating associated with a poll
 // @route GET /api/v1/rating/:id
 exports.getRating = asyncHandler(async (req, res, next) => {
+    try {
+        console.log("[GETTING A SINGLE RATING]");
+
+        // Get query string parameter
+        let id = req.params.id;
+
+        // Search database with id for rating
+        const rating = Ratings.find({ _id: id});
+
+
+        // Send response to client
+        res.status(200).json({
+            success: true,
+            rating
+        })
+    } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
     
 });
 
@@ -131,7 +153,37 @@ exports.voteRating = asyncHandler(async (req, res, next) => {
 });
 
 // @desc  this controller will mark the rating useful
-// @route DELETE /api/v1/rating/useful/:id
+// @route PUT /api/v1/rating/useful/:id
 exports.usefulRating = asyncHandler(async (req, res, next) => {
-    
+    try {
+        console.log("INCREMENTING USEFULNESS");
+
+        // Get id from query string
+        let id = req.params.id;
+
+        // Check database for rate before updating
+        let rating = await Ratings.findById(id);
+
+         // If ther is no user throw error
+         if (!rating) {
+            return next(new ErrorResponse("Sorry, this rating does not exist", 400));
+        }
+
+        rating = await Ratings.findByIdAndUpdate(id, { $inc: { useful: 1}}, {new: true});
+
+        // Output new db entry
+        console.log("NEW RATING", rating);
+
+        res.status(200).json({
+            success: true,
+            rating
+        })
+
+    } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
 });
