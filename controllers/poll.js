@@ -7,9 +7,31 @@ const Polls = require("../models/Poll");
 // @desc  Get all polls
 // @route GET /api/v1/polls/
 exports.getPolls = asyncHandler(async (req, res, next) => {
-    
-});
+    try {
+        console.log("GETTING ALL POLLS");
 
+        // Get all polls and created user from database
+        const polls = await Polls.find({}).populate({
+            path: "user",
+            select: "studentID"
+        });
+
+        // Send to client
+        res.status(200).json({
+            success: true,
+            polls
+        })
+
+    } catch (err) {
+        // Print error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
+
+}); 
+    
 // @desc  Get a single poll
 // @route GET /api/v1/poll/:id
 exports.getPoll = asyncHandler(async (req, res, next) => {
