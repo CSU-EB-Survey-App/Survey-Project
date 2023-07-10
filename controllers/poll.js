@@ -16,8 +16,6 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
             select: "studentID"
         });
 
-        console.log("This is a test of branching");
-        console.log("This is a test of branching for Marc");
         // Send to client
         res.status(200).json({
             success: true,
@@ -67,3 +65,6 @@ exports.answerPoll = asyncHandler(async (req, res, next) => {
 exports.usefulVote = asyncHandler(async (req, res, next) => {
     
 });
+
+
+//test changes marc
