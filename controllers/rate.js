@@ -221,7 +221,7 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
             return next(new ErrorResponse("Sorry, this rating does not exist", 400));
         }
 
-        rating = await Ratings.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVotes: votingUser} }, {new: true});
+        rating = await Ratings.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVoters: votingUser} }, {new: true});
 
         // Output new db entry
         console.log("NEW RATING", rating);
