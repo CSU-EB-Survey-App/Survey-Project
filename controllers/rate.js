@@ -4,7 +4,7 @@ const Ratings = require("../models/Rating");
 const asyncHandler = require("../middleware/async");
 // Error handler
 const ErrorResponse = require("../utils/errorResponse");
-const Rating = require("../models/Rating");
+
 
 
 

@@ -1,6 +1,6 @@
 // -IMPORTS-
 const Polls = require("../models/Poll");
-
+const asyncHandler = require("../middleware/async");
 
 // -Controllers-
 
@@ -46,6 +46,7 @@ exports.getPoll = asyncHandler(async (req, res, next) => {
         // Search database with id for rating
         const poll = Polls.find({ _id: id});
 
+
         // Send response to client
         res.status(200).json({
             success: true,
@@ -60,12 +61,103 @@ exports.getPoll = asyncHandler(async (req, res, next) => {
     }
 });
 
+/*
+ question:{
+        type: String
+    },
+    answer1: {
+        type: String
+    },
+    answer2: {
+        type: String
+    },
+    answer3: {
+        type: String
+    },
+    answer1Count: {
+        type: Number,
+        default: 0
+    },
+    answer2Count: {
+        type: Number,
+        default: 0
+    },
+    answer3Count: {
+        type: Number,
+        default: 0
+    },
+    startDate: {
+        type: Date
+    },
+    endDate: {
+        type: Date
+    },
+    usefulCount: {
+        type: Number,
+        default: 0
+    },
+    usefulVotes: {
+        type: Array
+    },
+    voters: {
+        type: Array
+    },
+    createdAt: {
+        type: Date,
+        default: new Date()
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true
+    }
 
+*/
 
 // @desc  Create a new poll
 // @route POST /api/v1/polls/
 exports.createPoll = asyncHandler(async (req, res, next) => {
-    
+    try {
+        console.log("CREATING POLL");
+
+        // Output request body to terminal
+        console.log("REQUEST BODY: ", req.body);
+
+        // Grab data from request body
+        const { question, answer1, answer2, answer3, startDate, endDate, user } = req.body;
+
+        // Format data to prepare for database
+        let data = {
+            question,
+            answer1,
+            answer2,
+            answer3,
+            startDate,
+            endDate,
+            user
+        }
+
+        // Output data to terminal
+        console.log("DATA: ", data);
+
+        // // Create database entry with data
+        let poll = await Polls.create(data);
+
+        // Output newly created database entry
+        console.log(poll);
+
+        res.status(200).json({
+            success: true,
+            poll
+        })
+
+    } catch(err) {
+        // Print error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
 });
 
 // @desc  this controller will delete a poll
