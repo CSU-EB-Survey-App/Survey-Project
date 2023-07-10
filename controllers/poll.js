@@ -218,7 +218,47 @@ exports.answerPoll = asyncHandler(async (req, res, next) => {
 });
 
 // @desc  this controller will allow a user to rate or flag a poll as "useful"
-// @route PUT /api/v1/useful/:id
+// @route PUT /api/v1/polls/useful/:id
 exports.usefulVote = asyncHandler(async (req, res, next) => {
+    try {
+        console.log("INCREMENTING POLL USEFULNESS");
+
+        // Output to terminal query string parameter
+        console.log(req.params.id);
+
+        // Get id from query string
+        let id = req.params.id;
+
+        // Output to terminal request body
+        console.log(req.body);
+
+        // Grab voting users id
+        let votingUser = req.body.user;
+
+        // Check database for rate before updating
+        let poll = await Polls.findById(id);
+
+         // If ther is no user throw error
+         if (!poll) {
+            return next(new ErrorResponse("Sorry, this poll does not exist", 400));
+        }
+
+        poll = await Polls.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVotes: votingUser} }, {new: true});
+
+        // Output new db entry
+        console.log("NEW POLL", poll);
+
+        res.status(200).json({
+            success: true,
+            poll
+        })
+
+    } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
     
 });

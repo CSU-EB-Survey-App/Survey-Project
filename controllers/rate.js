@@ -169,7 +169,7 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
         console.log(req.body);
 
         // Grab voting users id
-        let votingUser = req.body.id;
+        let votingUser = req.body.user;
 
         // Check database for rate before updating
         let rating = await Ratings.findById(id);
