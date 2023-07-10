@@ -24,8 +24,8 @@ router.route("/").post(createPoll);
 //deleting poll Route
 router.route("/:id").delete(deletePoll);
 
-// // poll answer Route
-// router.route("/").post(answerPoll);
+// poll answer Route
+router.route("/answer/:id").put(answerPoll);
 
 // useful poll Route
 router.route("/useful/:id").put(usefulVote);

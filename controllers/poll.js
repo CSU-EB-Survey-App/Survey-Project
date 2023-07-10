@@ -4,6 +4,7 @@ const Polls = require("../models/Poll");
 const asyncHandler = require("../middleware/async");
 // Error handler
 const ErrorResponse = require("../utils/errorResponse");
+const Poll = require("../models/Poll");
 
 
 // -Controllers-
@@ -158,63 +159,51 @@ exports.deletePoll = asyncHandler(async (req, res, next) => {
     }
 });
 
-/*
- question:{
-        type: String
-    },
-    answer1: {
-        type: String
-    },
-    answer2: {
-        type: String
-    },
-    answer3: {
-        type: String
-    },
-    answer1Count: {
-        type: Number,
-        default: 0
-    },
-    answer2Count: {
-        type: Number,
-        default: 0
-    },
-    answer3Count: {
-        type: Number,
-        default: 0
-    },
-    startDate: {
-        type: Date
-    },
-    endDate: {
-        type: Date
-    },
-    usefulCount: {
-        type: Number,
-        default: 0
-    },
-    usefulVotes: {
-        type: Array
-    },
-    voters: {
-        type: Array
-    },
-    createdAt: {
-        type: Date,
-        default: new Date()
-    },
-    user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true
-    }
-
-*/
-
 // @desc  this controller will allow a user to answer a poll
-// @route PUT /api/v1/answer/:id
+// @route PUT /api/v1/polls/answer/:id
 exports.answerPoll = asyncHandler(async (req, res, next) => {
-    
+    try {
+        console.log("ANSWERING POLL");
+
+        // Output to terminal query string parameter
+        console.log("[REQUEST PARAMS ID]: ", req.params.id);
+
+        // Get id from query string
+        let id = req.params.id;
+
+        // Output to terminal request body
+        console.log("[REQUEST BODY]: ", req.body);
+
+        // Grab answer from request body
+        let userAnswer = req.body.answer
+        // Grab voting users id
+        let votingUser = req.body.user;
+
+        // Find poll in database
+        let poll = await Polls.findById(id);
+
+        // If there is no poll throw error
+        if (!poll) {
+            return next(new ErrorResponse("Sorry, this poll does not exist", 400));
+        }
+
+        poll = await Polls.findByIdAndUpdate(id, { $inc: { [userAnswer]: 1}, $push: { voters: votingUser } }, {new: true})
+
+        // Output new db entry
+        console.log("[UPDATED POLL]: ", poll);
+
+        res.status(200).json({
+            success: true,
+            poll
+        })
+
+    } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
 });
 
 // @desc  this controller will allow a user to rate or flag a poll as "useful"
@@ -238,11 +227,12 @@ exports.usefulVote = asyncHandler(async (req, res, next) => {
         // Check database for rate before updating
         let poll = await Polls.findById(id);
 
-         // If ther is no user throw error
-         if (!poll) {
+        // If there is no poll throw error
+        if (!poll) {
             return next(new ErrorResponse("Sorry, this poll does not exist", 400));
         }
 
+        // Update poll to increment usefulness and add user to useful voters
         poll = await Polls.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVotes: votingUser} }, {new: true});
 
         // Output new db entry
