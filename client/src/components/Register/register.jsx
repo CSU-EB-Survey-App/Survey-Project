@@ -22,7 +22,7 @@ function Register(){
 
         try {
 
-            let response = await axios.post("http://localhost:8080/api/v1/auth/login",{
+            let response = await axios.post("http://localhost:8080/api/v1/auth/register",{
                 studentID,password, email
             })
             console.log(response)
