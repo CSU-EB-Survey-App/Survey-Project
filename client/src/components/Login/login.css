@@ -2,7 +2,7 @@ body {
     font-size: 110%;
     color: #000000;
     font-family: 'Source Sans Pro', sans-serif;
-    background: #FFFFFF;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     width: 100%;
     position: absolute;
     top: 0;
