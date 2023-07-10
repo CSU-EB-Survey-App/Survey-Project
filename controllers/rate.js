@@ -155,8 +155,17 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
     try {
         console.log("INCREMENTING USEFULNESS");
 
+        // Output to terminal query string parameter
+        console.log(req.params.id);
+
         // Get id from query string
         let id = req.params.id;
+
+        // Output to terminal request body
+        console.log(req.body);
+
+        // Grab voting users id
+        let votingUser = req.body.id;
 
         // Check database for rate before updating
         let rating = await Ratings.findById(id);
@@ -166,7 +175,7 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
             return next(new ErrorResponse("Sorry, this rating does not exist", 400));
         }
 
-        rating = await Ratings.findByIdAndUpdate(id, { $inc: { useful: 1}}, {new: true});
+        rating = await Ratings.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVotes: votingUser} }, {new: true});
 
         // Output new db entry
         console.log("NEW RATING", rating);
@@ -199,6 +208,9 @@ DATABASE FIELDS FOR RATING
     useful: {
         type: Number,
         default: 0
+    },
+    usefulVotes: {
+        type: Array
     },
     voters: {
         type: Array

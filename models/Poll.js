@@ -35,6 +35,9 @@ const PollSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    usefulVotes: {
+        type: Array
+    },
     voters: {
         type: Array
     },

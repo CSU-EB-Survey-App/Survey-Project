@@ -37,7 +37,27 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
 // @desc  Get a single poll
 // @route GET /api/v1/poll/:id
 exports.getPoll = asyncHandler(async (req, res, next) => {
-    
+    try {
+        console.log("[GETTING A SINGLE POLL]");
+
+        // Get query string parameter
+        let id = req.params.id;
+
+        // Search database with id for rating
+        const poll = Polls.find({ _id: id});
+
+        // Send response to client
+        res.status(200).json({
+            success: true,
+            poll
+        })
+    } catch(err) {
+        // Output error to terminal
+        console.log("ERROR: ", err);
+
+        // Forward error to client
+        next(err);
+    }
 });
 
 

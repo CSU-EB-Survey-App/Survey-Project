@@ -42,12 +42,13 @@ connectDB();
 // Import Routes
 const authenticate = require("./routes/authenticate");
 const rating = require("./routes/rate");
-
+const polls = require("./routes/poll");
 
 
 // Implement Routes into app
 app.use("/api/v1/auth", authenticate);
 app.use("/api/v1/rating", rating);
+app.use("api/v1/polls", polls);
 
 
 
