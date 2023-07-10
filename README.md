@@ -15,11 +15,11 @@ Follow these steps to get the project up and running on your local machine:
 
 ```git clone https://github.com/CSU-EB-Survey-App/Survey-Project.git```
 
-1. **Navigate** to the project directory:
+2. **Navigate** to the project directory:
 
 ```cd project-directory```
 
-1. **Install** the back-end project dependencies using npm or yarn:
+3. **Install** the back-end project dependencies using npm or yarn:
 
 ```npm install```
 
@@ -28,15 +28,15 @@ or
 ```yarn install```
 
 
-1. **Run** the server to start accepting incoming requests:
+4. **Run** the server to start accepting incoming requests:
 
 ```nmp run dev```
 
-1. **Navigate** into client directory:
+5. **Navigate** into client directory:
 
-```cd client``
+```cd client```
 
-1. **Install** the front-end project dependencies using npm or yarn:
+6. **Install** the front-end project dependencies using npm or yarn:
 
 ```npm install```
 
@@ -44,11 +44,11 @@ or
 
 ```yarn install```
 
-1. **Start** the front-end server client:
+7. **Start** the front-end server client:
 
 ```npm start```
 
-1. **Check** server is now be running locally at http://localhost:3000. Open your web browser and navigate to this URL to access the application.
+8. **Check** server is now be running locally at http://localhost:3000. Open your web browser and navigate to this URL to access the application.
 
 
 ### **Contributing**
@@ -68,5 +68,8 @@ If you would like to contribute to the project, please follow these steps:
 ### **Contact**
 If you have any questions or suggestions, feel free to reach out to the project maintainers:
 
-**Maintainer 1** - sklein8@horizon.csueastbay.edu
-Maintainer 2 - 
+**Maintainer 1** - sklein8@horizon.csueastbay.edu <br>
+**Maintainer 2** - 
+**Maintainer 3**
+**Maintainer 4**
+**Maintainer 5**
