@@ -73,3 +73,4 @@ If you have any questions or suggestions, feel free to reach out to the project 
 **Maintainer 3** - dha6@horizon.csueastbay.edu<br>
 **Maintainer 4** - kcato3@horizon.csueastbay.edu<br>
 **Maintainer 5** - cleon16@horizon.csueastbay.edu   <br>
+**Maintainer 6** - apuurvva@gmail.com   <br>
