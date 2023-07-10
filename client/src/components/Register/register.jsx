@@ -24,78 +24,78 @@ function Register(){
         try {
 
             let response = await axios.post("http://localhost:8080/api/v1/auth/register",{
-                studentID,password, email
-            })
-            console.log(response)
+            studentID,password, email
+        })
+        console.log(response)
 
 
-        }
-
-
-        catch (error) {
-            console.log(error.response)
-            setErrorFlag(true)
-
-        }
     }
-    return (
-        <div className="login">
 
-            <form>
-                <Box display ="flex"
-                     bgcolor="white"
-                     flexDirection = {"column"}
-                     maxWidth={400}
-                     alignItems="center"
-                     justifyContent="center"
-                     margin="auto"
-                     marginTop={5}
-                     padding={3}
-                     borderRadius={5}
-                     boxShadow={'5px 5px 10px #ccc'}
-                     sx={{":hover":{
-                             boxShadow:'10px 10px 20px #ccc'
-                         }}}>
-                    <Typography variant="h2" padding={3} textAlign="center">Register</Typography>
-                    {errorFlag ? <p>Account Already Exists</p> : null}
-                    <TextField
-                        onChange={(e) => {setEmail(e.target.value)}}
-                        name=""
-                        id=""
-                        margin="normal"
-                        type="email"
-                        variant="outlined"
-                        placeholder="Email"></TextField>
-                    <TextField
-                        onChange={(e) => {setStudentID(e.target.value)}}
-                        name=""
-                        id=""
-                        margin="normal"
-                        type="studentID"
-                        variant="outlined"
-                        placeholder="Student ID"></TextField>
-                    <TextField
-                        onChange={(e) => {setPassword(e.target.value)}}
-                        name=""
-                        id=""
-                        margin="normal"
-                        type="password"
-                        variant="outlined"
-                        placeholder="Password"></TextField>
-                    <Button sx={{marginTop:3, borderRadius:3}} variant="contained" color="warning" onClick={submit}>
-                        Sign-Up
 
-                    </Button>
-                    <Button sx={{marginTop:3, borderRadius:3}} >
-                        <Link to="/login">
-                            Switch to Login
-                        </Link>
-                    </Button>
-                </Box>
-            </form>
+catch (error) {
+        console.log(error.response)
+        setErrorFlag(true)
 
-        </div>
-    )
+    }
+}
+return (
+    <div className="login">
+
+        <form>
+            <Box display ="flex"
+                 bgcolor="white"
+                 flexDirection = {"column"}
+                 maxWidth={400}
+                 alignItems="center"
+                 justifyContent="center"
+                 margin="auto"
+                 marginTop={5}
+                 padding={3}
+                 borderRadius={5}
+                 boxShadow={'5px 5px 10px #ccc'}
+                 sx={{":hover":{
+                         boxShadow:'10px 10px 20px #ccc'
+                     }}}>
+                <Typography variant="h2" padding={3} textAlign="center">Register</Typography>
+                {errorFlag ? <p>Account Already Exists</p> : null}
+                <TextField
+                    onChange={(e) => {setEmail(e.target.value)}}
+                    name=""
+                    id=""
+                    margin="normal"
+                    type="email"
+                    variant="outlined"
+                    placeholder="Email"></TextField>
+                <TextField
+                    onChange={(e) => {setStudentID(e.target.value)}}
+                    name=""
+                    id=""
+                    margin="normal"
+                    type="studentID"
+                    variant="outlined"
+                    placeholder="Student ID"></TextField>
+                <TextField
+                    onChange={(e) => {setPassword(e.target.value)}}
+                    name=""
+                    id=""
+                    margin="normal"
+                    type="password"
+                    variant="outlined"
+                    placeholder="Password"></TextField>
+                <Button sx={{marginTop:3, borderRadius:3}} variant="contained" color="warning" onClick={submit}>
+                    Sign-Up
+
+                </Button>
+                <Button sx={{marginTop:3, borderRadius:3}} >
+                    <Link to="/login">
+                        Switch to Login
+                    </Link>
+                </Button>
+            </Box>
+        </form>
+
+    </div>
+)
 }
 
 
