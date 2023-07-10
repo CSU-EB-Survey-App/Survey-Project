@@ -14,20 +14,21 @@ const router = express.Router();
 
 // getPolls Route
 router.route("/").get(getPolls);
+
 // getPoll Route
-router.route("/").get(getPoll);
+router.route("/:id").get(getPoll);
 
 // poll creation Route
 router.route("/").post(createPoll);
 
 //deleting poll Route
-router.route("/").post(deletePoll);
+router.route("/:id").delete(deletePoll);
 
 // poll answer Route
-router.route("/").post(answerPoll);
+router.route("/answer/:id").put(answerPoll);
 
 // useful poll Route
-router.route("/").post(usefulVote);
+router.route("/useful/:id").put(usefulVote);
 
 
 

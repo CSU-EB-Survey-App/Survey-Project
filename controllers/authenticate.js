@@ -220,7 +220,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
         console.log("AUTHENTICATION TOKEN: ", decoded);
 
         // Get user info and all created items
-        let user = await User.findById(decoded.id).populate("ratings");
+        let user = await User.findById(decoded.id).populate("ratings").populate("polls");
 
         // Output database user to terminal
         console.log("USER: ", user);

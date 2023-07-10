@@ -75,7 +75,7 @@ UserSchema.methods.getResetPasswordToken = function() {
     return resetToken;
 }
 
-// Reverse populate with virtuals
+// Reverse populate with virtuals for ratings
 UserSchema.virtual("ratings", {
     ref: "Rating",
     localField: '_id',
@@ -83,8 +83,13 @@ UserSchema.virtual("ratings", {
     justOne: false
 });
 
-// Add reverse populate with polls
-// Code here 
+// Reverse populate with virtuals for polls
+UserSchema.virtual("polls", {
+    ref: "Poll",
+    localField: '_id',
+    foreignField: 'user',
+    justOne: false
+})
 
 
 module.exports = mongoose.model('User', UserSchema);
