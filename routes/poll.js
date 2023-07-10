@@ -20,8 +20,8 @@ router.route("/").get(getPolls);
 // poll creation Route
 router.route("/").post(createPoll);
 
-// //deleting poll Route
-// router.route("/").post(deletePoll);
+//deleting poll Route
+router.route("/:id").delete(deletePoll);
 
 // // poll answer Route
 // router.route("/").post(answerPoll);

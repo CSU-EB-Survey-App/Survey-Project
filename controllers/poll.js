@@ -163,7 +163,41 @@ exports.createPoll = asyncHandler(async (req, res, next) => {
 // @desc  this controller will delete a poll
 // @route DELETE /api/v1/polls/:id
 exports.deletePoll = asyncHandler(async (req, res, next) => {
-    
+    try {  
+        console.log("DELETING POLL");
+
+        // Output query string to terminal
+        console.log("QUERY STRING", req.params);
+
+        // Grab the poll id from the query string
+        let id = req.params.id;
+
+        // Check database for poll with id
+        let poll = await Polls.findById(id);
+
+        if (!poll) {
+            return next(new ErrorResponse(`Sorry, we cannot delete that poll.`), 401);
+        }
+
+        // Poll to delete
+        console.log("[DELETING THIS POLL]: ", poll);
+        
+        // Remove poll
+        await poll.deleteOne();
+
+        // Send reponse back to client
+        res.status(200).json({
+            success: true,
+            poll
+        })
+
+    } catch(err) {
+         // Print error to terminal
+         console.log("ERROR: ", err);
+
+         // Forward error to client
+         next(err);
+    }
 });
 
 // @desc  this controller will allow a user to answer a poll
