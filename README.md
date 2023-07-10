@@ -69,7 +69,7 @@ If you would like to contribute to the project, please follow these steps:
 If you have any questions or suggestions, feel free to reach out to the project maintainers:
 
 **Maintainer 1** - sklein8@horizon.csueastbay.edu <br>
-**Maintainer 2** - 
-**Maintainer 3**
-**Maintainer 4**
-**Maintainer 5**
+**Maintainer 2** - <br>
+**Maintainer 3** - <br>
+**Maintainer 4** - <br>
+**Maintainer 5** - <br>
