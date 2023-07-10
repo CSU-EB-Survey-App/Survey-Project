@@ -25,7 +25,7 @@ function Rating() {
         console.log(endDate)
         try {
 
-            let response = await axios.post("http://localhost:8080/api/v1/auth/login",{
+            let response = await axios.post("http://localhost:8080/api/v1/rating",{
                 user,question, startDate, endDate
             })
             console.log(response)

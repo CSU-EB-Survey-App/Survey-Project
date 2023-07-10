@@ -1,7 +1,8 @@
 import "./register.css"
-import React, {useState} from "react";
-import axios from "axios";
-import {Link} from "react-router-dom";
+import axios from "axios"
+import React, {useEffect, useState} from "react"
+import {useNavigate, Link} from "react-router-dom";
+import {Box, TextField, Typography, Button} from "@mui/material"
 
 function Register(){
 
@@ -22,44 +23,79 @@ function Register(){
 
         try {
 
-            let response = await axios.post("http://localhost:8080/api/v1/auth/login",{
-                studentID,password, email
-            })
-            console.log(response)
+            let response = await axios.post("http://localhost:8080/api/v1/auth/register",{
+            studentID,password, email
+        })
+        console.log(response)
 
 
-        }
-
-
-        catch (error) {
-            console.log(error.response)
-            setErrorFlag(true)
-
-        }
     }
-    return (
-        <div className="login">
 
-            <h1>Register</h1>
-            {errorFlag ? <p>Invalid Credentials</p> : null}
-            <form action="POST">
 
-                <input type="email" onChange={(e) => {
-                    setEmail(e.target.value)
-                }} placeholder="Email" name="" id=""/>
+catch (error) {
+        console.log(error.response)
+        setErrorFlag(true)
 
-                <input type="studentID" onChange={(e) => {
-                    setStudentID(e.target.value)
-                }} placeholder="Student ID" name="" id=""/>
+    }
+}
+return (
+    <div className="login">
 
-                <input type="password" onChange={(e) => {
-                    setPassword(e.target.value)
-                }} placeholder="Password" name="" id=""/>
+        <form>
+            <Box display ="flex"
+                 bgcolor="white"
+                 flexDirection = {"column"}
+                 maxWidth={400}
+                 alignItems="center"
+                 justifyContent="center"
+                 margin="auto"
+                 marginTop={5}
+                 padding={3}
+                 borderRadius={5}
+                 boxShadow={'5px 5px 10px #ccc'}
+                 sx={{":hover":{
+                         boxShadow:'10px 10px 20px #ccc'
+                     }}}>
+                <Typography variant="h2" padding={3} textAlign="center">Register</Typography>
+                {errorFlag ? <p>Account Already Exists</p> : null}
+                <TextField
+                    onChange={(e) => {setEmail(e.target.value)}}
+                    name=""
+                    id=""
+                    margin="normal"
+                    type="email"
+                    variant="outlined"
+                    placeholder="Email"></TextField>
+                <TextField
+                    onChange={(e) => {setStudentID(e.target.value)}}
+                    name=""
+                    id=""
+                    margin="normal"
+                    type="studentID"
+                    variant="outlined"
+                    placeholder="Student ID"></TextField>
+                <TextField
+                    onChange={(e) => {setPassword(e.target.value)}}
+                    name=""
+                    id=""
+                    margin="normal"
+                    type="password"
+                    variant="outlined"
+                    placeholder="Password"></TextField>
+                <Button sx={{marginTop:3, borderRadius:3}} variant="contained" color="warning" onClick={submit}>
+                    Sign-Up
 
-                <input type = "submit" onClick={submit}/>
-            </form>
-        </div>
-    )
+                </Button>
+                <Button sx={{marginTop:3, borderRadius:3}} >
+                    <Link to="/login">
+                        Switch to Login
+                    </Link>
+                </Button>
+            </Box>
+        </form>
+
+    </div>
+)
 }
 
 
