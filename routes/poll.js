@@ -14,8 +14,9 @@ const router = express.Router();
 
 // getPolls Route
 router.route("/").get(getPolls);
-// // getPoll Route
-// router.route("/").get(getPoll);
+
+// getPoll Route
+router.route("/:id").get(getPoll);
 
 // poll creation Route
 router.route("/").post(createPoll);

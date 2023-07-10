@@ -78,7 +78,7 @@ exports.createRating = asyncHandler(async (req, res, next) => {
 });
 
 
-// @desc  this controller will fetch a rating associated with a poll
+// @desc  this controller will fetch a single rating
 // @route GET /api/v1/rating/:id
 exports.getRating = asyncHandler(async (req, res, next) => {
     try {
@@ -88,8 +88,12 @@ exports.getRating = asyncHandler(async (req, res, next) => {
         let id = req.params.id;
 
         // Search database with id for rating
-        const rating = Ratings.find({ _id: id});
+        const rating = await Ratings.findById(id);
 
+        // Check rating exists
+        if (!rating) {
+            return next(new ErrorResponse(`Sorry, that rating does not exist.`), 401);
+        }
 
         // Send response to client
         res.status(200).json({
