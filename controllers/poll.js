@@ -4,8 +4,6 @@ const Polls = require("../models/Poll");
 const asyncHandler = require("../middleware/async");
 // Error handler
 const ErrorResponse = require("../utils/errorResponse");
-const Poll = require("../models/Poll");
-
 
 // -Controllers-
 
@@ -34,9 +32,6 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
         // Forward error to client
         next(err);
     }
-
-
-
 }); 
     
 // @desc  Get a single poll
@@ -250,5 +245,4 @@ exports.usefulVote = asyncHandler(async (req, res, next) => {
         // Forward error to client
         next(err);
     }
-    
 });
