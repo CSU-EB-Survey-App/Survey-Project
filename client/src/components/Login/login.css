@@ -1,0 +1,16 @@
+body {
+    font-size: 110%;
+    color: #000000;
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #FFFFFF;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+p {
+    color: red;
+    text-align: center;
+    font-size: 24px;
+}
