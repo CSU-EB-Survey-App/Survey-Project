@@ -2,6 +2,8 @@ import "./login.css"
 import axios from "axios"
 import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
+import {Box, TextField, Typography, Button} from "@mui/material"
+
 
 
 function Login() {
@@ -36,28 +38,49 @@ function Login() {
     return (
         <div className="login">
 
-            <h1>Login</h1>
-            {errorFlag ? <p>Invalid Credentials</p> : null}
-            <form action="POST">
-                <input type="studentID" onChange={(e) => {
-                    setStudentID(e.target.value)
-                }} placeholder="Student ID" name="" id=""/>
+            <form>
+                <Box display ="flex"
+                     flexDirection = {"column"}
+                     maxWidth={400}
+                     alignItems="center"
+                     justifyContent="center"
+                     margin="auto"
+                     marginTop={5}
+                     padding={3}
+                     borderRadius={5}
+                     boxShadow={'5px 5px 10px #ccc'}
+                     sx={{":hover":{
+                         boxShadow:'10px 10px 20px #ccc'
+                         }}}>
+                    <Typography variant="h2" padding={3} textAlign="center">Login</Typography>
+                    {errorFlag ? <p>Invalid Credentials</p> : null}
+                    <TextField
+                        onChange={(e) => {setStudentID(e.target.value)}}
+                        name=""
+                        id=""
+                        margin="normal"
+                        type="studentID"
+                        variant="outlined"
+                        placeholder="Student ID"></TextField>
+                    <TextField
+                        onChange={(e) => {setPassword(e.target.value)}}
+                        name=""
+                        id=""
+                        margin="normal"
+                        type="password"
+                        variant="outlined"
+                        placeholder="Password"></TextField>
+                    <Button sx={{marginTop:3, borderRadius:3}} variant="contained" color="warning" onClick={submit}>
+                        Login
 
-                <input type="password" onChange={(e) => {
-                    setPassword(e.target.value)
-                }} placeholder="Password" name="" id=""/>
-
-                <input type = "submit" onClick={submit}/>
-
-
+                    </Button>
+                    <Button sx={{marginTop:3, borderRadius:3}} >
+                        <Link to="/register">
+                        Not Registered? Create an Account
+                        </Link>
+                    </Button>
+                </Box>
             </form>
-
-            <br />
-            <p>Or</p>
-
-            <br />
-
-            <Link to="/register">No Account? Register Here</Link>
 
 
         </div>
