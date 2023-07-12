@@ -13,11 +13,15 @@ const RatingSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    usefulVotes: {
+    usefulVoters: {
         type: Array
     },
     voters: {
         type: Array
+    },
+    active: {
+        Type: Boolean,
+        default: false
     },
     startDate: {
         type: Date,

@@ -228,7 +228,7 @@ exports.usefulVote = asyncHandler(async (req, res, next) => {
         }
 
         // Update poll to increment usefulness and add user to useful voters
-        poll = await Polls.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVotes: votingUser} }, {new: true});
+        poll = await Polls.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVoters: votingUser} }, {new: true});
 
         // Output new db entry
         console.log("NEW POLL", poll);
