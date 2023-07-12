@@ -25,6 +25,10 @@ const PollSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    active: {
+        Type: Boolean,
+        default: false
+    },
     startDate: {
         type: Date
     },
