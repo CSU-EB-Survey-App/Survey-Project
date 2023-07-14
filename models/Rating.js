@@ -20,7 +20,7 @@ const RatingSchema = new mongoose.Schema({
         type: Array
     },
     active: {
-        Type: Boolean,
+        type: Boolean,
         default: false
     },
     startDate: {
