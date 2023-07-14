@@ -3,17 +3,13 @@ import { useLocation } from 'react-router';
 
 const NavbarHandler = (props) => {
     const location = useLocation();
+    // Add routes to show navbar here
+    let showNavbarRoutes = ["/new/rating"];
 
-    const [showNavBar, setShowNavBar] = useState(false);
-
-    useEffect(() => {
-        console.log("LOCATION: ", location)
-        if (location.pathname !== "/") {
-            setShowNavBar(true)
-        }
-    }, [location])
+    console.log("NAVBAR HANDLER", location)
+    console.log(location.pathname.includes(showNavbarRoutes))
     return (
-        <Fragment>{showNavBar ? props.children : null}</Fragment>
+        <Fragment>{location.pathname.includes(showNavbarRoutes) ? props.children : null}</Fragment>
     )
 
 }
