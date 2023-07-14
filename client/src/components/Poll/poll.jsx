@@ -1,16 +1,16 @@
-import "./dashboard.css"
+
 import axios from "axios"
 import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
 
-function Dashboard() {
+function Poll() {
     return (
-        <div className="Dashboard">
-            <h1>Dashboard</h1>
+        <div className="Poll">
+            <h1>Create a Poll</h1>
 
 
         </div>
     )
 }
 
-export default Dashboard;
+export default Poll;

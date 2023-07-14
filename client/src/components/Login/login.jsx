@@ -40,6 +40,7 @@ function Login() {
 
             <form>
                 <Box display ="flex"
+                     bgcolor="white"
                      flexDirection = {"column"}
                      maxWidth={400}
                      alignItems="center"
