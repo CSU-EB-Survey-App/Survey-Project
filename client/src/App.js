@@ -12,6 +12,8 @@ import Home from "./components/Home/home";
 import Login from "./components/Login/login";
 import Register from "./components/Register/register";
 import Rating from "./components/Rating/rating";
+import Dashboard from "./components/Dashboard/dashboard"
+import Poll from "./components/Poll/poll"
 
 function App() {
   console.log("APP Rendered");
@@ -26,7 +28,8 @@ function App() {
             <Route element={<PrivateRoutes />}>
               {/* Protected routes go here */}
               <Route element={<Rating />} path="/new/rating" exact />
-              {/* <Route element={<Poll />} path="/new/poll" exact /> */}
+              <Route element={<Dashboard />} path="/dashboard" exact />
+              <Route element={<Poll />} path="/new/poll" exact />
             </Route>
             {/* Unprotected routes go here */}
             <Route path="/" element={<Home />} />
