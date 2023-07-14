@@ -1,8 +1,10 @@
 // Package Imports
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Router } from 'react-router-dom';
 
 // -Components-
 
+// Protect HOC for authentication
+import PrivateRoutes from './components/PrivateRoutes/privateRoutes';
 // Handles showing navbar
 import NavbarHandler from './components/NavbarHandler/navbarHandler';
 import Navbar from "./components/Navbar/navbar";
@@ -12,21 +14,32 @@ import Register from "./components/Register/register";
 import Rating from "./components/Rating/rating";
 
 function App() {
+  console.log("APP Rendered");
   return (
     <>
-      <NavbarHandler>
-        <Navbar />
-      </NavbarHandler>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />}/>
-        <Route path="/rating" element={<Rating />}/>
+      
+        <NavbarHandler>
+          <Navbar />
+        </NavbarHandler>
+        
+          <Routes>
+            <Route element={<PrivateRoutes />}>
+              {/* Protected routes go here */}
+              <Route element={<Rating />} path="/new/rating" exact />
+              {/* <Route element={<Poll />} path="/new/poll" exact /> */}
+            </Route>
+            {/* Unprotected routes go here */}
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />}/>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />}/>
+          </Routes>
+        
 
-        {/* Not Found Route */}
-        <Route path="*" element={<NotFound />}/>
 
-      </Routes>
+         
+
+      
     </>
   );
 }
@@ -38,3 +51,16 @@ const NotFound = ({ children }) => {
 };
 
 export default App;
+
+
+/*
+<Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />}/>
+          <Route path="/rating" element={<Rating />}/>
+         
+          <Route path="*" element={<NotFound />}/>
+        </Routes>
+
+*/
