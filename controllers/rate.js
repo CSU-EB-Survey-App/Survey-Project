@@ -120,7 +120,7 @@ exports.deleteRating = asyncHandler(async (req, res, next) => {
         let id = req.params.id;
 
         // Find rating in database
-        const rating = await Rating.findById(id);
+        const rating = await Ratings.findById(id);
 
         // Printing Rating to terminal
         console.log("[RATING TO DELETE]", rating);
