@@ -222,6 +222,11 @@ exports.getUser = asyncHandler(async (req, res, next) => {
         // Get user info and all created items
         let user = await User.findById(decoded.id).populate("ratings").populate("polls");
 
+        // If ther is no user throw error
+        if (!user) {
+            return next(new ErrorResponse("User profile does not exist", 404));
+        }
+
         // Output database user to terminal
         console.log("USER: ", user);
 

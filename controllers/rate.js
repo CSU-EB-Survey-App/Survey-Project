@@ -92,7 +92,7 @@ exports.getRating = asyncHandler(async (req, res, next) => {
 
         // Check rating exists
         if (!rating) {
-            return next(new ErrorResponse(`Sorry, that rating does not exist.`), 401);
+            return next(new ErrorResponse(`Sorry, that rating does not exist.`, 401));
         }
 
         // Send response to client
@@ -127,7 +127,7 @@ exports.deleteRating = asyncHandler(async (req, res, next) => {
 
         // Check for rating
         if (!rating) {
-            return next(new ErrorResponse(`Sorry, we cannot delete that rating.`), 401);
+            return next(new ErrorResponse(`Sorry, we cannot delete that rating.`, 401));
         }
 
         // Remove rating
