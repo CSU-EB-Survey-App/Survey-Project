@@ -2,7 +2,7 @@ import "./rating.css"
 import axios from "axios"
 import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
-
+import {FormControl, FormLabel, Box, TextField, Typography, Button} from "@mui/material"
 
 function Rating() {
 
@@ -40,30 +40,76 @@ function Rating() {
         }
     }
     return (
-        <div className="Rating">
+        <div className = "Rating">
 
-            <h1>Create a Rating</h1>
-            <form action="POST">
-                <input type="question" onChange={(e) => {
-                    setUser(e.target.value)
-                }} placeholder="Question" name="" id=""/>
+            <form action = "POST" onSubmit={submit}>
 
-                <input type="startDate" onChange={(e) => {
-                    setStartDate(e.target.value)
-                }} placeholder="Start Date: (MM/DD/YYYY)" name="" id=""/>
+                <Box display ="flex"
+                     bgcolor="white"
+                     flexDirection = {"column"}
+                     maxWidth={400}
+                     alignItems="center"
+                     justifyContent="center"
+                     margin="auto"
+                     marginTop={5}
+                     padding={3}
+                     borderRadius={5}
+                     boxShadow={'5px 5px 10px #ccc'}
+                     sx={{":hover":{
+                             boxShadow:'10px 10px 20px #ccc'
+                         }}}>
+                    <h2>
+                        Create a Rating
+                    </h2>
+                    <FormControl>
+                        <FormLabel>
+                            What do you want to rate?
+                        </FormLabel>
 
-                <input type="endDate" onChange={(e) => {
-                    setEndDate(e.target.value)
-                }} placeholder="End Date: (MM/DD/YYYY)" name="" id=""/>
+                        <TextField
+                            onChange = {(e) => {setQuestion (e.target.value)}  }
 
-                <input type = "submit" onClick={submit}/>
+                            type = "question"
+                            fullWidth={true}
+                            variant = "filled"
+                            required={true}>
+                        </TextField>
 
+                        <FormLabel>
+                            Rating Start Date:
+                        </FormLabel>
+
+                        <TextField
+                            onChange = {(e) => {setStartDate (e.target.value)}  }
+                            type = "date"
+                            fullWidth={true}
+                            variant = "filled"
+                            defaultValue="?"
+                            required={true}>
+                        </TextField>
+
+                        <FormLabel>
+                            Rating end date:
+                        </FormLabel>
+
+                        <TextField
+                            onChange = {(e) => {setEndDate (e.target.value)}  }
+                            type = "date"
+                            fullWidth={true}
+                            variant = "filled"
+                            defaultValue="?"
+                            required={true}>
+                        </TextField>
+
+                        <Button type = "submit" onClick={submit}>
+                            Create Rating
+                        </Button>
+                    </FormControl>
+
+                </Box>
             </form>
-
-
         </div>
     )
-
 }
 
 
