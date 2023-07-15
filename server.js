@@ -20,7 +20,8 @@ dotenv.config({ path: './config/config.env' });
 
 
 // Port for server to listen on
-const PORT = process.env.PORT || 8080;
+// const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 
 // Initialize Server
 const app = express();
@@ -63,9 +64,17 @@ app.get("/", (req, res) => {
 
 
 
+// Start Server For Production
+// app.listen(PORT, () => {
+//     console.log("Server is Running");
+// })
 
-// Start Server
-app.listen(PORT, () => {
-    console.log("Server is Running");
-})
+// Start Server For Development and Unit Testing
+if (require.main === module) {
+    const port = process.env.PORT || 8080;
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
+}
 
+module.exports = app;

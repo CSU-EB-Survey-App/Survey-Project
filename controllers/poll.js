@@ -51,7 +51,7 @@ exports.getPoll = asyncHandler(async (req, res, next) => {
 
         // Check if the poll exists
         if (!poll) {
-            return next(new ErrorResponse(`Sorry, that poll does not exist.`), 401);
+            return next(new ErrorResponse(`Sorry, that poll does not exist.`, 404));
         }
 
         // Send response to client
@@ -130,7 +130,7 @@ exports.deletePoll = asyncHandler(async (req, res, next) => {
         let poll = await Polls.findById(id);
 
         if (!poll) {
-            return next(new ErrorResponse(`Sorry, we cannot delete that poll.`), 401);
+            return next(new ErrorResponse(`Sorry, we cannot delete that poll.`, 401));
         }
 
         // Poll to delete
