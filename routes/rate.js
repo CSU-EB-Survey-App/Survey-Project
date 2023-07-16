@@ -5,6 +5,7 @@ const express = require("express");
 // Import Controller Functions
 const  {
     getRatings,
+    getRating,
     createRating,
     answerRating,
     usefulRating,
@@ -16,6 +17,8 @@ const router = express.Router();
 
 // Get all ratings
 router.route("/").get(getRatings);
+
+router.route("/:id").get(getRating);
 
 // Create a rating
 router.route("/").post(createRating);
