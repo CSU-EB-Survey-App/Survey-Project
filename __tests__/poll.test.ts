@@ -1,6 +1,9 @@
+import Poll from "../models/Poll";
+
 // -Imports-
 const request = require("supertest");
 const server = require("../server");
+const Polls = require("../models/Poll");
 
 /* Polls Unit Testing */
 
@@ -22,9 +25,8 @@ describe('Polls', () => {
     describe("GET Single Poll Route: /api/v1/polls/:id", () => {
         describe("Given the poll DOES exist", () => {
             it("Should return a 200", async () => {
-                // expect(true).toBe(true); // Good way to test function setup
-                const pollID = "64ab955de7cad940028b5ad0";
-                await request(server).get(`/api/v1/polls/${pollID}`).expect(200);
+                let poll = await Polls.find({});
+                await request(server).get(`/api/v1/polls/${poll[0]._id}`).expect(200);
             })
         })
     })
@@ -70,8 +72,8 @@ describe('Polls', () => {
         describe("Given the poll DOES exist", () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
-                const pollID = "64ab955de7cad940028b5ad0"
-                await request(server).put(`/api/v1/polls/answer/${pollID}`).send({
+                let poll = await Polls.find({});
+                await request(server).put(`/api/v1/polls/answer/${poll[0]._id}`).send({
                     answer: "answer2Count",
                     user: "64a60dc4f000b2e5794a52c8"
                 }).expect(200);
@@ -101,9 +103,8 @@ describe('Polls', () => {
     describe("PUT Vote on Useful Poll Route: /api/v1/polls/useful/:id", () => {
         describe("Given the poll DOES exist", () => {
             it("Should return a 200", async () => {
-                // expect(true).toBe(true); // Good way to test function setup
-                const pollID = "64ab955de7cad940028b5ad0"
-                await request(server).put(`/api/v1/polls/useful/${pollID}`).send({
+                let poll = await Polls.find({});
+                await request(server).put(`/api/v1/polls/useful/${poll[0]._id}`).send({
                     user: "64a60dc4f000b2e5794a52c8"
                 }).expect(200);
             })
@@ -111,7 +112,7 @@ describe('Polls', () => {
     })
 })
 
-// Unit test for voting on a poll thats useful
+// Unit test for voting on a poll thats useful that does not exist
 describe('Polls', () => {
     describe("PUT Vote on Useful Poll Route: /api/v1/polls/useful/:id", () => {
         describe("Given the poll does NOT exist", () => {
@@ -132,9 +133,10 @@ describe('Polls', () => {
     describe("DELETE Poll Route: /api/v1/polls/:id", () => {
         describe("Given the poll DOES exist", () => {
             it("Should return a 200", async () => {
+                let polls = await Polls.find({});
                 // expect(true).toBe(true); // Good way to test function setup
-                const pollID = "64b3431391631dc186fee0b5"
-                await request(server).delete(`/api/v1/polls/${pollID}`).expect(200);
+                // const pollID = "64b3431391631dc186fee0b5"
+                await request(server).delete(`/api/v1/polls/${polls[0]._id}`).expect(200);
             })
         })
     })

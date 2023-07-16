@@ -22,12 +22,17 @@ exports.register = asyncHandler(async (req, res, next) => {
         // Grab data from req.body
         const { studentID, email, password } = req.body;
 
+        // If student id and password are empty throw error
+        if (!studentID || !password || !email) {
+            return next(new ErrorResponse("Please provide a student id, email, and password", 400));
+        }
+
         // Format student id and email for consistency
         let formattedID = studentID.toUpperCase();
         let formattedEmail = email.toLowerCase();
 
         // Create user in database
-        const user = await User.create({
+        user = await User.create({
             studentID: formattedID,
             email: formattedEmail,
             password
@@ -224,7 +229,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 
         // If ther is no user throw error
         if (!user) {
-            return next(new ErrorResponse("User profile does not exist", 404));
+            return next(new ErrorResponse("User profile does not exist", 400));
         }
 
         // Output database user to terminal

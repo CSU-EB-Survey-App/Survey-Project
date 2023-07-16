@@ -23,7 +23,7 @@ router.route("/isauth").post(isAuthenticated);
 // Get user account details
 router.route("/user").post(getUser);
 // Delete User Account
-router.route("/delete").post(deleteAccount);
+router.route("/delete").delete(deleteAccount);
 
 
 

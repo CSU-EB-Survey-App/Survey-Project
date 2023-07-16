@@ -10,7 +10,11 @@ const errorHandler = (err, req, res, next) => {
         If you ever want to test for error conditon log error like below
         to see what comes in the error object
     */
-    // console.log("MIDDLEWARE ERROR: ", err);
+    console.log("MIDDLEWARE ERROR: ", err);
+    console.log(Object.keys(err));
+    console.log("MIDDLEWARE ERROR NAME: ", err.name);
+    console.log("MIDDLEWARE ERROR MESSAGE: ", err.message);
+
 
 
     // Mongoose bad objectId
@@ -29,6 +33,12 @@ const errorHandler = (err, req, res, next) => {
     // mongoose validation error
     if (err.name === 'ValidationError') {
         const message = Object.values(err.errors).map(val => val.message);
+        error = new ErrorResponse(message, 400);
+    }
+
+    // JSONwebtoken invalid signature
+    if (err.name === 'JsonWebTokenError') {
+        const message = "Something went wrong"
         error = new ErrorResponse(message, 400);
     }
 

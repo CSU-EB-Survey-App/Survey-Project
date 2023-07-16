@@ -1,6 +1,7 @@
 // -Imports-
 const supertest = require('supertest');
 const app = require("../server");
+const Ratings = require("../models/Rating");
 
 // Unit Testing For Ratings
 
@@ -21,9 +22,10 @@ describe('Rating', () => {
     describe("GET single ratings route: /api/v1/rating/:id", () => {
         describe("Given the rating DOES exist", () => {
             it("Should return a 200", async () => {
+                let rating = await Ratings.find({});
                 // expect(true).toBe(true); // Good way to test function setup
-                const ratingID = "64a9e91817ae591c6b8bac71";
-                await supertest(app).get(`/api/v1/ratings/${ratingID}`).expect(200);
+                // const ratingID = "64a9e91817ae591c6b8bac71";
+                await supertest(app).get(`/api/v1/ratings/${rating[0]._id}`).expect(200);
             })
         })
     })
@@ -65,9 +67,9 @@ describe('Rating', () => {
     describe("PUT Answer a Rating Route: /api/v1/rating/answer/:id", () => {
         describe("Given the rating DOES exist", () => {
             it("Should return a 200", async () => {
+                let rating = await Ratings.find({});
                 // expect(true).toBe(true); // Good way to test function setup
-                const ratingID = "64ab20ced2b7bf3956def5cb";
-                await supertest(app).put(`/api/v1/ratings/answer/${ratingID}`).send({
+                await supertest(app).put(`/api/v1/ratings/answer/${rating[0]._id}`).send({
                     answer: 4,
                     user: "64a76d80c2c8bc9f86f8b4dc"
                 }).expect(200);
@@ -98,8 +100,8 @@ describe('Rating', () => {
         describe("Given the rating DOES exist", () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
-                const ratingID = "64a9e91817ae591c6b8bac71";
-                await supertest(app).put(`/api/v1/ratings/useful/${ratingID}`).send({
+                const rating = await Ratings.find({})
+                await supertest(app).put(`/api/v1/ratings/useful/${rating[0]._id}`).send({
                     user: "64a76d80c2c8bc9f86f8b4dc"
                 }).expect(200);
             })
@@ -127,9 +129,8 @@ describe('Rating', () => {
     describe("DELETE Rating Route: /api/v1/rating/:id", () => {
         describe("Given the rating DOES exist", () => {
             it("Should return a 200", async () => {
-                // expect(true).toBe(true); // Good way to test function setup
-                const ratingID = "64b3038ca2dc0d8a8862bd42"; // Needs to be replaced with a existing id
-                await supertest(app).delete(`/api/v1/ratings/${ratingID}`).expect(200);
+                let ratings = await Ratings.find({});
+                await supertest(app).delete(`/api/v1/ratings/${ratings[0]._id}`).expect(200);
             })
         })
     })
