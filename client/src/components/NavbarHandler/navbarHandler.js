@@ -1,17 +1,17 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import { useLocation } from 'react-router';
 
 const NavbarHandler = (props) => {
     const location = useLocation();
     // Add routes to show navbar here
-    let showNavbarRoutes = ["/new/rating"];
+    let showNavbarRoutes = ["/new/rating", "/dashboard", "/new/poll"];
 
-    console.log("NAVBAR HANDLER", location)
-    console.log(location.pathname.includes(showNavbarRoutes))
+    console.log("NAVBAR HANDLER", location);
+    console.log(showNavbarRoutes.some(route => location.pathname.includes(route)));
+    
     return (
-        <Fragment>{location.pathname.includes(showNavbarRoutes) ? props.children : null}</Fragment>
-    )
-
+        <Fragment>{showNavbarRoutes.some(route => location.pathname.includes(route)) ? props.children : null}</Fragment>
+    );
 }
 
 export default NavbarHandler;
