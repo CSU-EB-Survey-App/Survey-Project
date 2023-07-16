@@ -16,9 +16,9 @@ const crypto = require("crypto");
 // @route POST /api/v1/auth/register
 exports.register = asyncHandler(async (req, res, next) => {
     try {
-        console.log("RUNNING REGISTER");
+        // console.log("RUNNING REGISTER");
         // Output req body to terminal
-        console.log("INCOMING RESPONSE BODY:", req.body);
+        // console.log("INCOMING RESPONSE BODY:", req.body);
         // Grab data from req.body
         const { studentID, email, password } = req.body;
 
@@ -39,13 +39,13 @@ exports.register = asyncHandler(async (req, res, next) => {
         })
 
         // Output newly created user in database
-        console.log("USER CREATED IN DB: ", user);
+        // console.log("USER CREATED IN DB: ", user);
 
         // Generate token for authentication
         const token = user.getSignedJwtToken();
 
         // Output authentication token
-        console.log("AUTHENTICATION TOKEN: ", token);
+        // console.log("AUTHENTICATION TOKEN: ", token);
 
         // Send response back to client with user token for authentication
         res.status(200).json({
@@ -56,7 +56,7 @@ exports.register = asyncHandler(async (req, res, next) => {
 
     } catch(err) {
         // Output error for testing
-        console.log(err);
+        // console.log(err);
 
         // Send error to client
         next(err);
@@ -68,9 +68,9 @@ exports.register = asyncHandler(async (req, res, next) => {
 // @route POST /api/v1/auth/login
 exports.login = asyncHandler(async (req, res, next) => {
     try {
-        console.log("RUNNING LOGIN");
+        // console.log("RUNNING LOGIN");
         // Output request body to terminal
-        console.log(req.body);
+        // console.log(req.body);
 
         // Grab data from request body
         const { studentID, password } = req.body;
@@ -87,7 +87,7 @@ exports.login = asyncHandler(async (req, res, next) => {
         const user = await User.findOne({ studentID: formattedID }).select("+password");
 
         // Output user to terminal
-        console.log("DATABASE USER: ", user);
+        // console.log("DATABASE USER: ", user);
 
         // Throw error if there is no user
         if (!user) {
@@ -111,7 +111,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Send error to client
         next(err);
@@ -122,10 +122,10 @@ exports.login = asyncHandler(async (req, res, next) => {
 // @route POST /api/v1/auth/isauth
 exports.isAuthenticated = asyncHandler(async (req, res, next) => {
     try {
-        console.log("CHECKING AUTHENTICATION");
+        // console.log("CHECKING AUTHENTICATION");
 
         // Output request body to terminal
-        console.log(req.body);
+        // console.log(req.body);
 
         // Grab data from request body
         const { token } = req.body;
@@ -134,13 +134,13 @@ exports.isAuthenticated = asyncHandler(async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         // Output to terminal decoded authentication token
-        console.log("AUTHENTICATION TOKEN: ", decoded);
+        // console.log("AUTHENTICATION TOKEN: ", decoded);
 
         // Check database for user
         let user = await User.findById(decoded.id);
 
         // Output database user to terminal
-        console.log("USER: ", user);
+        // console.log("USER: ", user);
 
         // If ther is no user throw error
         if (!user) {
@@ -153,7 +153,7 @@ exports.isAuthenticated = asyncHandler(async (req, res, next) => {
         })
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Send error to client
         next(err);
@@ -165,10 +165,10 @@ exports.isAuthenticated = asyncHandler(async (req, res, next) => {
 // @route POST /api/v1/auth/delete
 exports.deleteAccount = asyncHandler(async (req, res, next) => {
     try {
-        console.log("DELETING ACCOUNT");
+        // console.log("DELETING ACCOUNT");
 
         // Output request body to terminal
-        console.log(req.body);
+        // console.log(req.body);
 
         // Grab data from request body
         const { token } = req.body;
@@ -177,13 +177,13 @@ exports.deleteAccount = asyncHandler(async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         // Output to terminal decoded authentication token
-        console.log("AUTHENTICATION TOKEN: ", decoded);
+        // console.log("AUTHENTICATION TOKEN: ", decoded);
 
         // Check database for user
         let user = await User.findById(decoded.id);
 
         // Output database user to terminal
-        console.log("USER: ", user);
+        // console.log("USER: ", user);
 
         // If ther is no user throw error
         if (!user) {
@@ -198,7 +198,7 @@ exports.deleteAccount = asyncHandler(async (req, res, next) => {
         })
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Send error to client
         next(err);
@@ -210,10 +210,10 @@ exports.deleteAccount = asyncHandler(async (req, res, next) => {
 // @route POST /api/v1/auth/user/
 exports.getUser = asyncHandler(async (req, res, next) => {
     try {
-        console.log("GETTING USER INFORMATION");
+        // console.log("GETTING USER INFORMATION");
 
         // Output request body to terminal
-        console.log(req.body);
+        // console.log(req.body);
 
         // Grab data from request body
         const { token } = req.body;
@@ -222,7 +222,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         // Output to terminal decoded authentication token
-        console.log("AUTHENTICATION TOKEN: ", decoded);
+        // console.log("AUTHENTICATION TOKEN: ", decoded);
 
         // Get user info and all created items
         let user = await User.findById(decoded.id).populate("ratings").populate("polls");
@@ -233,7 +233,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
         }
 
         // Output database user to terminal
-        console.log("USER: ", user);
+        // console.log("USER: ", user);
 
         res.status(200).json({
             success: true,
@@ -241,7 +241,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
         })
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Send error to client
         next(err);

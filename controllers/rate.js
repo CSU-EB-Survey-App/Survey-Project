@@ -12,7 +12,7 @@ const ErrorResponse = require("../utils/errorResponse");
 // @route GET /api/v1/rating/
 exports.getRatings = asyncHandler(async (req, res, next) => {
     try {
-        console.log("GETTING ALL RATINGS");
+        // console.log("GETTING ALL RATINGS");
 
         // Get all ratings from database
         const ratings = await Ratings.find({}).populate({
@@ -28,7 +28,7 @@ exports.getRatings = asyncHandler(async (req, res, next) => {
 
     } catch (err) {
         // Print error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Forward error to client
         next(err);
@@ -41,10 +41,10 @@ exports.getRatings = asyncHandler(async (req, res, next) => {
 // @route POST /api/v1/rating/
 exports.createRating = asyncHandler(async (req, res, next) => {
     try {
-        console.log("CREATING A RATING");
+        // console.log("CREATING A RATING");
 
         // Print request body to terminal
-        console.log("REQUEST BODY: ", req.body);
+        // console.log("REQUEST BODY: ", req.body);
 
         // Grab request body values
         const { question, startDate, endDate, user } = req.body;
@@ -58,7 +58,7 @@ exports.createRating = asyncHandler(async (req, res, next) => {
         }
 
         // Print data to terminal
-        console.log("DATA: ", data);
+        // console.log("DATA: ", data);
 
         // Creat rating in database
         const rate = await Ratings.create(data);
@@ -70,7 +70,7 @@ exports.createRating = asyncHandler(async (req, res, next) => {
         })
     } catch(err) {
         // Print error to terminal
-        console.log(err);
+        // console.log(err);
 
         // Forward error to client
         next(err);
@@ -82,7 +82,7 @@ exports.createRating = asyncHandler(async (req, res, next) => {
 // @route GET /api/v1/rating/:id
 exports.getRating = asyncHandler(async (req, res, next) => {
     try {
-        console.log("[GETTING A SINGLE RATING]");
+        // console.log("[GETTING A SINGLE RATING]");
 
         // Get query string parameter
         let id = req.params.id;
@@ -102,7 +102,7 @@ exports.getRating = asyncHandler(async (req, res, next) => {
         })
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Forward error to client
         next(err);
@@ -114,7 +114,7 @@ exports.getRating = asyncHandler(async (req, res, next) => {
 // @route DELETE /api/v1/rating/:id
 exports.deleteRating = asyncHandler(async (req, res, next) => {
     try {
-        console.log("DELETING RATING");
+        // console.log("DELETING RATING");
 
         // Get query string parameter
         let id = req.params.id;
@@ -123,7 +123,7 @@ exports.deleteRating = asyncHandler(async (req, res, next) => {
         const rating = await Ratings.findById(id);
 
         // Printing Rating to terminal
-        console.log("[RATING TO DELETE]", rating);
+        // console.log("[RATING TO DELETE]", rating);
 
         // Check for rating
         if (!rating) {
@@ -140,7 +140,7 @@ exports.deleteRating = asyncHandler(async (req, res, next) => {
 
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Forward error to client
         next(err);
@@ -151,16 +151,16 @@ exports.deleteRating = asyncHandler(async (req, res, next) => {
 // @route PUT /api/v1/rating/answer/:id
 exports.answerRating = asyncHandler(async (req, res, next) => {
     try {
-        console.log("ANSWERING RATING");
+        // console.log("ANSWERING RATING");
 
         // Output to terminal query string parameter
-        console.log("[REQUEST PARAMS ID]: ", req.params.id);
+        // console.log("[REQUEST PARAMS ID]: ", req.params.id);
 
         // Get id from query string
         let id = req.params.id;
 
         // Output to terminal request body
-        console.log("[REQUEST BODY]: ", req.body);
+        // console.log("[REQUEST BODY]: ", req.body);
 
         // Grab answer from request body
         let userAnswer = req.body.answer
@@ -178,7 +178,7 @@ exports.answerRating = asyncHandler(async (req, res, next) => {
         rating = await Ratings.findByIdAndUpdate(id, { $inc: { rating: userAnswer}, $push: { voters: votingUser } }, {new: true})
 
         // Output new db entry
-        console.log("[UPDATED POLL]: ", rating);
+        // console.log("[UPDATED POLL]: ", rating);
 
         res.status(200).json({
             success: true,
@@ -187,7 +187,7 @@ exports.answerRating = asyncHandler(async (req, res, next) => {
 
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Forward error to client
         next(err);
@@ -199,16 +199,16 @@ exports.answerRating = asyncHandler(async (req, res, next) => {
 // @route PUT /api/v1/rating/useful/:id
 exports.usefulRating = asyncHandler(async (req, res, next) => {
     try {
-        console.log("INCREMENTING USEFULNESS");
+        // console.log("INCREMENTING USEFULNESS");
 
         // Output to terminal query string parameter
-        console.log(req.params.id);
+        // console.log(req.params.id);
 
         // Get id from query string
         let id = req.params.id;
 
         // Output to terminal request body
-        console.log(req.body);
+        // console.log(req.body);
 
         // Grab voting users id
         let votingUser = req.body.user;
@@ -224,7 +224,7 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
         rating = await Ratings.findByIdAndUpdate(id, { $inc: { useful: 1}, $push: {usefulVoters: votingUser} }, {new: true});
 
         // Output new db entry
-        console.log("NEW RATING", rating);
+        // console.log("NEW RATING", rating);
 
         res.status(200).json({
             success: true,
@@ -233,7 +233,7 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
 
     } catch(err) {
         // Output error to terminal
-        console.log("ERROR: ", err);
+        // console.log("ERROR: ", err);
 
         // Forward error to client
         next(err);
