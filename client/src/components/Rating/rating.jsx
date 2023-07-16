@@ -4,6 +4,9 @@ import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
 import {FormControl, FormLabel, Box, TextField, Typography, Button} from "@mui/material"
 
+import StarIcon from '@mui/icons-material/Star';
+import { FaStar } from "react-icons/fa";
+
 function Rating() {
 
     const [user,setUser]=useState('')
@@ -11,6 +14,9 @@ function Rating() {
     const [startDate, setStartDate] =useState('')
     const [endDate, setEndDate] =useState('')
     const [errorFlag, setErrorFlag] =useState(false)
+    const [value, setValue] = React.useState(2);
+    //const [hover, setHover] = React.useState(-1);
+    const [hoverValue, setHoverValue] = useState(null);
 
     async function submit(e){
         e.preventDefault();
@@ -98,6 +104,23 @@ function Rating() {
 
                 </Box>
             </form>
+
+            <div className="starRating">
+        <Box sx={{ width: 300, height: 100, backgroundColor: 'white', display: "flex", alignItems: "center", borderRadius: '16px' }}>
+        <Typography component="legend"> Rating: </Typography>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <StarIcon
+              key={star}
+              
+              style={{ width: "32px",height:"32px",color: star <= value ? "yellow" : "gray", cursor:"pointer" }}
+              onMouseEnter={() => setHoverValue(star)}
+              onMouseLeave={() => setHoverValue(null)}
+              onClick={() => setValue(star)}
+            />
+        
+          ))}
+        </Box>
+        </div>
         </div>
     )
 }
