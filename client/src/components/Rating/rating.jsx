@@ -2,7 +2,30 @@ import "./rating.css"
 import axios from "axios"
 import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import StarIcon from '@mui/icons-material/Star';
+import { FaStar } from "react-icons/fa";
 
+//labeling the levels of the stars
+
+const labels = {
+    0.5: 'Useless',
+    1: 'Useless+',
+    1.5: 'Poor',
+    2: 'Poor+',
+    2.5: 'Ok',
+    3: 'Ok+',
+    3.5: 'Good',
+    4: 'Good+',
+    4.5: 'Excellent',
+    5: 'Excellent+',
+  };
+  
+
+  function getLabelText(value) {
+    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+  }
 
 function Rating() {
 
@@ -15,6 +38,13 @@ function Rating() {
     const [endDate, setEndDate] =useState('')
 
     const [errorFlag, setErrorFlag] =useState(false)
+
+    const [value, setValue] = React.useState(2);
+    //const [hover, setHover] = React.useState(-1);
+    const [hoverValue, setHoverValue] = useState(null);
+  
+
+   
 
     async function submit(e){
         e.preventDefault();
@@ -39,6 +69,11 @@ function Rating() {
 
         }
     }
+    /*
+    const StarRating = () => {
+        const [rating, setRating] = useState(null);
+      }
+      */
     return (
         <div className="Rating">
 
@@ -60,11 +95,40 @@ function Rating() {
 
             </form>
 
+          /* fvd*/  
+        <div className="starRating">
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Typography component="legend">Rating: </Typography>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <StarIcon
+              key={star}
+              
+              style={{ width: "32px",height:"32px",color: star <= value ? "yellow" : "gray", cursor:"pointer" }}
+              onMouseEnter={() => setHoverValue(star)}
+              onMouseLeave={() => setHoverValue(null)}
+              onClick={() => setValue(star)}
+            />
+        
+          ))}
+        </Box>
+        </div>
+               
+            
+                
+
 
         </div>
-    )
+        
 
-}
+        
+    )
+    
+
+
+
+      }
+
+
 
 
 
