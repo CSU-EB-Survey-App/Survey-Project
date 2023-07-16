@@ -10,8 +10,7 @@ describe('Rating', () => {
         describe("Given ratings do exist", () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
-                // const pollID = "64ab855053f81e8f25a663fa"; // 64ab855053f81e8f25a663fb is a correct db entry
-                await supertest(app).get(`/api/v1/rating/`).expect(200);
+                await supertest(app).get(`/api/v1/ratings/`).expect(200);
             })
         })
     })
@@ -24,7 +23,7 @@ describe('Rating', () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
                 const ratingID = "64a9e91817ae591c6b8bac71";
-                await supertest(app).get(`/api/v1/rating/${ratingID}`).expect(200);
+                await supertest(app).get(`/api/v1/ratings/${ratingID}`).expect(200);
             })
         })
     })
@@ -32,12 +31,12 @@ describe('Rating', () => {
 
 // Unit test for geting a single rating that does not exist
 describe('Rating', () => {
-    describe("Get single ratings route: /api/v1/rating/:id", () => {
+    describe("GET single ratings route: /api/v1/rating/:id", () => {
         describe("Given the rating does NOT exist", () => {
             it("Should return a 401", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
                 const ratingID = "64a9e91817ae591c6b8bac72";
-                await supertest(app).get(`/api/v1/rating/${ratingID}`).expect(401);
+                await supertest(app).get(`/api/v1/ratings/${ratingID}`).expect(401);
             })
         })
     })
@@ -49,7 +48,7 @@ describe('Rating', () => {
         describe("Given the fields ARE correct", () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
-                await supertest(app).post(`/api/v1/rating/`).send({
+                await supertest(app).post(`/api/v1/ratings/`).send({
                     question: "CSU East Bay is the best school",
                     startDate: "Thu Jul 13 2023 00:00:00 GMT-0700 (Pacific Daylight Time)",
                     endDate: "Thu Jul 13 2023 00:00:00 GMT-0700 (Pacific Daylight Time)",
@@ -68,7 +67,7 @@ describe('Rating', () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
                 const ratingID = "64ab20ced2b7bf3956def5cb";
-                await supertest(app).put(`/api/v1/rating/answer/${ratingID}`).send({
+                await supertest(app).put(`/api/v1/ratings/answer/${ratingID}`).send({
                     answer: 4,
                     user: "64a76d80c2c8bc9f86f8b4dc"
                 }).expect(200);
@@ -84,7 +83,7 @@ describe('Rating', () => {
             it("Should return a 400", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
                 const ratingID = "64a9e91817ae591c6b8bac72";
-                await supertest(app).put(`/api/v1/rating/answer/${ratingID}`).send({
+                await supertest(app).put(`/api/v1/ratings/answer/${ratingID}`).send({
                     answer: 4,
                     user: "64a76d80c2c8bc9f86f8b4dc"
                 }).expect(400);
@@ -100,7 +99,7 @@ describe('Rating', () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
                 const ratingID = "64a9e91817ae591c6b8bac71";
-                await supertest(app).put(`/api/v1/rating/useful/${ratingID}`).send({
+                await supertest(app).put(`/api/v1/ratings/useful/${ratingID}`).send({
                     user: "64a76d80c2c8bc9f86f8b4dc"
                 }).expect(200);
             })
@@ -115,7 +114,7 @@ describe('Rating', () => {
             it("Should return a 400", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
                 const ratingID = "64a9e91817ae591c6b8bac72";
-                await supertest(app).put(`/api/v1/rating/useful/${ratingID}`).send({
+                await supertest(app).put(`/api/v1/ratings/useful/${ratingID}`).send({
                     user: "64a76d80c2c8bc9f86f8b4dc"
                 }).expect(400);
             })
@@ -129,8 +128,8 @@ describe('Rating', () => {
         describe("Given the rating DOES exist", () => {
             it("Should return a 200", async () => {
                 // expect(true).toBe(true); // Good way to test function setup
-                const ratingID = "64b30c8be83afa704027e29d";
-                await supertest(app).delete(`/api/v1/rating/${ratingID}`).expect(200);
+                const ratingID = "64b3038ca2dc0d8a8862bd42"; // Needs to be replaced with a existing id
+                await supertest(app).delete(`/api/v1/ratings/${ratingID}`).expect(200);
             })
         })
     })
