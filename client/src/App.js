@@ -19,7 +19,7 @@ function App() {
   console.log("APP Rendered");
   return (
     <>
-      
+
         <NavbarHandler>
           <Navbar />
         </NavbarHandler>
