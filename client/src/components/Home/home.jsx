@@ -1,7 +1,7 @@
 // Package Imports
 import { Fragment } from 'react';
 
-import "./home.css"
+// import "./home.css"
 
 // Components
 
