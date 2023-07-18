@@ -14,6 +14,7 @@ import Register from "./components/Register/register";
 import Rating from "./components/Rating/rating";
 import Dashboard from "./components/Dashboard/dashboard"
 import Poll from "./components/Poll/poll"
+import SingleRating from "./components/SingleRating/SingleRating";
 
 function App() {
   console.log("APP Rendered");
@@ -29,6 +30,7 @@ function App() {
           <Route element={<Dashboard />} path="/dashboard" exact />
           <Route element={<Poll />} path="/new/poll" exact />
           {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
+          <Route element ={<SingleRating />} path="/ratings" exact />
         </Route>
         {/* Unprotected routes go here */}
         <Route path="/" element={<Home />} />
