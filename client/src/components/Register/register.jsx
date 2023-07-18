@@ -87,7 +87,7 @@ return (
 
                 </Button>
                 <Button sx={{marginTop:3, borderRadius:3}} >
-                    <Link to="/login">
+                    <Link to="/">
                         Switch to Login
                     </Link>
                 </Button>

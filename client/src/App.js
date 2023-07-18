@@ -10,7 +10,7 @@ import NavbarHandler from './components/NavbarHandler/navbarHandler';
 import Navbar from "./components/Navbar/navbar";
 import Home from "./components/Home/home";
 import Login from "./components/Login/login";
-import Register from "./components/Register/register";
+import Register from "./components/Home/register";
 import Rating from "./components/Rating/rating";
 import Dashboard from "./components/Dashboard/dashboard"
 import Poll from "./components/Poll/poll"
