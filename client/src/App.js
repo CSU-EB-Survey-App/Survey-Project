@@ -19,30 +19,23 @@ function App() {
   console.log("APP Rendered");
   return (
     <>
-
-        <NavbarHandler>
-          <Navbar />
-        </NavbarHandler>
-        
-          <Routes>
-            <Route element={<PrivateRoutes />}>
-              {/* Protected routes go here */}
-              <Route element={<Rating />} path="/new/rating" exact />
-              <Route element={<Dashboard />} path="/dashboard" exact />
-              <Route element={<Poll />} path="/new/poll" exact />
-            </Route>
-            {/* Unprotected routes go here */}
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />}/>
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<NotFound />}/>
-          </Routes>
-        
-
-
-         
-
-      
+      <NavbarHandler>
+        <Navbar />
+      </NavbarHandler>
+      <Routes>
+        <Route element={<PrivateRoutes />}>
+          {/* Protected routes go here */}
+          {/* <Route element={<Rating />} path="/new/rating" exact /> */}
+          <Route element={<Dashboard />} path="/dashboard" exact />
+          <Route element={<Poll />} path="/new/poll" exact />
+          {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
+        </Route>
+        {/* Unprotected routes go here */}
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />}/>
+      </Routes>
     </>
   );
 }
