@@ -2,10 +2,22 @@ import "./rating.css"
 import axios from "axios"
 import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
-import {FormControl, FormLabel, Box, TextField, Typography, Button} from "@mui/material"
-
+import {FormControl, FormLabel, Box, TextField, Typography,Tooltip, Button} from "@mui/material"
 import StarIcon from '@mui/icons-material/Star';
 import { FaStar } from "react-icons/fa";
+
+//labels for the star ratings
+const labels = {
+    0: 'Useless',
+    1: 'Poor',
+    2: 'Ok',
+    3: 'Good',
+    4: 'Great',
+    5: 'Amazing',
+  };
+  function getLabelText(value) {
+    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+  }
 
 function Rating() {
 
@@ -15,7 +27,6 @@ function Rating() {
     const [endDate, setEndDate] =useState('')
     const [errorFlag, setErrorFlag] =useState(false)
     const [value, setValue] = React.useState(2);
-    //const [hover, setHover] = React.useState(-1);
     const [hoverValue, setHoverValue] = useState(null);
 
     async function submit(e){
@@ -104,11 +115,12 @@ function Rating() {
 
                 </Box>
             </form>
-
+           
             <div className="starRating">
-        <Box sx={{ width: 300, height: 100, backgroundColor: 'white', display: "flex", alignItems: "center", borderRadius: '16px' }}>
-        <Typography component="legend"> Rating: </Typography>
+          <Box sx={{ width: 300, height: 100, backgroundColor: 'white', display: "flex", alignItems: "center", borderRadius: '16px' }}>
+          <Typography component="legend"> Rating: </Typography>
           {[1, 2, 3, 4, 5].map((star) => (
+            <Tooltip key={star} title={getLabelText(star)} placement="top">
             <StarIcon
               key={star}
               
@@ -117,10 +129,10 @@ function Rating() {
               onMouseLeave={() => setHoverValue(null)}
               onClick={() => setValue(star)}
             />
-        
+            </Tooltip>
           ))}
-        </Box>
-        </div>
+          </Box>
+            </div>
         </div>
     )
 }
