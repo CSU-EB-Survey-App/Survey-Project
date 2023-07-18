@@ -56,7 +56,7 @@ return (
                  sx={{":hover":{
                          boxShadow:'10px 10px 20px #ccc'
                      }}}>
-                <Typography variant="h2" padding={3} textAlign="center">Register</Typography>
+                <Typography variant="h4" padding={3} textAlign="center">Register</Typography>
                 {errorFlag ? <p>Account Already Exists</p> : null}
                 <TextField
                     onChange={(e) => {setEmail(e.target.value)}}

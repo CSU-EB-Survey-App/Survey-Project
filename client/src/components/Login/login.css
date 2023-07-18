@@ -1,16 +1,48 @@
-body {
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+html, body {
+    min-height: 100vh;
     font-size: 110%;
     color: #000000;
     font-family: 'Source Sans Pro', sans-serif;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
+
+}
+.box{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-height: 500px;
+}
+#container{
+    min-height: 90%;
+}
+#main {
+    overflow: auto;
+    padding-bottom: 10px;
+}
+#footer{
+    background-color: #000000;
+    position: relative;
+    height: 10px;
+    margin-top: -10px;
+    clear: both;
+
 }
 p {
     color: red;
     text-align: center;
     font-size: 24px;
+}
+
+.bg{
+    background: url(../../imgs/EastBay.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
 }

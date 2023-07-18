@@ -19,7 +19,7 @@ function App() {
   console.log("APP Rendered");
   return (
     <>
-      
+
         <NavbarHandler>
           <Navbar />
         </NavbarHandler>
@@ -32,7 +32,7 @@ function App() {
               <Route element={<Poll />} path="/new/poll" exact />
             </Route>
             {/* Unprotected routes go here */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />}/>
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />}/>
