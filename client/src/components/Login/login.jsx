@@ -13,6 +13,9 @@ function Login() {
     const [password, setPassword] =useState('')
 
     const [errorFlag, setErrorFlag] =useState(false)
+
+    const Navigate = useNavigate()
+
 //function for submit and information to be sent to backend
     async function submit(e){
         e.preventDefault();
@@ -25,7 +28,8 @@ function Login() {
                 studentID,password
             })
             console.log(response)
-
+            sessionStorage.setItem("token", response.data.token)
+            Navigate("/dashboard")
         }
 
 
