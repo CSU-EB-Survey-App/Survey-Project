@@ -10,11 +10,12 @@ import NavbarHandler from './components/NavbarHandler/navbarHandler';
 import Navbar from "./components/Navbar/navbar";
 import Home from "./components/Home/home";
 import Login from "./components/Login/login";
-import Register from "./components/Register/register";
+import Register from "./components/Home/register";
 import Rating from "./components/Rating/rating";
 import Dashboard from "./components/Dashboard/dashboard"
 import Poll from "./components/Poll/poll"
 import DisplayPoll from "./components/PollDisplay/displayPoll"
+import SingleRating from "./components/SingleRating/SingleRating";
 
 function App() {
   console.log("APP Rendered");
@@ -30,6 +31,8 @@ function App() {
           <Route element={<Dashboard />} path="/dashboard" exact />
           <Route element={<Poll />} path="/new/poll" exact />
           <Route element={<DisplayPoll />} path="/polls" exact />
+          {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
+          <Route element ={<SingleRating />} path="/ratings" exact />
         </Route>
         {/* Unprotected routes go here */}
         <Route path="/" element={<Home />} />

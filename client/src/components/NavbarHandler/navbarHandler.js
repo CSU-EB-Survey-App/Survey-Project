@@ -4,7 +4,8 @@ import { useLocation } from 'react-router';
 const NavbarHandler = (props) => {
     const location = useLocation();
     // Add routes to show navbar here
-    let showNavbarRoutes = ["/new/rating", "/dashboard", "/new/poll", "/polls"];
+
+    let showNavbarRoutes = ["/new/rating", "/dashboard", "/new/poll", "/ratings", "/polls];
 
     console.log("NAVBAR HANDLER", location);
     console.log(showNavbarRoutes.some(route => location.pathname.includes(route)));
