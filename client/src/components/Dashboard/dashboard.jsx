@@ -4,6 +4,9 @@ import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
 
 function Dashboard(props) {
+    const [user, setUser]=useState({});
+    const [ratings, setRatings]=useState([]);
+    const [polls, setPolls]=useState([]);
 
     useEffect(() => {
         const fetchUser = async() => {
