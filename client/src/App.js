@@ -13,9 +13,9 @@ import Home from "./components/Home/home";
 import Login from "./components/Login/login";
 import Register from "./components/Home/register";
 import Rating from "./components/Rating/rating";
-import Dashboard from "./components/Dashboard/dashboard"
-import Poll from "./components/Poll/poll"
-import DisplayPoll from "./components/PollDisplay/displayPoll"
+import Dashboard from "./components/Dashboard/dashboard";
+import Poll from "./components/Poll/poll";
+import SinglePoll from "./components/PollDisplay/displayPoll";
 import SingleRating from "./components/SingleRating/SingleRating";
 
 function App() {
@@ -40,17 +40,17 @@ function App() {
             exact
           />
           <Route element={<Poll />} path="/new/poll" exact />
-          <Route element={<DisplayPoll />} path="/polls" exact />
           {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
+          {/* <Route elemSinglePoll />} path="/polls/:id" exact /> */}
           <Route element={<SingleRating />} path="/ratings/:id" exact />
+          <Route element={<SinglePoll />} path="/polls/:id" exact />
         </Route>
         {/* Unprotected routes go here */}
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
-        <Route path="*" element={<NotFound />}/>
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
