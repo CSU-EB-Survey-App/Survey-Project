@@ -30,7 +30,7 @@ function Register(){
         console.log(response)
 
         // Set session token
-        sessionStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.token);
         // Navigate user to dashboard
         navigate("/dashboard");
 

@@ -28,7 +28,7 @@ function Login() {
                 studentID,password
             })
             console.log(response)
-            sessionStorage.setItem("token", response.data.token)
+            localStorage.setItem("token", response.data.token)
             Navigate("/dashboard")
         }
 
