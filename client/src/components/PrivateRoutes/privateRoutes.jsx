@@ -4,10 +4,11 @@ import { Outlet, Navigate } from 'react-router-dom';
 
 const PrivateRoutes = () => {
   // Check session storage for token
-    let auth = {'token': true}
+    let auth = localStorage.getItem("token");
+    console.log("PRIVATE ROUTE AUTH TOKEN: ", auth);
      
     return (
-      auth.token ? <Outlet /> : <Navigate to="/" />
+      auth ? <Outlet /> : <Navigate to="/" />
     )
 }
 
