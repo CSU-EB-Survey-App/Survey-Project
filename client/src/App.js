@@ -1,4 +1,5 @@
 // Package Imports
+import React, { useState } from "react"
 import { Routes, Route, Router } from 'react-router-dom';
 
 // -Components-
@@ -18,6 +19,11 @@ import SingleRating from "./components/SingleRating/SingleRating";
 
 function App() {
   console.log("APP Rendered");
+  const [user, setUser]=useState({});
+
+  const handleUser = (data) => {
+    setUser({...data});
+  }
   return (
     <>
       <NavbarHandler>
@@ -27,7 +33,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           {/* Protected routes go here */}
           {/* <Route element={<Rating />} path="/new/rating" exact /> */}
-          <Route element={<Dashboard />} path="/dashboard" exact />
+          <Route element={<Dashboard handleuser={handleUser}/>} path="/dashboard" exact />
           <Route element={<Poll />} path="/new/poll" exact />
           {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
           <Route element ={<SingleRating />} path="/ratings" exact />

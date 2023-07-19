@@ -66,6 +66,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+
+
 export default function Navbar() {
   const navigate = useNavigate(); 
   const theme = useTheme();
@@ -78,6 +80,13 @@ export default function Navbar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleLogout = () => {
+    // Remove token
+    localStorage.removeItem("token");
+    // Redirect user to home page
+    navigate("/");
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -152,7 +161,7 @@ export default function Navbar() {
               </ListItemButton>
             </ListItem>
             <ListItem key={"logout"} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={handleLogout}>
                 <ListItemText primary={"Logout"} />
               </ListItemButton>
             </ListItem>
