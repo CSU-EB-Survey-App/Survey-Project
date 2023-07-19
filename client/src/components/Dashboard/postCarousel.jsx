@@ -1,4 +1,4 @@
-import { Grid, Card, CardContent, Typography, Avatar, CardHeader, Icon, CardActions } from "@mui/material";
+import { Grid, Card, CardContent, Typography, Avatar, CardHeader } from "@mui/material";
 import React, { Fragment } from "react"
 import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
@@ -8,7 +8,7 @@ import moment from "moment"
 
 import SVGLeft from "../../imgs/carousel-left.svg"
 import SVGRight from "../../imgs/carousel-right.svg"
-import { Cursor } from "mongoose";
+
 // function SamplePrevArrow({onClick, style, className}) {
 //     return (
 //       <div
@@ -56,7 +56,7 @@ function pollsCarousel({items, children, url, emptyItemsMessage}) {
         <Fragment>
             {items.length < 1 ? <Typography variant="h5" style={{width: "100%", textAlign: "center"}}>{emptyItemsMessage}</Typography> : (
     
-                <Grid xs={12}>
+                <Grid item xs={12}>
                     <Typography variant="h5" align="center">{children}</Typography>
                     <Slider {...settings} style={{width: "90%", margin: "auto"}}>
                     {filledData.map((item, index) => (
