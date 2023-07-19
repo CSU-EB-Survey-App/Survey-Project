@@ -1,7 +1,14 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { Box, TextField, Typography, Button, Rating } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Typography,
+  Button,
+  Rating,
+  LinearProgress,
+} from "@mui/material";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import IconButton from "@mui/material/IconButton";
@@ -16,7 +23,6 @@ function SingleRating() {
   const [rating, setRating] = useState({});
   const [user, setUser] = useState({});
   //   const [helpful, setHelpful] = useState("");
-  const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -57,19 +63,25 @@ function SingleRating() {
     }
   };
 
-  const ratingHandler = async () => {
+  const handleRatingChange = async (event) => {
     try {
+      console.log("RATING", event.target.value);
+      if (event.target.value < 1 && event.target.value > 5) {
+        return;
+      }
+
+      let request = await axios.put(
+        `http://localhost:8080/api/v1/ratings/answer/${rating._id}`,
+        {
+          answer: event.target.value,
+          user: user._id,
+        }
+      );
+      console.log("VOTING REQUEST", request);
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const handleRatingChange = (event) => {
-    console.log("RATING", event.target.value);
-    // if (newValue >= 1 && newValue <= 5) {
-    //   console.log("RATING CHANGE: ", newValue);
-    //   setRating(newValue);
-    // }
   };
 
   return (
@@ -109,15 +121,24 @@ function SingleRating() {
               {rating.question}
             </Typography>
 
-            <Typography component="legend">Your Rating</Typography>
-            <Rating
-              name="ratings"
-              size="large"
-              //pass exact rating here
-              value={value}
-              max={5}
-              onChange={handleRatingChange}
-            />
+            {!rating.voters ? null : rating.voters.includes(user._id) ? (
+              <Fragment>
+                <Typography variant="h6" padding={3} textAlign="center">
+                  Average Rating: {rating.rating / rating.voters.length}
+                </Typography>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Typography component="legend">Your Rating</Typography>
+                <Rating
+                  name="ratings"
+                  size="large"
+                  //pass exact rating here
+                  max={5}
+                  onChange={handleRatingChange}
+                />
+              </Fragment>
+            )}
             <Typography variant="p" padding={3} textAlign="center">
               Number of voters: {!rating.voters ? null : rating.voters.length}
             </Typography>
