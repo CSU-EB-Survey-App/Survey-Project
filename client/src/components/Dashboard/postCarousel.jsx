@@ -16,6 +16,12 @@ import moment from "moment";
 import SVGLeft from "../../imgs/carousel-left.svg";
 import SVGRight from "../../imgs/carousel-right.svg";
 
+const Styles = {
+  bannerText: {
+    marginTop: "15px",
+  },
+};
+
 const PrevArrow = ({ onClick }) => (
   <img
     className="slick-prev"
@@ -60,10 +66,13 @@ function pollsCarousel({ items, children, url, emptyItemsMessage }) {
         </Typography>
       ) : (
         <Grid item xs={12}>
-          <Typography variant="h5" align="center">
+          <Typography variant="h5" align="center" style={Styles.bannerText}>
             {children}
           </Typography>
-          <Slider {...settings} style={{ width: "90%", margin: "auto" }}>
+          <Slider
+            {...settings}
+            style={{ width: "90%", margin: "auto", marginTop: "15px" }}
+          >
             {filledData.map((item, index) => (
               <div className={"slimeContainer"} key={index}>
                 <NavLink

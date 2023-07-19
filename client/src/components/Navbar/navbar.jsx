@@ -157,7 +157,12 @@ export default function Navbar(props) {
             </ListItemButton>
           </ListItem>
           <ListItem key={"poll"} disablePadding>
-            <ListItemButton onClick={() => navigate("/new/poll")}>
+            <ListItemButton
+              onClick={() => {
+                navigate("/new/poll");
+                handleDrawerClose();
+              }}
+            >
               <ListItemText primary={"Poll"} />
             </ListItemButton>
           </ListItem>

@@ -9,7 +9,7 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 
 const Styles = {
   gridContainer: {
-    marginTop: "40px",
+    marginTop: "15px",
   },
   bannerText: {
     marginTop: "40px",
@@ -17,13 +17,6 @@ const Styles = {
 };
 
 function userPosts({ user }) {
-  //   if (user.polls.length < 1 || !user.ratings.length < 1) {
-  //     return (
-  //       <Typography variant="h5" align="center">
-  //         You have no posts
-  //       </Typography>
-  //     );
-  //   }
   const popularPolls = user.polls.sort((a, b) => b.useful - a.useful);
   const popularRatings = user.ratings.sort((a, b) => b.useful - a.useful);
   //   console.log("POP POLLS", popularPolls);
