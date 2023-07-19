@@ -41,7 +41,7 @@ function Login() {
   const handleLoginErrorFlag = () => {
     setTimeout(() => {
       setErrorFlag(false);
-    }, 2000);
+    }, 3000);
   };
   return (
     <Fragment>
