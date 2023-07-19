@@ -5,6 +5,7 @@ import {useNavigate, Link} from "react-router-dom";
 import {Box, TextField, Typography, Button} from "@mui/material"
 
 function Register(){
+    const navigate = useNavigate();
 
     const [studentID, setStudentID] = useState('')
 
@@ -28,6 +29,10 @@ function Register(){
         })
         console.log(response)
 
+        // Set session token
+        sessionStorage.setItem("token", response.data.token);
+        // Navigate user to dashboard
+        navigate("/dashboard");
 
     }
 
