@@ -40,7 +40,7 @@ function App() {
           />
           <Route element={<Poll />} path="/new/poll" exact />
           {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
-          <Route element={<SingleRating />} path="/ratings" exact />
+          <Route element={<SingleRating />} path="/ratings/:id" exact />
         </Route>
         {/* Unprotected routes go here */}
         <Route path="/" element={<Home />} />
