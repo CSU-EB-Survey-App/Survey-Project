@@ -22,18 +22,18 @@ function Dashboard(props) {
       const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
         token,
       });
-      console.log("USER: ", user);
+      // console.log("USER: ", user);
       setUser({ ...user.data.user });
       props.handleuser(user.data.user);
     };
     const fetchRatings = async () => {
       const ratings = await axios.get("http://localhost:8080/api/v1/ratings/");
-      console.log("RATINGS", ratings);
+      // console.log("RATINGS", ratings);
       setRatings([...ratings.data.ratings]);
     };
     const fetchPolls = async () => {
       const polls = await axios.get("http://localhost:8080/api/v1/polls/");
-      console.log("POLLS: ", polls);
+      // console.log("POLLS: ", polls);
       setPolls([...polls.data.polls]);
       setLoading(false);
     };
@@ -73,7 +73,7 @@ function Dashboard(props) {
               Popular Ratings
             </PostCarousel>
           </Grid>
-          {!user.polls && !user.ratings ? null : <UserPosts user={user} />}
+          <UserPosts />
         </div>
       )}
     </Fragment>
