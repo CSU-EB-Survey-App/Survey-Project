@@ -1,7 +1,11 @@
 import axios from "axios"
 import React, {useEffect, useState} from "react"
 import {useNavigate, Link} from "react-router-dom";
-import {Box, TextField, Typography, Button, FormControl, FormLabel} from "@mui/material"
+import {Box, TextField, Typography, Button, FormControl, FormLabel, } from "@mui/material"
+import { DatePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 
 
 function Poll() {
@@ -47,7 +51,7 @@ function Poll() {
                      maxWidth={800}
                      justifyContent="center"
                      margin="auto"
-                     marginTop={5}
+                     marginTop={15}
                      padding={5}
                      borderRadius={5}
                      boxShadow={'5px 5px 10px #ccc'}
@@ -66,7 +70,7 @@ function Poll() {
 
                             type = "question"
                             fullWidth={true}
-                            variant = "filled"
+                            variant = "outlined"
                             required={true}>
                         </TextField>
                         <FormLabel>
@@ -78,7 +82,7 @@ function Poll() {
 
                             type = "answer1"
                             fullWidth={true}
-                            variant = "filled"
+                            variant = "outlined"
                             required={true}>
                         </TextField>
                         <FormLabel>
@@ -90,7 +94,7 @@ function Poll() {
 
                             type = "answer2"
                             fullWidth={true}
-                            variant = "filled"
+                            variant = "outlined"
                             required={true}>
                         </TextField>
                         <FormLabel>
@@ -102,7 +106,7 @@ function Poll() {
 
                             type = "answer3"
                             fullWidth={true}
-                            variant = "filled"
+                            variant = "outlined"
                             required={true}>
                         </TextField>
 
@@ -110,15 +114,13 @@ function Poll() {
                         <FormLabel>
                             Poll end date:
                         </FormLabel>
-
-                        <TextField
-                            onChange = {(e) => {setEndDate (e.target.value)}  }
-                            type = "date"
-                            fullWidth={false}
-                            variant = "filled"
-                            defaultValue="?"
-                            required={true}>
-                        </TextField>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                disablePast
+                                value={endDate}
+                                onChange={(newValue) => setEndDate(newValue)}
+                            />
+                        </LocalizationProvider>
 
                         <Button type = "submit" onClick={submit}>
                             Create Poll

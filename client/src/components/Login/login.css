@@ -32,8 +32,8 @@ html, body {
     clear: both;
 
 }
-p {
-    /* color: red; */
+.error {
+    color: red;
     text-align: center;
     font-size: 24px;
 }
