@@ -18,6 +18,7 @@ import Poll from "./components/Poll/poll";
 import SinglePoll from "./components/PollDisplay/displayPoll";
 import SingleRating from "./components/SingleRating/SingleRating";
 import SearchPolls from "./components/SearchPosts/searchPolls";
+import SearchRatings from "./components/SearchPosts/searchRatings";
 
 function App() {
   console.log("APP Rendered");
@@ -47,6 +48,7 @@ function App() {
           <Route element={<SinglePoll />} path="/polls/:id" exact />
           {/* Search Routes */}
           <Route element={<SearchPolls />} path="/search/polls" exact />
+          <Route element={<SearchRatings />} path="/search/ratings" exact />
         </Route>
         {/* Unprotected routes go here */}
         <Route path="/" element={<Home />} />

@@ -156,7 +156,12 @@ export default function Navbar(props) {
             </ListItemButton>
           </ListItem>
           <ListItem key={"ratings"} disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                navigate("/search/ratings");
+                handleDrawerClose();
+              }}
+            >
               <ListItemText primary={"Ratings"} />
             </ListItemButton>
           </ListItem>

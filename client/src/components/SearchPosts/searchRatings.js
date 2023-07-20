@@ -26,8 +26,8 @@ const Styles = {
     marginTop: "80px",
   },
   scrollableContainer: {
-    maxHeight: "100vh", // Set the maximum height for the scrollable container
-    overflowY: "auto", // Add scrollbar when content overflows the container
+    maxHeight: "100vh",
+    overflowY: "auto",
   },
   listItem: {
     background: "#f5f5f5",
@@ -45,21 +45,21 @@ const Styles = {
   },
 };
 
-const SearchPolls = () => {
+const SearchRatings = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPolls = async () => {
-      const polls = await axios.get("http://localhost:8080/api/v1/polls/");
-      console.log("SEARCH POLLS: ", polls);
-      setFilteredItems(polls.data.polls);
-      setItems(polls.data.polls);
+    const fetchRatings = async () => {
+      const ratings = await axios.get("http://localhost:8080/api/v1/ratings/");
+      //   console.log("SEARCH POLLS: ", polls);
+      setFilteredItems(ratings.data.ratings);
+      setItems(ratings.data.ratings);
       setLoading(false);
     };
-    fetchPolls();
+    fetchRatings();
   }, []);
 
   const handleSearchChange = (event) => {
@@ -91,7 +91,7 @@ const SearchPolls = () => {
       ) : (
         <Fragment>
           <div style={Styles.textHeaderContainer}>
-            <Typography variant="h4">Polls</Typography>
+            <Typography variant="h4">Ratings</Typography>
           </div>
           <div style={Styles.searchContainer}>
             <div style={Styles.searchBarContainer}>
@@ -107,14 +107,14 @@ const SearchPolls = () => {
             <Box style={Styles.scrollableContainer}>
               {filteredItems.length < 1 ? (
                 <Typography style={Styles.noItemsMessage} variant="h5">
-                  No polls found
+                  No ratings found
                 </Typography>
               ) : (
                 <List>
                   {filteredItems.map((item, index) => (
                     <Link
                       key={index}
-                      to={`/polls/${item._id}`}
+                      to={`/ratings/${item._id}`}
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
                       <ListItem key={index} style={Styles.listItem}>
@@ -147,4 +147,4 @@ const SearchPolls = () => {
   );
 };
 
-export default SearchPolls;
+export default SearchRatings;
