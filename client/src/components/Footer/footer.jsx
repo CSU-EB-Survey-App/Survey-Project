@@ -15,7 +15,6 @@ const Styles = {
 export default function Footer() {
   return (
     <Box
-      // style={Styles.footerContainer}
       style={Styles.footerContainer}
       component="footer"
       sx={{

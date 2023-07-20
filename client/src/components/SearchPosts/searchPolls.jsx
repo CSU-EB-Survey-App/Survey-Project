@@ -24,10 +24,12 @@ const Styles = {
   },
   textHeaderContainer: {
     marginTop: "80px",
+    padding: "15px",
   },
   scrollableContainer: {
-    maxHeight: "100vh", // Set the maximum height for the scrollable container
-    overflowY: "auto", // Add scrollbar when content overflows the container
+    maxHeight: "100vh",
+    overflowY: "auto",
+    padding: "25px",
   },
   listItem: {
     background: "#f5f5f5",
