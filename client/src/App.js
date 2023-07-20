@@ -33,7 +33,7 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           {/* Protected routes go here */}
-          {/* <Route element={<Rating />} path="/new/rating" exact /> */}
+          <Route element={<Rating />} path="/new/rating" exact />
           <Route
             element={<Dashboard handleuser={handleUser} />}
             path="/dashboard"

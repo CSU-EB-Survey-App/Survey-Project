@@ -67,7 +67,7 @@ function Login() {
           <Typography variant="h4" padding={3} textAlign="center">
             Login
           </Typography>
-          {errorFlag ? <p>Invalid Credentials</p> : null}
+          {errorFlag ? <p className = "error">Invalid Credentials</p> : null}
           <TextField
             onChange={(e) => {
               setStudentID(e.target.value);

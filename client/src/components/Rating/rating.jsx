@@ -10,9 +10,10 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import { DatePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-// import StarIcon from '@mui/icons-material/Star';
-import { FaStar } from "react-icons/fa";
 
 function Rating() {
   const [user, setUser] = useState("");
@@ -29,13 +30,11 @@ function Rating() {
     console.log("button triggered");
     console.log(user);
     console.log(question);
-    console.log(startDate);
     console.log(endDate);
     try {
       let response = await axios.post("http://localhost:8080/api/v1/rating", {
         user,
         question,
-        startDate,
         endDate,
       });
       console.log(response);
@@ -45,18 +44,17 @@ function Rating() {
     }
   }
   return (
-    <div className="Rating">
+    <div className="Poll">
       <form action="POST" onSubmit={submit}>
         <Box
           display="flex"
           bgcolor="white"
           flexDirection={"column"}
-          maxWidth={400}
-          alignItems="center"
+          maxWidth={800}
           justifyContent="center"
           margin="auto"
-          marginTop={5}
-          padding={3}
+          marginTop={15}
+          padding={5}
           borderRadius={5}
           boxShadow={"5px 5px 10px #ccc"}
           sx={{
@@ -65,9 +63,9 @@ function Rating() {
             },
           }}
         >
-          <h2>Create a Rating</h2>
+          <Typography variant="h4" padding={1} textAlign="center">Create a Rating</Typography>
           <FormControl>
-            <FormLabel>What do you want to rate?</FormLabel>
+            <FormLabel>Rating Prompt:</FormLabel>
 
             <TextField
               onChange={(e) => {
@@ -75,35 +73,20 @@ function Rating() {
               }}
               type="question"
               fullWidth={true}
-              variant="filled"
+              variant="outlined"
               required={true}
             ></TextField>
 
-            <FormLabel>Rating Start Date:</FormLabel>
-
-            <TextField
-              onChange={(e) => {
-                setStartDate(e.target.value);
-              }}
-              type="date"
-              fullWidth={true}
-              variant="filled"
-              defaultValue="?"
-              required={true}
-            ></TextField>
 
             <FormLabel>Rating end date:</FormLabel>
 
-            <TextField
-              onChange={(e) => {
-                setEndDate(e.target.value);
-              }}
-              type="date"
-              fullWidth={true}
-              variant="filled"
-              defaultValue="?"
-              required={true}
-            ></TextField>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                  disablePast
+                  value={endDate}
+                  onChange={(endDate) => setEndDate(endDate)}
+              />
+            </LocalizationProvider>
 
             <Button type="submit" onClick={submit}>
               Create Rating
