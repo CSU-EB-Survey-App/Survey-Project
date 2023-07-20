@@ -32,7 +32,7 @@ html, body {
     clear: both;
 
 }
-p {
+.error {
     color: red;
     text-align: center;
     font-size: 24px;

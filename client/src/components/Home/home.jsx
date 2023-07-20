@@ -1,5 +1,5 @@
 // Package Imports
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 
 // import "./home.css"
 
@@ -13,6 +13,8 @@ import Image from '../../imgs/EastBay.png'
 // Components
 import Login from "../Login/login"
 import Footer from "../Footer/footer"
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const Styles = {
   bannerContainer: {
@@ -35,6 +37,30 @@ const Styles = {
 
 
 function Home() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchAuthentication = async() => {
+      try {
+        let token = localStorage.getItem("token");
+        const request = await axios.post("http://localhost:8080/api/v1/auth/isauth/", {
+          token: token
+        });
+        console.log("ISAUTH REQUEST: ", request);
+        if (request.data.success === true) {
+          navigate("/dashboard")
+        }
+      } catch(err) {
+        console.log(err);
+      }
+      
+    }
+    if (localStorage.getItem("token")) {
+      fetchAuthentication();
+    } else {
+      return;
+    }
+  }, [])
   
   return (
     <Fragment>
