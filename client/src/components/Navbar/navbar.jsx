@@ -124,23 +124,6 @@ export default function Navbar(props) {
         </DrawerHeader>
 
         <List>
-          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))} */}
-          <ListItem key={"user"} disablePadding>
-            <ListItemButton
-              onClick={() => {
-                navigate("/user");
-                handleDrawerClose();
-              }}
-            >
-              <ListItemText primary={props.user.studentID} />
-            </ListItemButton>
-          </ListItem>
           <ListItem key={"dashboard"} disablePadding>
             <ListItemButton
               onClick={() => {
@@ -151,11 +134,33 @@ export default function Navbar(props) {
               <ListItemText primary={"Dashboard"} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={"search"} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={"Search"} />
+          <ListItem key={"user"} disablePadding>
+            <ListItemButton
+              onClick={() => {
+                navigate("/user");
+                handleDrawerClose();
+              }}
+            >
+              <ListItemText primary={props.user.studentID} />
             </ListItemButton>
           </ListItem>
+          <Divider>Search</Divider>
+          <ListItem key={"polls"} disablePadding>
+            <ListItemButton
+              onClick={() => {
+                navigate("/search/polls");
+                handleDrawerClose();
+              }}
+            >
+              <ListItemText primary={"Polls"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"ratings"} disablePadding>
+            <ListItemButton>
+              <ListItemText primary={"Ratings"} />
+            </ListItemButton>
+          </ListItem>
+          <Divider>New</Divider>
           <ListItem key={"poll"} disablePadding>
             <ListItemButton
               onClick={() => {
@@ -176,6 +181,7 @@ export default function Navbar(props) {
               <ListItemText primary={"Rating"} />
             </ListItemButton>
           </ListItem>
+          <Divider />
           <ListItem key={"logout"} disablePadding>
             <ListItemButton onClick={handleLogout}>
               <ListItemText primary={"Logout"} />
