@@ -17,7 +17,6 @@ import IconButton from "@mui/material/IconButton";
 import Loading from "../Loading/loading";
 
 function SingleRating() {
-  const navigate = useNavigate();
   const { id } = useParams();
 
   const [rating, setRating] = useState({});
@@ -149,9 +148,11 @@ function SingleRating() {
               <Fragment>
                 {rating.usefulVoters.includes(user._id) ? (
                   <Typography>
-                    {rating.usefulVoters.length}{" "}
-                    {rating.usefulVoters.length < 2 ? "person" : "people"} found
-                    this useful
+                    {rating.usefulVoters.length}
+                    {rating.usefulVoters.length < 2
+                      ? " person "
+                      : " people "}{" "}
+                    found this useful
                   </Typography>
                 ) : (
                   <Fragment>
