@@ -7,7 +7,8 @@ import { Grid, Typography } from "@mui/material";
 
 // Imports
 import PostCarousel from "./postCarousel";
-import UserPosts from "./userPosts";
+import UserPolls from "./userPolls";
+import UserRatings from "./userRatings";
 import Loading from "../Loading/loading";
 
 function Dashboard(props) {
@@ -73,7 +74,13 @@ function Dashboard(props) {
               Popular Ratings
             </PostCarousel>
           </Grid>
-          <UserPosts />
+          <Typography align="center" variant="h5" style={{ marginTop: "35px" }}>
+            My Popular Posts
+          </Typography>
+          <Grid container spacing={2}>
+            <UserPolls />
+            <UserRatings />
+          </Grid>
         </div>
       )}
     </Fragment>
