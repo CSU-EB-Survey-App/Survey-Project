@@ -44,6 +44,7 @@ function App() {
           />
           <Route> element = {}</Route>
           <Route element={<Poll />} path="/new/poll" exact />
+          <Route element = {<Rating/>} path = "/new/rating" exact />
           {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
           {/* <Route elemSinglePoll />} path="/polls/:id" exact /> */}
           <Route element={<SingleRating />} path="/ratings/:id" exact />
