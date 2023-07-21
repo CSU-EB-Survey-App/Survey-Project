@@ -137,7 +137,7 @@ export default function Navbar(props) {
           <ListItem key={"user"} disablePadding>
             <ListItemButton
               onClick={() => {
-                navigate("/user");
+                navigate("/account/:id");
                 handleDrawerClose();
               }}
             >
@@ -192,6 +192,10 @@ export default function Navbar(props) {
               <ListItemText primary={"Logout"} />
             </ListItemButton>
           </ListItem>
+          
+          
+          
+
         </List>
       </Drawer>
     </Box>

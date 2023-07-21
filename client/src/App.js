@@ -19,6 +19,7 @@ import SinglePoll from "./components/PollDisplay/displayPoll";
 import SingleRating from "./components/SingleRating/SingleRating";
 import SearchPolls from "./components/SearchPosts/searchPolls";
 import SearchRatings from "./components/SearchPosts/searchRatings";
+import AccountPage from "./components/Account/account";
 
 function App() {
   console.log("APP Rendered");
@@ -35,13 +36,15 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           {/* Protected routes go here */}
-          <Route element={<Rating />} path="/new/rating" exact />
+          <Route element={<AccountPage />} path="/account/:id" exact />
           <Route
             element={<Dashboard handleuser={handleUser} />}
             path="/dashboard"
             exact
           />
+          <Route> element = {}</Route>
           <Route element={<Poll />} path="/new/poll" exact />
+          <Route element = {<Rating/>} path = "/new/rating" exact />
           {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
           {/* <Route elemSinglePoll />} path="/polls/:id" exact /> */}
           <Route element={<SingleRating />} path="/ratings/:id" exact />
