@@ -40,7 +40,7 @@ function SingleRating() {
       console.log("RATING: ", request);
       setRating({ ...request.data.rating });
     };
-
+   
     fetchUser();
     fetchRating();
     setLoading(false);

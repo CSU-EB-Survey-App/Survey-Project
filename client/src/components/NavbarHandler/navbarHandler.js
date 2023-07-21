@@ -11,6 +11,7 @@ const NavbarHandler = (props) => {
     "/new/poll",
     "/ratings",
     "/polls",
+    "/account/:id",
   ];
 
   console.log("NAVBAR HANDLER", location);
