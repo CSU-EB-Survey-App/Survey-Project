@@ -30,19 +30,21 @@ function AccountPage() {
   const numberOfPolls = 3;
   const numberOfRatings = 5;
   const email = "yoda234@fakemail.com";
-   
-//FIXME this function is not finished
-async function DeleteAccount(){
+
+  //FIXME this function is not finished
+  async function DeleteAccount() {
     console.log(accountID);
-    try{
-        // @route POST /api/v1/auth/delete
-        let response = await axios.delete('http://localhost:8080//api/v1/auth/delete/${accountID}');
-        console.log(response);
-    } catch(error){
-        console.log(error.response);
-        setErrorFlag(true);
+    try {
+      // @route POST /api/v1/auth/delete
+      let response = await axios.delete(
+        "http://localhost:8080//api/v1/auth/delete/${accountID}"
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error.response);
+      setErrorFlag(true);
     }
-}
+  }
 
   async function submit(e) {
     e.preventDefault();
@@ -70,7 +72,6 @@ async function DeleteAccount(){
       setErrorFlag(true);
     }
   }
-  
 
   return (
     <div className="Poll">
@@ -96,33 +97,18 @@ async function DeleteAccount(){
             Account Information
           </Typography>
 
-          <Typography>
-            Account ID: {accountID}
-          </Typography>
+          <Typography>Account ID: {accountID}</Typography>
 
-          <Typography>
-            Account Created On: {accountCreatedDate}
-          </Typography>
+          <Typography>User E-mail: {email}</Typography>
 
-          <Typography>
-            User E-mail: {email}
-          </Typography>
+          <Typography>Number of Ratings: {numberOfRatings}</Typography>
 
-          <Typography>
-            Number of Ratings: {numberOfRatings}
-          </Typography>
-          
-          <Typography>
-            Number of Polls: {numberOfPolls}
-          </Typography>
+          <Typography>Number of Polls: {numberOfPolls}</Typography>
 
-          <Button 
-            variant="contained"
-            onClick = {DeleteAccount}
-            padding = {3}>
-                Delete Account
+          <Typography>Account Created On: {accountCreatedDate}</Typography>
+          <Button variant="contained" onClick={DeleteAccount} padding={3}>
+            Delete Account
           </Button>
-
         </Box>
       </form>
     </div>
