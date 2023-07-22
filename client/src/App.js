@@ -36,7 +36,7 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           {/* Protected routes go here */}
-          <Route element={<AccountPage />} path="/account/:id" exact />
+          <Route element={<AccountPage />} path="/account" exact />
           <Route
             element={<Dashboard handleuser={handleUser} />}
             path="/dashboard"
@@ -44,7 +44,7 @@ function App() {
           />
           <Route> element = {}</Route>
           <Route element={<Poll />} path="/new/poll" exact />
-          <Route element = {<Rating/>} path = "/new/rating" exact />
+          <Route element={<Rating />} path="/new/rating" exact />
           {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
           {/* <Route elemSinglePoll />} path="/polls/:id" exact /> */}
           <Route element={<SingleRating />} path="/ratings/:id" exact />
