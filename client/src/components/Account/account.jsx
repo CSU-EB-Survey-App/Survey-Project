@@ -105,7 +105,7 @@ async function DeleteAccount(){
           </Typography>
 
           <Typography>
-            studentEmail: {email}
+            User E-mail: {email}
           </Typography>
 
           <Typography>
