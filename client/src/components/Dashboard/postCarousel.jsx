@@ -97,7 +97,7 @@ function pollsCarousel({ items, children, url, emptyItemsMessage }) {
                           </Grid>
                           <Grid item>
                             <Tooltip
-                              title = "Usefulness Votes">
+                              title = {`${item.useful} users think this post was useful`}>
                               <StarOutlineIcon style={{ opacity: "0.5" }} />
                             </Tooltip>
                           </Grid>
