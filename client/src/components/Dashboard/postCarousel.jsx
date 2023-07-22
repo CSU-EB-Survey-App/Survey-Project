@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   Typography,
+  Tooltip,
   Avatar,
   CardHeader,
 } from "@mui/material";
@@ -95,7 +96,10 @@ function pollsCarousel({ items, children, url, emptyItemsMessage }) {
                             {item.useful}
                           </Grid>
                           <Grid item>
-                            <StarOutlineIcon style={{ opacity: "0.5" }} />
+                            <Tooltip
+                              title = "Usefulness Votes">
+                              <StarOutlineIcon style={{ opacity: "0.5" }} />
+                            </Tooltip>
                           </Grid>
                         </Grid>
                       }
