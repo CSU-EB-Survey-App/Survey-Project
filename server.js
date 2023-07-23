@@ -16,8 +16,8 @@ const connectDB = require("./config/dbConfig");
 dotenv.config({ path: "./config/config.env" });
 
 // Port for server to listen on
-// const PORT = process.env.PORT || 8080;
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
+// const PORT = 8080;
 
 // Initialize Server
 const app = express();
