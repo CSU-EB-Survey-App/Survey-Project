@@ -45,9 +45,9 @@ app.use("/api/v1/polls", polls);
 app.use(errorHandler);
 
 // Example of a Route
-app.get("/", (req, res) => {
-  res.send("Server Is Good");
-});
+// app.get("/", (req, res) => {
+//   res.send("Server Is Good");
+// });
 
 if (process.env.NODE_ENV === "production") {
   // Express will serve production assets
