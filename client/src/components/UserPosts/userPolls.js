@@ -84,20 +84,6 @@ const UserPolls = () => {
     setFilteredItems(filtered);
   };
 
-  if (items.length < 1) {
-    return (
-      <Fragment>
-        <div style={Styles.createPostMessage}>
-          <Link to={"/new/poll"}>
-            <Typography variant="h5">
-              You have no polls, create some here.
-            </Typography>
-          </Link>
-        </div>
-      </Fragment>
-    );
-  }
-
   return (
     <Fragment>
       {loading ? (
@@ -130,7 +116,7 @@ const UserPolls = () => {
             <Box style={Styles.scrollableContainer}>
               {filteredItems.length < 1 ? (
                 <Typography style={Styles.noItemsMessage} variant="h5">
-                  No polls found
+                  No polls
                 </Typography>
               ) : (
                 <List>

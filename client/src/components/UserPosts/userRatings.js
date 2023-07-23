@@ -63,8 +63,8 @@ const UserRatings = () => {
       const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
         token,
       });
-
-      setFilteredItems(user.data.user.polls);
+      console.log(user.data.user.ratings);
+      setFilteredItems(user.data.user.ratings);
       setItems(user.data.user.ratings);
       setLoading(false);
     };
@@ -83,20 +83,6 @@ const UserRatings = () => {
     console.log("Filtered", filtered);
     setFilteredItems(filtered);
   };
-
-  if (items.length < 1) {
-    return (
-      <Fragment>
-        <div style={Styles.createPostMessage}>
-          <Link to={"/new/rating"}>
-            <Typography variant="h5">
-              You have no ratings, create some here.
-            </Typography>
-          </Link>
-        </div>
-      </Fragment>
-    );
-  }
 
   return (
     <Fragment>
@@ -130,7 +116,7 @@ const UserRatings = () => {
             <Box style={Styles.scrollableContainer}>
               {filteredItems.length < 1 ? (
                 <Typography style={Styles.noItemsMessage} variant="h5">
-                  No polls found
+                  No Ratings
                 </Typography>
               ) : (
                 <List>
@@ -153,6 +139,9 @@ const UserRatings = () => {
                               <Typography>{item.question}</Typography>
                               <Typography>
                                 {moment(item.createdAt).format("MMMM DD, YYYY")}
+                              </Typography>
+                              <Typography>
+                                Total Votes: {item.useful}
                               </Typography>
                             </Fragment>
                           }

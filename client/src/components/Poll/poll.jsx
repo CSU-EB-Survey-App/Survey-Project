@@ -27,14 +27,7 @@ function Poll() {
 
   async function submit(e) {
     e.preventDefault();
-    // console.log("button triggered");
-    // console.log(user);
-    // console.log(question);
-    // console.log(answer1);
-    // console.log(answer2);
-    // console.log(answer3);
-    // console.log(startDate);
-    // console.log(endDate);
+
     try {
       console.log("ENDDATE", endDate.$d);
       let response = await axios.post("http://localhost:8080/api/v1/poll", {
