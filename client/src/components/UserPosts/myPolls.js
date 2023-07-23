@@ -5,14 +5,17 @@ import moment from "moment";
 import {
   List,
   ListItem,
+  ListItemSecondaryAction,
   ListItemText,
   TextField,
   Box,
   ListItemAvatar,
   Avatar,
   Typography,
+  IconButton,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Loading from "../Loading/loading";
 
 const Styles = {
@@ -51,24 +54,24 @@ const Styles = {
   },
 };
 
-const UserRatings = () => {
+const UserPolls = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchRatings = async () => {
+    const fetchPolls = async () => {
       let token = localStorage.getItem("token");
       const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
         token,
       });
-      console.log(user.data.user.ratings);
-      setFilteredItems(user.data.user.ratings);
-      setItems(user.data.user.ratings);
+      console.log("USER", user);
+      setFilteredItems(user.data.user.polls);
+      setItems(user.data.user.polls);
       setLoading(false);
     };
-    fetchRatings();
+    fetchPolls();
   }, []);
 
   const handleSearchChange = (event) => {
@@ -82,6 +85,18 @@ const UserRatings = () => {
     );
     console.log("Filtered", filtered);
     setFilteredItems(filtered);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      let request = await axios.delete(
+        `http://localhost:8080/api/v1/polls/${id}`
+      );
+      console.log(request);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -100,7 +115,7 @@ const UserRatings = () => {
       ) : (
         <Fragment>
           <div style={Styles.textHeaderContainer}>
-            <Typography variant="h4">My Ratings</Typography>
+            <Typography variant="h4">My Polls</Typography>
           </div>
           <div style={Styles.searchContainer}>
             <div style={Styles.searchBarContainer}>
@@ -116,38 +131,42 @@ const UserRatings = () => {
             <Box style={Styles.scrollableContainer}>
               {filteredItems.length < 1 ? (
                 <Typography style={Styles.noItemsMessage} variant="h5">
-                  No Ratings
+                  No Polls
                 </Typography>
               ) : (
                 <List>
                   {filteredItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={`/ratings/${item._id}`}
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <ListItem key={index} style={Styles.listItem}>
-                        <ListItemAvatar>
-                          <Avatar>
-                            <PersonIcon />
-                          </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={item.user.studentID}
-                          secondary={
-                            <Fragment>
-                              <Typography>{item.question}</Typography>
-                              <Typography>
-                                {moment(item.createdAt).format("MMMM DD, YYYY")}
-                              </Typography>
-                              <Typography>
-                                Total Votes: {item.useful}
-                              </Typography>
-                            </Fragment>
-                          }
-                        />
-                      </ListItem>
-                    </Link>
+                    <ListItem key={index} style={Styles.listItem}>
+                      <div style={{ width: "40%" }}>
+                        <Link
+                          key={index}
+                          to={`/polls/${item._id}`}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          <ListItemAvatar>
+                            <Avatar>
+                              <PersonIcon />
+                            </Avatar>
+                          </ListItemAvatar>
+                          <ListItemText
+                            primary={item.question}
+                            secondary={moment(item.createdAt).format(
+                              "MMMM DD, YYYY"
+                            )}
+                          />
+                        </Link>
+                      </div>
+                      <ListItemText primary={`Votes: ${item.useful}`} />
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          edge="end"
+                          aria-label="delete"
+                          onClick={() => handleDelete(item._id)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
                   ))}
                 </List>
               )}
@@ -159,4 +178,4 @@ const UserRatings = () => {
   );
 };
 
-export default UserRatings;
+export default UserPolls;

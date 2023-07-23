@@ -46,7 +46,7 @@ exports.createRating = asyncHandler(async (req, res, next) => {
     // Grab request body values
     const { question, endDate, user } = req.body;
 
-    // Check rating exists
+    // Check rating information exists
     if (!question || !endDate) {
       return next(new ErrorResponse(`All fields are required.`, 401));
     }

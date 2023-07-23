@@ -20,8 +20,8 @@ import SingleRating from "./components/SingleRating/SingleRating";
 import SearchPolls from "./components/SearchPosts/searchPolls";
 import SearchRatings from "./components/SearchPosts/searchRatings";
 import AccountPage from "./components/Account/account";
-import UserPolls from "./components/UserPosts/userPolls";
-import UserRatings from "./components/UserPosts/userRatings";
+import UserPolls from "./components/UserPosts/myPolls";
+import UserRatings from "./components/UserPosts/myRatings";
 import NotFound from "./components/NotFound/notFound";
 
 function App() {

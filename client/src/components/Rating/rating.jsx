@@ -60,7 +60,7 @@ function Rating() {
         user: user._id,
       };
 
-      // console.log(data);
+      console.log(data);
 
       let response = await axios.post(
         "http://localhost:8080/api/v1/ratings/",

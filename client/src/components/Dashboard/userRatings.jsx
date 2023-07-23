@@ -51,70 +51,78 @@ const UserRatings = ({ header, url }) => {
 
   return (
     <Fragment>
-      <Grid item xs={3}>
-        <NavLink
-          to={`/ratings/${popularRatings[0]._id}`}
-          style={{ textDecoration: "none", userSelect: "none" }}
-        >
-          <Card
-            sx={{ minWidth: 200, minHeight: 200 }}
-            style={{ margin: "10px" }}
-          >
-            <CardHeader
-              action={
-                <Grid container direction="row" alignItems="center">
-                  <Grid item style={{ paddingBottom: "5px" }}>
-                    {popularRatings[0].useful}
-                  </Grid>
-                  <Grid item>
-                    <StarOutlineIcon style={{ opacity: "0.5" }} />
-                  </Grid>
-                </Grid>
-              }
-              subheader={moment(popularRatings[0].createdAt).format(
-                "MMMM DD, YYYY"
-              )}
-            />
-            <CardContent>
-              <Typography sx={{ fontSize: 18 }}>
-                {popularRatings[0].question}
-              </Typography>
-            </CardContent>
-          </Card>
-        </NavLink>
-      </Grid>
-      <Grid item xs={3}>
-        <NavLink
-          to={`/ratings/${popularRatings[1]._id}`}
-          style={{ textDecoration: "none", userSelect: "none" }}
-        >
-          <Card
-            sx={{ minWidth: 200, minHeight: 200 }}
-            style={{ margin: "10px" }}
-          >
-            <CardHeader
-              action={
-                <Grid container direction="row" alignItems="center">
-                  <Grid item style={{ paddingBottom: "5px" }}>
-                    {popularRatings[1].useful}
-                  </Grid>
-                  <Grid item>
-                    <StarOutlineIcon style={{ opacity: "0.5" }} />
-                  </Grid>
-                </Grid>
-              }
-              subheader={moment(popularRatings[1].createdAt).format(
-                "MMMM DD, YYYY"
-              )}
-            />
-            <CardContent>
-              <Typography sx={{ fontSize: 18 }}>
-                {popularRatings[1].question}
-              </Typography>
-            </CardContent>
-          </Card>
-        </NavLink>
-      </Grid>
+      {popularRatings.length >= 1 ? (
+        <Fragment>
+          <Grid item xs={3}>
+            <NavLink
+              to={`/ratings/${popularRatings[0]._id}`}
+              style={{ textDecoration: "none", userSelect: "none" }}
+            >
+              <Card
+                sx={{ minWidth: 200, minHeight: 200 }}
+                style={{ margin: "10px" }}
+              >
+                <CardHeader
+                  action={
+                    <Grid container direction="row" alignItems="center">
+                      <Grid item style={{ paddingBottom: "5px" }}>
+                        {popularRatings[0].useful}
+                      </Grid>
+                      <Grid item>
+                        <StarOutlineIcon style={{ opacity: "0.5" }} />
+                      </Grid>
+                    </Grid>
+                  }
+                  subheader={moment(popularRatings[0].createdAt).format(
+                    "MMMM DD, YYYY"
+                  )}
+                />
+                <CardContent>
+                  <Typography sx={{ fontSize: 18 }}>
+                    {popularRatings[0].question}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </NavLink>
+          </Grid>
+        </Fragment>
+      ) : null}
+      {popularRatings.length >= 2 ? (
+        <Fragment>
+          <Grid item xs={3}>
+            <NavLink
+              to={`/ratings/${popularRatings[1]._id}`}
+              style={{ textDecoration: "none", userSelect: "none" }}
+            >
+              <Card
+                sx={{ minWidth: 200, minHeight: 200 }}
+                style={{ margin: "10px" }}
+              >
+                <CardHeader
+                  action={
+                    <Grid container direction="row" alignItems="center">
+                      <Grid item style={{ paddingBottom: "5px" }}>
+                        {popularRatings[1].useful}
+                      </Grid>
+                      <Grid item>
+                        <StarOutlineIcon style={{ opacity: "0.5" }} />
+                      </Grid>
+                    </Grid>
+                  }
+                  subheader={moment(popularRatings[1].createdAt).format(
+                    "MMMM DD, YYYY"
+                  )}
+                />
+                <CardContent>
+                  <Typography sx={{ fontSize: 18 }}>
+                    {popularRatings[1].question}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </NavLink>
+          </Grid>
+        </Fragment>
+      ) : null}
     </Fragment>
   );
 };
