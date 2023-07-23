@@ -20,6 +20,9 @@ import SingleRating from "./components/SingleRating/SingleRating";
 import SearchPolls from "./components/SearchPosts/searchPolls";
 import SearchRatings from "./components/SearchPosts/searchRatings";
 import AccountPage from "./components/Account/account";
+import UserPolls from "./components/UserPosts/myPolls";
+import UserRatings from "./components/UserPosts/myRatings";
+import NotFound from "./components/NotFound/notFound";
 
 function App() {
   console.log("APP Rendered");
@@ -36,22 +39,23 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           {/* Protected routes go here */}
-          <Route element={<AccountPage />} path="/account" exact />
+          <Route element={<AccountPage />} path="/settings" exact />
           <Route
             element={<Dashboard handleuser={handleUser} />}
             path="/dashboard"
             exact
           />
-          <Route> element = {}</Route>
-          <Route element={<Poll />} path="/new/poll" exact />
-          <Route element={<Rating />} path="/new/rating" exact />
-          {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
-          {/* <Route elemSinglePoll />} path="/polls/:id" exact /> */}
+          {/* <Route> element = {}</Route> */}
+          <Route element={<Poll user={user} />} path="/new/poll" exact />
+          <Route element={<Rating user={user} />} path="/new/rating" exact />
+
           <Route element={<SingleRating />} path="/ratings/:id" exact />
           <Route element={<SinglePoll />} path="/polls/:id" exact />
           {/* Search Routes */}
           <Route element={<SearchPolls />} path="/search/polls" exact />
           <Route element={<SearchRatings />} path="/search/ratings" exact />
+          <Route element={<UserPolls />} path="/account/polls" exact />
+          <Route element={<UserRatings />} path="/account/ratings" exact />
         </Route>
         {/* Unprotected routes go here */}
         <Route path="/" element={<Home />} />
@@ -64,20 +68,4 @@ function App() {
   );
 }
 
-const NotFound = ({ children }) => {
-  return <div>Not Found</div>;
-};
-
 export default App;
-
-/*
-<Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />}/>
-          <Route path="/rating" element={<Rating />}/>
-         
-          <Route path="*" element={<NotFound />}/>
-        </Routes>
-
-*/
