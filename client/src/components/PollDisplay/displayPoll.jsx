@@ -134,68 +134,72 @@ function DisplayPoll() {
                 </Typography>
 
                 <FormControl>
-                  {poll.voters.includes(user._id) ? (
+                  {!poll.voters ? null : (
                     <Fragment>
-                      <div style={{ marginBottom: "15px" }}>
-                        <Typography variant="h5" align="center">
-                          Results:
-                        </Typography>
-                        <Typography align="center" variant="h6">
-                          Option 1: {poll.answer1}
-                        </Typography>
-                        <Typography align="center">
-                          {poll.answer1Count} voters
-                        </Typography>
-                        <Typography align="center" variant="h6">
-                          Option 2: {poll.answer2}
-                        </Typography>
-                        <Typography align="center">
-                          {poll.answer2Count} voters
-                        </Typography>
-                        <Typography align="center" variant="h6">
-                          Option 3: {poll.answer3}
-                        </Typography>
-                        <Typography align="center">
-                          {poll.answer3Count} voters
-                        </Typography>
-                      </div>
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      <FormLabel id="demo-radio-buttons-group-label">
-                        Choose your favorite option:
-                      </FormLabel>
-                      <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        name="radio-buttons-group"
-                      >
-                        <FormControlLabel
-                          value={"answer1Count"}
-                          control={<Radio />}
-                          label={poll.answer1}
-                          onChange={radioSelectHandler}
-                        />
-                        <FormControlLabel
-                          value={"answer2Count"}
-                          control={<Radio />}
-                          label={poll.answer2}
-                          onChange={radioSelectHandler}
-                        />
-                        <FormControlLabel
-                          value={"answer3Count"}
-                          control={<Radio />}
-                          label={poll.answer3}
-                          onChange={radioSelectHandler}
-                        />
-                      </RadioGroup>
+                      {poll.voters.includes(user._id) ? (
+                        <Fragment>
+                          <div style={{ marginBottom: "15px" }}>
+                            <Typography variant="h5" align="center">
+                              Results:
+                            </Typography>
+                            <Typography align="center" variant="h6">
+                              Option 1: {poll.answer1}
+                            </Typography>
+                            <Typography align="center">
+                              {poll.answer1Count} voters
+                            </Typography>
+                            <Typography align="center" variant="h6">
+                              Option 2: {poll.answer2}
+                            </Typography>
+                            <Typography align="center">
+                              {poll.answer2Count} voters
+                            </Typography>
+                            <Typography align="center" variant="h6">
+                              Option 3: {poll.answer3}
+                            </Typography>
+                            <Typography align="center">
+                              {poll.answer3Count} voters
+                            </Typography>
+                          </div>
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          <FormLabel id="demo-radio-buttons-group-label">
+                            Choose your favorite option:
+                          </FormLabel>
+                          <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            name="radio-buttons-group"
+                          >
+                            <FormControlLabel
+                              value={"answer1Count"}
+                              control={<Radio />}
+                              label={poll.answer1}
+                              onChange={radioSelectHandler}
+                            />
+                            <FormControlLabel
+                              value={"answer2Count"}
+                              control={<Radio />}
+                              label={poll.answer2}
+                              onChange={radioSelectHandler}
+                            />
+                            <FormControlLabel
+                              value={"answer3Count"}
+                              control={<Radio />}
+                              label={poll.answer3}
+                              onChange={radioSelectHandler}
+                            />
+                          </RadioGroup>
 
-                      <Button
-                        variant="contained"
-                        type="submit"
-                        onClick={onSubmitHandler}
-                      >
-                        Submit Answer
-                      </Button>
+                          <Button
+                            variant="contained"
+                            type="submit"
+                            onClick={onSubmitHandler}
+                          >
+                            Submit Answer
+                          </Button>
+                        </Fragment>
+                      )}
                     </Fragment>
                   )}
                 </FormControl>
