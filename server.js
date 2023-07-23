@@ -10,7 +10,7 @@ const errorHandler = require("./middleware/error");
 
 // -IMPORTED FUNCTIONS-
 // Import Database connection function
-const connectDB = require("./config/dbConfig");
+const connectDB = require("./Config/dbConfig");
 
 // Load environment variables
 dotenv.config({ path: "./config/config.env" });
