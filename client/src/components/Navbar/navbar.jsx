@@ -134,14 +134,25 @@ export default function Navbar(props) {
               <ListItemText primary={"Dashboard"} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={"user"} disablePadding>
+          <Divider>My</Divider>
+          <ListItem key={"user-posts"} disablePadding>
             <ListItemButton
               onClick={() => {
-                navigate("/account/:id");
+                navigate("/account/polls");
                 handleDrawerClose();
               }}
             >
-              <ListItemText primary={props.user.studentID} />
+              <ListItemText primary={"Polls"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"user-ratings"} disablePadding>
+            <ListItemButton
+              onClick={() => {
+                navigate("/account/ratings");
+                handleDrawerClose();
+              }}
+            >
+              <ListItemText primary={"Ratings"} />
             </ListItemButton>
           </ListItem>
           <Divider>Search</Divider>

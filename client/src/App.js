@@ -20,6 +20,8 @@ import SingleRating from "./components/SingleRating/SingleRating";
 import SearchPolls from "./components/SearchPosts/searchPolls";
 import SearchRatings from "./components/SearchPosts/searchRatings";
 import AccountPage from "./components/Account/account";
+import UserPolls from "./components/UserPosts/userPolls";
+import UserRatings from "./components/UserPosts/userRatings";
 
 function App() {
   console.log("APP Rendered");
@@ -45,13 +47,14 @@ function App() {
           <Route> element = {}</Route>
           <Route element={<Poll />} path="/new/poll" exact />
           <Route element={<Rating />} path="/new/rating" exact />
-          {/* <Route element={<SinglePoll />} path="/poll/:id" exact /> */}
-          {/* <Route elemSinglePoll />} path="/polls/:id" exact /> */}
+
           <Route element={<SingleRating />} path="/ratings/:id" exact />
           <Route element={<SinglePoll />} path="/polls/:id" exact />
           {/* Search Routes */}
           <Route element={<SearchPolls />} path="/search/polls" exact />
           <Route element={<SearchRatings />} path="/search/ratings" exact />
+          <Route element={<UserPolls />} path="/account/polls" exact />
+          <Route element={<UserRatings />} path="/account/ratings" exact />
         </Route>
         {/* Unprotected routes go here */}
         <Route path="/" element={<Home />} />
