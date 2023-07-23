@@ -22,6 +22,7 @@ import SearchRatings from "./components/SearchPosts/searchRatings";
 import AccountPage from "./components/Account/account";
 import UserPolls from "./components/UserPosts/userPolls";
 import UserRatings from "./components/UserPosts/userRatings";
+import NotFound from "./components/NotFound/notFound";
 
 function App() {
   console.log("APP Rendered");
@@ -67,20 +68,4 @@ function App() {
   );
 }
 
-const NotFound = ({ children }) => {
-  return <div>Not Found</div>;
-};
-
 export default App;
-
-/*
-<Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />}/>
-          <Route path="/rating" element={<Rating />}/>
-         
-          <Route path="*" element={<NotFound />}/>
-        </Routes>
-
-*/
