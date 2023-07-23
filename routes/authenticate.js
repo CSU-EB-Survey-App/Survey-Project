@@ -1,16 +1,14 @@
 // Express Package
 const express = require("express");
 
-
 // Import Controller Functions
-const  {
-    register,
-    login,
-    isAuthenticated,
-    getUser,
-    deleteAccount
+const {
+  register,
+  login,
+  isAuthenticated,
+  getUser,
+  deleteAccount,
 } = require("../controllers/authenticate");
-
 
 const router = express.Router();
 
@@ -23,8 +21,6 @@ router.route("/isauth").post(isAuthenticated);
 // Get user account details
 router.route("/user").post(getUser);
 // Delete User Account
-router.route("/delete").delete(deleteAccount);
-
-
+router.route("/delete/:id").delete(deleteAccount);
 
 module.exports = router;

@@ -36,7 +36,7 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           {/* Protected routes go here */}
-          <Route element={<AccountPage />} path="/account" exact />
+          <Route element={<AccountPage />} path="/settings" exact />
           <Route
             element={<Dashboard handleuser={handleUser} />}
             path="/dashboard"

@@ -187,15 +187,21 @@ export default function Navbar(props) {
             </ListItemButton>
           </ListItem>
           <Divider />
+          <ListItem key={"settings"} disablePadding>
+            <ListItemButton
+              onClick={() => {
+                navigate("/settings");
+                handleDrawerClose();
+              }}
+            >
+              <ListItemText primary={"Settings"} />
+            </ListItemButton>
+          </ListItem>
           <ListItem key={"logout"} disablePadding>
             <ListItemButton onClick={handleLogout}>
               <ListItemText primary={"Logout"} />
             </ListItemButton>
           </ListItem>
-          
-          
-          
-
         </List>
       </Drawer>
     </Box>
