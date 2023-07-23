@@ -1,16 +1,16 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Box,
-  TextField,
+  // TextField,
   Typography,
-  Button,
+  // Button,
   Rating,
-  LinearProgress,
+  // LinearProgress,
 } from "@mui/material";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
-import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
+// import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import IconButton from "@mui/material/IconButton";
 
 // Components
@@ -40,7 +40,7 @@ function SingleRating() {
       console.log("RATING: ", request);
       setRating({ ...request.data.rating });
     };
-   
+
     fetchUser();
     fetchRating();
     setLoading(false);

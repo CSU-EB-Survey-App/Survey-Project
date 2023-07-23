@@ -8,21 +8,8 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 
 // Imports
 
-const Styles = {
-  gridContainer: {
-    marginTop: "15px",
-  },
-  bannerContainer: {
-    width: "50%",
-    display: "inline-block",
-  },
-  bannerText: {
-    textAlign: "center",
-  },
-};
-
 const UserPosts = ({ header, url }) => {
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
   const [polls, setPolls] = useState([]);
   const [loading, setLoading] = useState(true);
 

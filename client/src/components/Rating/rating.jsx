@@ -66,6 +66,7 @@ function Rating() {
         "http://localhost:8080/api/v1/ratings/",
         data
       );
+      console.log(response);
       setSuccessFlag(true);
 
       setTimeout(() => {

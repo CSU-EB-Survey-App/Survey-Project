@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import {
   Box,
   TextField,
@@ -16,7 +16,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Loading from "../Loading/loading";
 
 function Poll() {
-  const today = dayjs();
+  // const today = dayjs();
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);

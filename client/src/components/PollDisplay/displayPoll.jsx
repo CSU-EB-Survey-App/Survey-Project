@@ -1,19 +1,17 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Radio,
   RadioGroup,
   FormControlLabel,
   Box,
-  TextField,
   Typography,
   Button,
   FormControl,
   FormLabel,
 } from "@mui/material";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
-import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import IconButton from "@mui/material/IconButton";
 import Loading from "../Loading/loading";
 
@@ -22,11 +20,11 @@ function DisplayPoll() {
 
   // State management
   const [user, setUser] = useState("");
-  const [question, setQuestion] = useState("");
+  // const [question, setQuestion] = useState("");
   const [choice, setChoice] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [errorFlag, setErrorFlag] = useState(false);
+  // const [startDate, setStartDate] = useState("");
+  // const [endDate, setEndDate] = useState("");
+  // const [errorFlag, setErrorFlag] = useState(false);
 
   const [poll, setPoll] = useState({});
   const [loading, setLoading] = useState(true);

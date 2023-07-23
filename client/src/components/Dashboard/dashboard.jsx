@@ -78,8 +78,8 @@ function Dashboard(props) {
             My Popular Posts
           </Typography>
           <Grid container spacing={2}>
-            <UserPolls />
-            <UserRatings />
+            <UserPolls user={user} />
+            <UserRatings user={user} />
           </Grid>
         </div>
       )}
