@@ -77,7 +77,7 @@ function DisplayPoll() {
     try {
       console.log("VOTING USEFUL");
       let request = await axios.put(
-        `http://localhost:8080/api/v1/polls/useful/${poll._id}`,
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/useful/${poll._id}`,
         {
           user: user._id,
         }

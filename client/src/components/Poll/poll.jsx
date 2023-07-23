@@ -75,7 +75,7 @@ function Poll() {
 
       console.log("DATA", data);
       let response = await axios.post(
-        "http://localhost:8080/api/v1/polls/",
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/",
         data
       );
       console.log(response);

@@ -27,15 +27,18 @@ function SingleRating() {
   useEffect(() => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
-        token,
-      });
+      const user = await axios.post(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        {
+          token,
+        }
+      );
       console.log("USER: ", user);
       setUser({ ...user.data.user });
     };
     const fetchRating = async () => {
       const request = await axios.get(
-        `http://localhost:8080/api/v1/ratings/${id}`
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/${id}`
       );
       console.log("RATING: ", request);
       setRating({ ...request.data.rating });
@@ -50,7 +53,7 @@ function SingleRating() {
     try {
       console.log("VOTING USEFUL");
       let request = await axios.put(
-        `http://localhost:8080/api/v1/ratings/useful/${rating._id}`,
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/useful/${rating._id}`,
         {
           user: user._id,
         }
@@ -70,7 +73,7 @@ function SingleRating() {
       }
 
       let request = await axios.put(
-        `http://localhost:8080/api/v1/ratings/answer/${rating._id}`,
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/answer/${rating._id}`,
         {
           answer: event.target.value,
           user: user._id,

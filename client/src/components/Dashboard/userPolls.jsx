@@ -16,9 +16,12 @@ const UserPosts = ({ header, url }) => {
   useEffect(() => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post(`http://localhost:8080/api/v1/auth/user`, {
-        token,
-      });
+      const user = await axios.post(
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user`,
+        {
+          token,
+        }
+      );
       console.log("USER POLLS: ", user);
       setPolls(user.data.user.polls || []);
       setLoading(false);

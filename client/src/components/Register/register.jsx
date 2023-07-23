@@ -24,7 +24,7 @@ function Register() {
 
     try {
       let response = await axios.post(
-        "http://localhost:8080/api/v1/auth/register",
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/register",
         {
           studentID,
           password,

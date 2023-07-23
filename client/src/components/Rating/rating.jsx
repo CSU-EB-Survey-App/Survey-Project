@@ -30,7 +30,7 @@ function Rating() {
       try {
         let token = localStorage.getItem("token");
         const user = await axios.post(
-          "http://localhost:8080/api/v1/auth/user",
+          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
           {
             token,
           }
@@ -63,7 +63,7 @@ function Rating() {
       console.log(data);
 
       let response = await axios.post(
-        "http://localhost:8080/api/v1/ratings/",
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/",
         data
       );
       console.log(response);

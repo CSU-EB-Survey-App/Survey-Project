@@ -22,7 +22,7 @@ function Login() {
     console.log(password);
     try {
       let response = await axios.post(
-        "http://localhost:8080/api/v1/auth/login",
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/login",
         {
           studentID,
           password,

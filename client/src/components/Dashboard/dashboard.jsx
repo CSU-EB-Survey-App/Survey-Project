@@ -20,20 +20,27 @@ function Dashboard(props) {
   useEffect(() => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
-        token,
-      });
+      const user = await axios.post(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        {
+          token,
+        }
+      );
       // console.log("USER: ", user);
       setUser({ ...user.data.user });
       props.handleuser(user.data.user);
     };
     const fetchRatings = async () => {
-      const ratings = await axios.get("http://localhost:8080/api/v1/ratings/");
+      const ratings = await axios.get(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/"
+      );
       // console.log("RATINGS", ratings);
       setRatings([...ratings.data.ratings]);
     };
     const fetchPolls = async () => {
-      const polls = await axios.get("http://localhost:8080/api/v1/polls/");
+      const polls = await axios.get(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/"
+      );
       // console.log("POLLS: ", polls);
       setPolls([...polls.data.polls]);
       setLoading(false);
