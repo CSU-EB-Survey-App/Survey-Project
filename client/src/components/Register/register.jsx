@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, TextField, Typography, Button } from "@mui/material";
+import {sourceURL} from "../SourceURL";
 
 function Register() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Register() {
 
     try {
       let response = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/register",
+        `https://${sourceURL}/api/v1/auth/register`,
         {
           studentID,
           password,

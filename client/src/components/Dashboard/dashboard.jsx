@@ -11,6 +11,7 @@ import UserRatings from "./userRatings";
 import Loading from "../Loading/loading";
 import PopularPolls from "./popularPolls";
 import PopularRatings from "./popularRatings";
+import {sourceURL} from "../SourceURL";
 
 function Dashboard(props) {
   const [ratings, setRatings] = useState([]);
@@ -21,7 +22,7 @@ function Dashboard(props) {
   useEffect(() => {
     const fetchRatings = async () => {
       const ratings = await axios.get(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/"
+        `https://${sourceURL}/api/v1/ratings/`
       );
       // console.log("RATINGS", ratings);
       setRatings(ratings.data.ratings);
@@ -29,7 +30,7 @@ function Dashboard(props) {
     };
     const fetchPolls = async () => {
       const polls = await axios.get(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/"
+        `https://${sourceURL}/api/v1/polls/`
       );
       // console.log("POLLS: ", polls);
       setPolls(polls.data.polls);

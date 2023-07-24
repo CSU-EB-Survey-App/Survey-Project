@@ -14,6 +14,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Loading from "../Loading/loading";
+import {sourceURL} from "../SourceURL";
 
 function Rating() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function Rating() {
       try {
         let token = localStorage.getItem("token");
         const user = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+          `https://${sourceURL}/api/v1/auth/user`,
           {
             token,
           }
@@ -63,7 +64,7 @@ function Rating() {
       console.log(data);
 
       let response = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/",
+        `https://${sourceURL}/api/v1/ratings/`,
         data
       );
       console.log(response);

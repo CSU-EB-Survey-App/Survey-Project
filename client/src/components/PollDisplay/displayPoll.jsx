@@ -14,6 +14,7 @@ import {
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import IconButton from "@mui/material/IconButton";
 import Loading from "../Loading/loading";
+import {sourceURL} from "../SourceURL";
 
 function DisplayPoll() {
   const { id } = useParams();
@@ -34,7 +35,7 @@ function DisplayPoll() {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
       const user = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        `https://${sourceURL}/api/v1/auth/user`,
         {
           token,
         }
@@ -46,7 +47,7 @@ function DisplayPoll() {
 
     const fetchPoll = async () => {
       const request = await axios.get(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/${id}`
+        `https://${sourceURL}/api/v1/polls/${id}`
       );
       console.log("POLL: ", request);
       setPoll({ ...request.data.poll });
@@ -63,7 +64,7 @@ function DisplayPoll() {
       console.log("ID: ", id);
       console.log("USER: ", user._id);
       let request = await axios.put(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/answer/${id}`,
+        `https://${sourceURL}/api/v1/polls/answer/${id}`,
         {
           answer: choice,
           user: user._id,
@@ -80,7 +81,7 @@ function DisplayPoll() {
     try {
       console.log("VOTING USEFUL");
       let request = await axios.put(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/useful/${poll._id}`,
+        `https://${sourceURL}/api/v1/polls/useful/${poll._id}`,
         {
           user: user._id,
         }

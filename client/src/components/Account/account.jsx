@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { Box, Typography, Button } from "@mui/material";
 import Loading from "../Loading/loading";
+import {sourceURL} from "../SourceURL";
 
 function AccountPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function AccountPage() {
       try {
         let token = localStorage.getItem("token");
         const user = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+          `https://${sourceURL}/api/v1/auth/user`,
           {
             token,
           }
@@ -35,7 +36,7 @@ function AccountPage() {
       let id = localStorage.getItem("token");
       console.log("id", id);
       let request = await axios.delete(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/delete/${id}`
+        `https://${sourceURL}/api/v1/auth/delete/${id}`
       );
       console.log(request);
       navigate("/");

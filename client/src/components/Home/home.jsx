@@ -14,6 +14,7 @@ import Login from "../Login/login";
 import Footer from "../Footer/footer";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import {sourceURL} from "../SourceURL";
 
 const Styles = {
   bannerContainer: {
@@ -41,7 +42,7 @@ function Home() {
       try {
         let token = localStorage.getItem("token");
         const request = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/isauth/",
+          `https://${sourceURL}/api/v1/auth/isauth/`,
           {
             token: token,
           }

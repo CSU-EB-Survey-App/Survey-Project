@@ -17,6 +17,7 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Loading from "../Loading/loading";
+import {sourceURL} from "../SourceURL";
 
 const Styles = {
   searchBarContainer: {
@@ -64,7 +65,7 @@ const UserPolls = () => {
     const fetchPolls = async () => {
       let token = localStorage.getItem("token");
       const user = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        `https://${sourceURL}/api/v1/auth/user`,
         {
           token,
         }
@@ -93,7 +94,7 @@ const UserPolls = () => {
   const handleDelete = async (id) => {
     try {
       let request = await axios.delete(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/${id}`
+        `https://${sourceURL}/api/v1/polls/${id}`
       );
       console.log(request);
       window.location.reload();

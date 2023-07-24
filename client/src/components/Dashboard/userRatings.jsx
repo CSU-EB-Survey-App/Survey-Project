@@ -5,6 +5,7 @@ import moment from "moment";
 // Material UI Imports
 import { Grid, Typography, Card, CardHeader, CardContent } from "@mui/material";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import {sourceURL} from "../SourceURL";
 
 // Imports
 
@@ -30,7 +31,7 @@ const UserRatings = () => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
       const user = await axios.post(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user`,
+        `https://${sourceURL}/api/v1/auth/user`,
         {
           token,
         }

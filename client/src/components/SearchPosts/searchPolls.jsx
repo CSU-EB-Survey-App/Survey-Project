@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import Loading from "../Loading/loading";
+import {sourceURL} from "../SourceURL";
 
 const Styles = {
   searchBarContainer: {
@@ -56,7 +57,7 @@ const SearchRatings = () => {
   useEffect(() => {
     const fetchRatings = async () => {
       const polls = await axios.get(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/"
+        `https://${sourceURL}/api/v1/polls/`
       );
       //   console.log("SEARCH POLLS: ", polls);
       setFilteredItems(polls.data.polls);
