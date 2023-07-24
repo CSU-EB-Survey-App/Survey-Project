@@ -6,49 +6,40 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 
 // Imports
-import PostCarousel from "./postCarousel";
 import UserPolls from "./userPolls";
 import UserRatings from "./userRatings";
 import Loading from "../Loading/loading";
+import PopularPolls from "./popularPolls";
+import PopularRatings from "./popularRatings";
 
 function Dashboard(props) {
-  const [user, setUser] = useState({});
   const [ratings, setRatings] = useState([]);
   const [polls, setPolls] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingRatings, setLoadingRatings] = useState(true); // New loading state for ratings
+  const [loadingPolls, setLoadingPolls] = useState(true); // New loading state for polls
 
   useEffect(() => {
-    const fetchUser = async () => {
-      let token = localStorage.getItem("token");
-      const user = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
-        {
-          token,
-        }
-      );
-      // console.log("USER: ", user);
-      setUser({ ...user.data.user });
-      props.handleuser(user.data.user);
-    };
     const fetchRatings = async () => {
       const ratings = await axios.get(
         "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/"
       );
       // console.log("RATINGS", ratings);
-      setRatings([...ratings.data.ratings]);
+      setRatings(ratings.data.ratings);
+      setLoadingRatings(false);
     };
     const fetchPolls = async () => {
       const polls = await axios.get(
         "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/"
       );
       // console.log("POLLS: ", polls);
-      setPolls([...polls.data.polls]);
-      setLoading(false);
+      setPolls(polls.data.polls);
+      setLoadingPolls(false);
     };
-    fetchUser();
     fetchRatings();
     fetchPolls();
   }, []);
+
+  const loading = loadingRatings || loadingPolls;
 
   return (
     <Fragment>
@@ -65,21 +56,17 @@ function Dashboard(props) {
         </div>
       ) : (
         <div style={{ marginTop: "100px" }}>
-          <Grid container spacing={1}>
-            <PostCarousel
-              url={"polls"}
-              items={polls}
-              emptyItemsMessage={"Get started by creating a post"}
-            >
-              Popular Polls
-            </PostCarousel>
-            <PostCarousel
-              url={"ratings"}
-              items={ratings}
-              emptyItemsMessage={null}
-            >
-              Popular Ratings
-            </PostCarousel>
+          <Typography align="center" variant="h5" style={{ marginTop: "35px" }}>
+            Popular Polls
+          </Typography>
+          <Grid container spacing={2}>
+            <PopularPolls data={polls} />
+          </Grid>
+          <Typography align="center" variant="h5" style={{ marginTop: "35px" }}>
+            Popular Ratings
+          </Typography>
+          <Grid container spacing={2}>
+            <PopularRatings data={ratings} />
           </Grid>
           <Typography align="center" variant="h5" style={{ marginTop: "35px" }}>
             My Popular Posts
