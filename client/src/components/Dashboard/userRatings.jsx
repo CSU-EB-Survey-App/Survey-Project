@@ -21,8 +21,8 @@ const Styles = {
   },
 };
 
-const UserRatings = ({ header, url }) => {
-  const [user, setUser] = useState();
+const UserRatings = () => {
+  // const [user, setUser] = useState();
   const [ratings, setRatings] = useState([]);
   const [loading, setLoading] = useState(true);
 

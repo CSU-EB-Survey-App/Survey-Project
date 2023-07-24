@@ -21,8 +21,8 @@ const Styles = {
   },
 };
 
-const UserPosts = ({ header, url }) => {
-  const [user, setUser] = useState();
+const UserPosts = () => {
+  // const [user, setUser] = useState();
   const [polls, setPolls] = useState([]);
   const [loading, setLoading] = useState(true);
 
