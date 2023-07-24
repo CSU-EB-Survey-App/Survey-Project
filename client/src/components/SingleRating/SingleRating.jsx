@@ -1,16 +1,16 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Box,
-  TextField,
+  // TextField,
   Typography,
-  Button,
+  // Button,
   Rating,
-  LinearProgress,
+  // LinearProgress,
 } from "@mui/material";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
-import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
+// import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import IconButton from "@mui/material/IconButton";
 
 // Components
@@ -27,20 +27,23 @@ function SingleRating() {
   useEffect(() => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
-        token,
-      });
+      const user = await axios.post(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        {
+          token,
+        }
+      );
       console.log("USER: ", user);
       setUser({ ...user.data.user });
     };
     const fetchRating = async () => {
       const request = await axios.get(
-        `http://localhost:8080/api/v1/ratings/${id}`
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/${id}`
       );
       console.log("RATING: ", request);
       setRating({ ...request.data.rating });
     };
-   
+
     fetchUser();
     fetchRating();
     setLoading(false);
@@ -50,7 +53,7 @@ function SingleRating() {
     try {
       console.log("VOTING USEFUL");
       let request = await axios.put(
-        `http://localhost:8080/api/v1/ratings/useful/${rating._id}`,
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/useful/${rating._id}`,
         {
           user: user._id,
         }
@@ -70,7 +73,7 @@ function SingleRating() {
       }
 
       let request = await axios.put(
-        `http://localhost:8080/api/v1/ratings/answer/${rating._id}`,
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/answer/${rating._id}`,
         {
           answer: event.target.value,
           user: user._id,

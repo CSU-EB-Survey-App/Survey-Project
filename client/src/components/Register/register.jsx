@@ -1,6 +1,6 @@
 import "./register.css";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, TextField, Typography, Button } from "@mui/material";
 
@@ -24,7 +24,7 @@ function Register() {
 
     try {
       let response = await axios.post(
-        "http://localhost:8080/api/v1/auth/register",
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/register",
         {
           studentID,
           password,

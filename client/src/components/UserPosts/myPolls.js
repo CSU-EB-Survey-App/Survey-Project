@@ -63,9 +63,12 @@ const UserPolls = () => {
   useEffect(() => {
     const fetchPolls = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
-        token,
-      });
+      const user = await axios.post(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        {
+          token,
+        }
+      );
       console.log("USER", user);
       setFilteredItems(user.data.user.polls);
       setItems(user.data.user.polls);
@@ -90,7 +93,7 @@ const UserPolls = () => {
   const handleDelete = async (id) => {
     try {
       let request = await axios.delete(
-        `http://localhost:8080/api/v1/polls/${id}`
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/${id}`
       );
       console.log(request);
       window.location.reload();

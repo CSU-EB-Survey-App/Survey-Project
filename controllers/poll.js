@@ -26,7 +26,7 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Print error to terminal
-    // console.log("ERROR: ", err);
+    console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -60,7 +60,7 @@ exports.getPoll = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    // console.log("ERROR: ", err);
+    console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -110,7 +110,7 @@ exports.createPoll = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Print error to terminal
-    // console.log("ERROR: ", err);
+    console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -149,7 +149,7 @@ exports.deletePoll = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Print error to terminal
-    //  console.log("ERROR: ", err);
+    console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -199,7 +199,7 @@ exports.answerPoll = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    // console.log("ERROR: ", err);
+    console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -248,7 +248,7 @@ exports.usefulVote = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    // console.log("ERROR: ", err);
+    console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);

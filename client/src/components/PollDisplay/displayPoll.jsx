@@ -1,19 +1,17 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Radio,
   RadioGroup,
   FormControlLabel,
   Box,
-  TextField,
   Typography,
   Button,
   FormControl,
   FormLabel,
 } from "@mui/material";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
-import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import IconButton from "@mui/material/IconButton";
 import Loading from "../Loading/loading";
 
@@ -22,11 +20,11 @@ function DisplayPoll() {
 
   // State management
   const [user, setUser] = useState("");
-  const [question, setQuestion] = useState("");
+  // const [question, setQuestion] = useState("");
   const [choice, setChoice] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [errorFlag, setErrorFlag] = useState(false);
+  // const [startDate, setStartDate] = useState("");
+  // const [endDate, setEndDate] = useState("");
+  // const [errorFlag, setErrorFlag] = useState(false);
 
   const [poll, setPoll] = useState({});
   const [loading, setLoading] = useState(true);
@@ -35,9 +33,12 @@ function DisplayPoll() {
   useEffect(() => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
-        token,
-      });
+      const user = await axios.post(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        {
+          token,
+        }
+      );
       // console.log("USER: ", user);
       setUser({ ...user.data.user });
       setLoading(false);
@@ -45,7 +46,7 @@ function DisplayPoll() {
 
     const fetchPoll = async () => {
       const request = await axios.get(
-        `http://localhost:8080/api/v1/polls/${id}`
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/${id}`
       );
       console.log("POLL: ", request);
       setPoll({ ...request.data.poll });
@@ -62,7 +63,7 @@ function DisplayPoll() {
       console.log("ID: ", id);
       console.log("USER: ", user._id);
       let request = await axios.put(
-        `http://localhost:8080/api/v1/polls/answer/${id}`,
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/answer/${id}`,
         {
           answer: choice,
           user: user._id,
@@ -79,7 +80,7 @@ function DisplayPoll() {
     try {
       console.log("VOTING USEFUL");
       let request = await axios.put(
-        `http://localhost:8080/api/v1/polls/useful/${poll._id}`,
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/useful/${poll._id}`,
         {
           user: user._id,
         }
@@ -133,68 +134,72 @@ function DisplayPoll() {
                 </Typography>
 
                 <FormControl>
-                  {poll.voters.includes(user._id) ? (
+                  {!poll.voters ? null : (
                     <Fragment>
-                      <div style={{ marginBottom: "15px" }}>
-                        <Typography variant="h5" align="center">
-                          Results:
-                        </Typography>
-                        <Typography align="center" variant="h6">
-                          Option 1: {poll.answer1}
-                        </Typography>
-                        <Typography align="center">
-                          {poll.answer1Count} voters
-                        </Typography>
-                        <Typography align="center" variant="h6">
-                          Option 2: {poll.answer2}
-                        </Typography>
-                        <Typography align="center">
-                          {poll.answer2Count} voters
-                        </Typography>
-                        <Typography align="center" variant="h6">
-                          Option 3: {poll.answer3}
-                        </Typography>
-                        <Typography align="center">
-                          {poll.answer3Count} voters
-                        </Typography>
-                      </div>
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      <FormLabel id="demo-radio-buttons-group-label">
-                        Choose your favorite option:
-                      </FormLabel>
-                      <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        name="radio-buttons-group"
-                      >
-                        <FormControlLabel
-                          value={"answer1Count"}
-                          control={<Radio />}
-                          label={poll.answer1}
-                          onChange={radioSelectHandler}
-                        />
-                        <FormControlLabel
-                          value={"answer2Count"}
-                          control={<Radio />}
-                          label={poll.answer2}
-                          onChange={radioSelectHandler}
-                        />
-                        <FormControlLabel
-                          value={"answer3Count"}
-                          control={<Radio />}
-                          label={poll.answer3}
-                          onChange={radioSelectHandler}
-                        />
-                      </RadioGroup>
+                      {poll.voters.includes(user._id) ? (
+                        <Fragment>
+                          <div style={{ marginBottom: "15px" }}>
+                            <Typography variant="h5" align="center">
+                              Results:
+                            </Typography>
+                            <Typography align="center" variant="h6">
+                              Option 1: {poll.answer1}
+                            </Typography>
+                            <Typography align="center">
+                              {poll.answer1Count} voters
+                            </Typography>
+                            <Typography align="center" variant="h6">
+                              Option 2: {poll.answer2}
+                            </Typography>
+                            <Typography align="center">
+                              {poll.answer2Count} voters
+                            </Typography>
+                            <Typography align="center" variant="h6">
+                              Option 3: {poll.answer3}
+                            </Typography>
+                            <Typography align="center">
+                              {poll.answer3Count} voters
+                            </Typography>
+                          </div>
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          <FormLabel id="demo-radio-buttons-group-label">
+                            Choose your favorite option:
+                          </FormLabel>
+                          <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            name="radio-buttons-group"
+                          >
+                            <FormControlLabel
+                              value={"answer1Count"}
+                              control={<Radio />}
+                              label={poll.answer1}
+                              onChange={radioSelectHandler}
+                            />
+                            <FormControlLabel
+                              value={"answer2Count"}
+                              control={<Radio />}
+                              label={poll.answer2}
+                              onChange={radioSelectHandler}
+                            />
+                            <FormControlLabel
+                              value={"answer3Count"}
+                              control={<Radio />}
+                              label={poll.answer3}
+                              onChange={radioSelectHandler}
+                            />
+                          </RadioGroup>
 
-                      <Button
-                        variant="contained"
-                        type="submit"
-                        onClick={onSubmitHandler}
-                      >
-                        Submit Answer
-                      </Button>
+                          <Button
+                            variant="contained"
+                            type="submit"
+                            onClick={onSubmitHandler}
+                          >
+                            Submit Answer
+                          </Button>
+                        </Fragment>
+                      )}
                     </Fragment>
                   )}
                 </FormControl>

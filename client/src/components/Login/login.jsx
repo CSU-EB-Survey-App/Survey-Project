@@ -1,6 +1,6 @@
 import "./login.css";
 import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, TextField, Typography, Button } from "@mui/material";
 
@@ -22,7 +22,7 @@ function Login() {
     console.log(password);
     try {
       let response = await axios.post(
-        "http://localhost:8080/api/v1/auth/login",
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/login",
         {
           studentID,
           password,
@@ -67,7 +67,7 @@ function Login() {
           <Typography variant="h4" padding={3} textAlign="center">
             Login
           </Typography>
-          {errorFlag ? <p className = "error">Invalid Credentials</p> : null}
+          {errorFlag ? <p className="error">Invalid Credentials</p> : null}
           <TextField
             onChange={(e) => {
               setStudentID(e.target.value);
