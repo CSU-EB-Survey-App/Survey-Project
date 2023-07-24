@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import {
   Box,
   TextField,
@@ -16,7 +16,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Loading from "../Loading/loading";
 
 function Poll() {
-  const today = dayjs();
+  // const today = dayjs();
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ function Poll() {
       try {
         let token = localStorage.getItem("token");
         const user = await axios.post(
-          "http://localhost:8080/api/v1/auth/user",
+          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
           {
             token,
           }
@@ -75,7 +75,7 @@ function Poll() {
 
       console.log("DATA", data);
       let response = await axios.post(
-        "http://localhost:8080/api/v1/polls/",
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/",
         data
       );
       console.log(response);

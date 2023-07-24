@@ -1,6 +1,7 @@
 import "./dashboard.css";
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
+
 // Material UI Imports
 import { Grid, Typography } from "@mui/material";
 
@@ -19,13 +20,17 @@ function Dashboard(props) {
 
   useEffect(() => {
     const fetchRatings = async () => {
-      const ratings = await axios.get("http://localhost:8080/api/v1/ratings/");
+      const ratings = await axios.get(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/"
+      );
       // console.log("RATINGS", ratings);
       setRatings(ratings.data.ratings);
       setLoadingRatings(false);
     };
     const fetchPolls = async () => {
-      const polls = await axios.get("http://localhost:8080/api/v1/polls/");
+      const polls = await axios.get(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/"
+      );
       // console.log("POLLS: ", polls);
       setPolls(polls.data.polls);
       setLoadingPolls(false);
@@ -67,8 +72,8 @@ function Dashboard(props) {
             My Popular Posts
           </Typography>
           <Grid container spacing={2}>
-            <UserPolls />
-            <UserRatings />
+            <UserPolls user={user} />
+            <UserRatings user={user} />
           </Grid>
         </div>
       )}

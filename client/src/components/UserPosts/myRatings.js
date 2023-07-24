@@ -63,9 +63,12 @@ const UserRatings = () => {
   useEffect(() => {
     const fetchRatings = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post("http://localhost:8080/api/v1/auth/user", {
-        token,
-      });
+      const user = await axios.post(
+        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+        {
+          token,
+        }
+      );
       console.log(user.data.user.ratings);
       setFilteredItems(user.data.user.ratings);
       setItems(user.data.user.ratings);
@@ -90,7 +93,7 @@ const UserRatings = () => {
   const handleDelete = async (id) => {
     try {
       let request = await axios.delete(
-        `http://localhost:8080/api/v1/ratings/${id}`
+        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/${id}`
       );
       console.log(request);
       window.location.reload();
