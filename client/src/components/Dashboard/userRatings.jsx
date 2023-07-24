@@ -22,6 +22,7 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 // };
 
 const UserRatings = () => {
+
   // const [user, setUser] = useState();
   const [ratings, setRatings] = useState([]);
   const [loading, setLoading] = useState(true);

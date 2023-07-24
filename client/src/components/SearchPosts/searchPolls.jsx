@@ -47,23 +47,23 @@ const Styles = {
   },
 };
 
-const SearchPolls = () => {
+const SearchRatings = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPolls = async () => {
+    const fetchRatings = async () => {
       const polls = await axios.get(
         "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/"
       );
-      console.log("SEARCH POLLS: ", polls);
+      //   console.log("SEARCH POLLS: ", polls);
       setFilteredItems(polls.data.polls);
       setItems(polls.data.polls);
       setLoading(false);
     };
-    fetchPolls();
+    fetchRatings();
   }, []);
 
   const handleSearchChange = (event) => {
@@ -111,7 +111,7 @@ const SearchPolls = () => {
             <Box style={Styles.scrollableContainer}>
               {filteredItems.length < 1 ? (
                 <Typography style={Styles.noItemsMessage} variant="h5">
-                  No polls found
+                  No Polls Found
                 </Typography>
               ) : (
                 <List>
@@ -151,4 +151,4 @@ const SearchPolls = () => {
   );
 };
 
-export default SearchPolls;
+export default SearchRatings;
