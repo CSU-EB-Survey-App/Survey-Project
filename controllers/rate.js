@@ -20,6 +20,9 @@ exports.getRatings = asyncHandler(async (req, res, next) => {
       select: "studentID",
     });
 
+    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
+    res.setHeader("Cache-Control", "public, max-age=86400");
+
     // Send to client
     res.status(200).json({
       success: true,
@@ -95,6 +98,9 @@ exports.getRating = asyncHandler(async (req, res, next) => {
     if (!rating) {
       return next(new ErrorResponse(`Sorry, that rating does not exist.`, 401));
     }
+
+    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
+    res.setHeader("Cache-Control", "public, max-age=86400");
 
     // Send response to client
     res.status(200).json({

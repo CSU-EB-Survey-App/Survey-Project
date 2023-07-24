@@ -128,7 +128,7 @@ const SearchRatings = () => {
                           </Avatar>
                         </ListItemAvatar>
                         <ListItemText
-                          primary={item.user.studentID}
+                          // primary={item.user.studentID}
                           secondary={
                             <Fragment>
                               <Typography>{item.question}</Typography>

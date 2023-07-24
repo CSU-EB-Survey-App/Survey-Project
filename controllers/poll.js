@@ -19,6 +19,9 @@ exports.getPolls = asyncHandler(async (req, res, next) => {
       select: "studentID",
     });
 
+    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
+    res.setHeader("Cache-Control", "public, max-age=86400");
+
     // Send to client
     res.status(200).json({
       success: true,
@@ -52,6 +55,9 @@ exports.getPoll = asyncHandler(async (req, res, next) => {
     if (!poll) {
       return next(new ErrorResponse(`Sorry, that poll does not exist.`, 404));
     }
+
+    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
+    res.setHeader("Cache-Control", "public, max-age=86400");
 
     // Send response to client
     res.status(200).json({
