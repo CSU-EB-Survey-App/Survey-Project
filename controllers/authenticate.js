@@ -59,7 +59,7 @@ exports.register = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error for testing
-    console.log(err);
+    // console.log(err);
 
     // Send error to client
     next(err);
@@ -116,7 +116,7 @@ exports.login = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Send error to client
     next(err);
@@ -158,7 +158,7 @@ exports.isAuthenticated = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Send error to client
     next(err);
@@ -202,7 +202,7 @@ exports.deleteAccount = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Send error to client
     next(err);
@@ -249,7 +249,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Send error to client
     next(err);

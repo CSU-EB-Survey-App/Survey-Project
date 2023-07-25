@@ -41,7 +41,7 @@ function Home() {
       try {
         let token = localStorage.getItem("token");
         const request = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/isauth/",
+          "http://localhost:8080/api/v1/auth/isauth/",
           {
             token: token,
           }

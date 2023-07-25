@@ -93,7 +93,7 @@ const UserPolls = () => {
   const handleDelete = async (id) => {
     try {
       let request = await axios.delete(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/${id}`
+        `http://localhost:8080/api/v1/polls/${id}`
       );
       console.log(request);
       window.location.reload();

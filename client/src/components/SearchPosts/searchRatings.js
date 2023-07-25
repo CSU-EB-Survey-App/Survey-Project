@@ -55,9 +55,7 @@ const SearchRatings = () => {
 
   useEffect(() => {
     const fetchRatings = async () => {
-      const ratings = await axios.get(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/"
-      );
+      const ratings = await axios.get("http://localhost:8080/api/v1/ratings/");
       //   console.log("SEARCH POLLS: ", polls);
       setFilteredItems(ratings.data.ratings);
       setItems(ratings.data.ratings);

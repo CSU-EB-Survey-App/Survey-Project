@@ -27,7 +27,7 @@ exports.getRatings = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Print error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -60,7 +60,7 @@ exports.createRating = asyncHandler(async (req, res, next) => {
     };
 
     // Print data to terminal
-    console.log("DATA: ", data);
+    // console.log("DATA: ", data);
 
     // Creat rating in database
     const rating = await Ratings.create(data);
@@ -72,7 +72,7 @@ exports.createRating = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Print error to terminal
-    console.log(err);
+    // console.log(err);
 
     // Forward error to client
     next(err);
@@ -103,7 +103,7 @@ exports.getRating = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -141,7 +141,7 @@ exports.deleteRating = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -191,7 +191,7 @@ exports.answerRating = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
@@ -239,7 +239,7 @@ exports.usefulRating = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     // Output error to terminal
-    console.log("ERROR: ", err);
+    // console.log("ERROR: ", err);
 
     // Forward error to client
     next(err);
