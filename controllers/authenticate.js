@@ -52,9 +52,6 @@ exports.register = asyncHandler(async (req, res, next) => {
     // Output authentication token
     // console.log("AUTHENTICATION TOKEN: ", token);
 
-    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
-    res.setHeader("Cache-Control", "public, max-age=86400");
-
     // Send response back to client with user token for authentication
     res.status(200).json({
       success: true,
@@ -113,9 +110,6 @@ exports.login = asyncHandler(async (req, res, next) => {
     // Get authentication token
     const token = user.getSignedJwtToken();
 
-    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
-    res.setHeader("Cache-Control", "public, max-age=86400");
-
     res.status(200).json({
       success: true,
       token,
@@ -157,9 +151,6 @@ exports.isAuthenticated = asyncHandler(async (req, res, next) => {
     if (!user) {
       return next(new ErrorResponse("User profile is not authenticated", 400));
     }
-
-    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
-    res.setHeader("Cache-Control", "public, max-age=86400");
 
     res.status(200).json({
       success: true,
