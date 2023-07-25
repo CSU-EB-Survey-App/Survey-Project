@@ -8,7 +8,7 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 
 // Imports
 
-const UserPosts = ({ header, url }) => {
+const UserPosts = () => {
   // const [user, setUser] = useState();
   const [polls, setPolls] = useState([]);
   const [loading, setLoading] = useState(true);
