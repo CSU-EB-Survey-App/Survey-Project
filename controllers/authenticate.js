@@ -240,6 +240,9 @@ exports.getUser = asyncHandler(async (req, res, next) => {
     // Output database user to terminal
     // console.log("USER: ", user);
 
+    // Set Cache-Control header to cache the response for 1 day (86400 seconds)
+    res.setHeader("Cache-Control", "public, max-age=86400");
+
     res.status(200).json({
       success: true,
       user,
