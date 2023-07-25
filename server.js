@@ -13,7 +13,7 @@ const errorHandler = require("./middleware/error");
 const connectDB = require("./configDB/db");
 
 // Load environment variables
-// dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "./config/config.env" });
 
 // Port for server to listen on
 const PORT = process.env.PORT || 8080;
@@ -61,17 +61,17 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// Start Server For Production
-app.listen(PORT, () => {
-  console.log("Server is Running");
-});
+// // Start Server For Production
+// app.listen(PORT, () => {
+//   console.log("Server is Running");
+// });
 
-// // Start Server For Development and Unit Testing
-// if (require.main === module) {
-//     const port = process.env.PORT || 8080;
-//     app.listen(port, () => {
-//       console.log(`Server listening on port ${port}`);
-//     });
-// }
+// Start Server For Development and Unit Testing
+if (require.main === module) {
+  const port = process.env.PORT || 8080;
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
+}
 
 module.exports = app;

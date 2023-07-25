@@ -34,7 +34,7 @@ function Poll() {
       try {
         let token = localStorage.getItem("token");
         const user = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
+          "http://localhost:8080/api/v1/auth/user",
           {
             token,
           }
@@ -75,7 +75,7 @@ function Poll() {
 
       console.log("DATA", data);
       let response = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/",
+        "http://localhost:8080/api/v1/polls/",
         data
       );
       console.log(response);
