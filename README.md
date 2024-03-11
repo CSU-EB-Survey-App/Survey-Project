@@ -70,7 +70,7 @@ If you have any questions or suggestions, feel free to reach out to the project 
 
 **Maintainer 1** - sklein8@horizon.csueastbay.edu <br>
 **Maintainer 2** - mjamilano@horizon.csueastbay.edu <br>
-**Maintainer 3** - dha6@horizon.csueastbay.edu<br>
+**Maintainer 3** - dtran240@horizon.csueastbay.edu<br>
 **Maintainer 4** - kcato3@horizon.csueastbay.edu<br>
 **Maintainer 5** - cleon16@horizon.csueastbay.edu   <br>
 **Maintainer 6** - apuurvva@gmail.com   <br>
