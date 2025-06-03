@@ -15,12 +15,9 @@ function AccountPage() {
     const fetchUser = async () => {
       try {
         let token = localStorage.getItem("token");
-        const user = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
-          {
-            token,
-          }
-        );
+        const user = await axios.post(`${config.apiUrl}/api/v1/auth/user`, {
+          token,
+        });
         // console.log("USER: ", user);
         setUser({ ...user.data.user });
         setLoading(false);
