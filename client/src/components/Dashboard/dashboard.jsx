@@ -1,5 +1,6 @@
 import "./dashboard.css";
 import axios from "axios";
+import config from "../../config";
 import React, { Fragment, useEffect, useState } from "react";
 
 // Material UI Imports
@@ -20,17 +21,13 @@ function Dashboard(props) {
 
   useEffect(() => {
     const fetchRatings = async () => {
-      const ratings = await axios.get(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/"
-      );
+      const ratings = await axios.get(`${config.apiUrl}/api/v1/ratings/`);
       // console.log("RATINGS", ratings);
       setRatings(ratings.data.ratings);
       setLoadingRatings(false);
     };
     const fetchPolls = async () => {
-      const polls = await axios.get(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/"
-      );
+      const polls = await axios.get(`${config.apiUrl}/api/v1/polls/`);
       // console.log("POLLS: ", polls);
       setPolls(polls.data.polls);
       setLoadingPolls(false);

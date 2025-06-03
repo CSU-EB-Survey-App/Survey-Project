@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import config from "../../config";
 import moment from "moment";
 import {
   List,
@@ -63,12 +64,9 @@ const UserRatings = () => {
   useEffect(() => {
     const fetchRatings = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
-        {
-          token,
-        }
-      );
+      const user = await axios.post(`${config.apiUrl}/api/v1/auth/user`, {
+        token,
+      });
       console.log(user.data.user.ratings);
       setFilteredItems(user.data.user.ratings);
       setItems(user.data.user.ratings);
@@ -92,9 +90,7 @@ const UserRatings = () => {
 
   const handleDelete = async (id) => {
     try {
-      let request = await axios.delete(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/${id}`
-      );
+      let request = await axios.delete(`${config.apiUrl}/api/v1/ratings/${id}`);
       console.log(request);
       window.location.reload();
     } catch (err) {

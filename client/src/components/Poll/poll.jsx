@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
+import config from "../../config";
 import { useNavigate } from "react-router-dom";
 // import dayjs from "dayjs";
 import {
@@ -33,12 +34,9 @@ function Poll() {
     const fetchUser = async () => {
       try {
         let token = localStorage.getItem("token");
-        const user = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
-          {
-            token,
-          }
-        );
+        const user = await axios.post(`${config.apiUrl}/api/v1/auth/user`, {
+          token,
+        });
         // console.log("USER: ", user);
         setUser({ ...user.data.user });
         setLoading(false);
@@ -74,10 +72,7 @@ function Poll() {
       };
 
       console.log("DATA", data);
-      let response = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/",
-        data
-      );
+      let response = await axios.post(`${config.apiUrl}/api/v1/polls/`, data);
       console.log(response);
       setSuccessFlag(true);
       setTimeout(() => {

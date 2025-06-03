@@ -1,6 +1,6 @@
 // Package Imports
 import { Fragment, useEffect } from "react";
-
+import config from "../../config";
 // import "./home.css"
 
 // Material UI Imports
@@ -41,7 +41,7 @@ function Home() {
       try {
         let token = localStorage.getItem("token");
         const request = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/isauth/",
+          `${config.apiUrl}/api/v1/auth/isauth/`,
           {
             token: token,
           }

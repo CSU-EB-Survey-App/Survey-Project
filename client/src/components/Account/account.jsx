@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../../config";
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -35,7 +36,7 @@ function AccountPage() {
       let id = localStorage.getItem("token");
       console.log("id", id);
       let request = await axios.delete(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/delete/${id}`
+        `${config.apiUrl}/api/v1/auth/delete/${id}`
       );
       console.log(request);
       navigate("/");

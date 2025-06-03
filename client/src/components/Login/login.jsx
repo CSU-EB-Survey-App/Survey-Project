@@ -1,6 +1,7 @@
-import "./login.css";
-import axios from "axios";
 import React, { Fragment, useState } from "react";
+import "./login.css";
+import config from "../../config";
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, TextField, Typography, Button } from "@mui/material";
 
@@ -21,13 +22,10 @@ function Login() {
     console.log(studentID);
     console.log(password);
     try {
-      let response = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/login",
-        {
-          studentID,
-          password,
-        }
-      );
+      let response = await axios.post(`${config.apiUrl}/api/v1/auth/login`, {
+        studentID,
+        password,
+      });
       console.log(response);
       localStorage.setItem("token", response.data.token);
       Navigate("/dashboard");

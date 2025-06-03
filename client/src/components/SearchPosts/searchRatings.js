@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import config from "../../config";
 import moment from "moment";
 import {
   List,
@@ -55,9 +56,7 @@ const SearchRatings = () => {
 
   useEffect(() => {
     const fetchRatings = async () => {
-      const ratings = await axios.get(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/"
-      );
+      const ratings = await axios.get(`${config.apiUrl}/api/v1/ratings/`);
       //   console.log("SEARCH POLLS: ", polls);
       setFilteredItems(ratings.data.ratings);
       setItems(ratings.data.ratings);

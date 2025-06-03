@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import config from "../../config";
 import moment from "moment";
 // Material UI Imports
 import { Grid, Typography, Card, CardHeader, CardContent } from "@mui/material";
@@ -16,12 +17,9 @@ const UserPosts = () => {
   useEffect(() => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user`,
-        {
-          token,
-        }
-      );
+      const user = await axios.post(`${config.apiUrl}/api/v1/auth/user`, {
+        token,
+      });
       console.log("USER POLLS: ", user);
       setPolls(user.data.user.polls || []);
       setLoading(false);

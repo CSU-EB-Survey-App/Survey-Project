@@ -1,6 +1,7 @@
+import React, { Fragment, useEffect, useState } from "react";
+import config from "../../config";
 import "./rating.css";
 import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FormControl,
@@ -29,12 +30,9 @@ function Rating() {
     const fetchUser = async () => {
       try {
         let token = localStorage.getItem("token");
-        const user = await axios.post(
-          "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
-          {
-            token,
-          }
-        );
+        const user = await axios.post(`${config.apiUrl}/api/v1/auth/user`, {
+          token,
+        });
         // console.log("USER: ", user);
         setUser({ ...user.data.user });
         setLoading(false);
@@ -62,10 +60,7 @@ function Rating() {
 
       console.log(data);
 
-      let response = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/ratings/",
-        data
-      );
+      let response = await axios.post(`${config.apiUrl}/api/v1/ratings/`, data);
       console.log(response);
       setSuccessFlag(true);
 

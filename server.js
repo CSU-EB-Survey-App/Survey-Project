@@ -13,7 +13,7 @@ const errorHandler = require("./middleware/error");
 const connectDB = require("./configDB/db");
 
 // Load environment variables
-// dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "./config/config.env" });
 
 // Port for server to listen on
 const PORT = process.env.PORT || 8080;

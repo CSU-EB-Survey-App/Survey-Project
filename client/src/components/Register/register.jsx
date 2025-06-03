@@ -1,5 +1,6 @@
 import "./register.css";
 import axios from "axios";
+import config from "../../config";
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, TextField, Typography, Button } from "@mui/material";
@@ -23,14 +24,11 @@ function Register() {
     console.log(email);
 
     try {
-      let response = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/register",
-        {
-          studentID,
-          password,
-          email,
-        }
-      );
+      let response = await axios.post(`${config.apiUrl}/api/v1/auth/register`, {
+        studentID,
+        password,
+        email,
+      });
       console.log(response);
 
       // Set session token

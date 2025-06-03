@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../../config";
 import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -33,21 +34,16 @@ function DisplayPoll() {
   useEffect(() => {
     const fetchUser = async () => {
       let token = localStorage.getItem("token");
-      const user = await axios.post(
-        "https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/auth/user",
-        {
-          token,
-        }
-      );
+      const user = await axios.post(`${config.apiUrl}/api/v1/auth/user`, {
+        token,
+      });
       // console.log("USER: ", user);
       setUser({ ...user.data.user });
       setLoading(false);
     };
 
     const fetchPoll = async () => {
-      const request = await axios.get(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/${id}`
-      );
+      const request = await axios.get(`${config.apiUrl}/api/v1/polls/${id}`);
       console.log("POLL: ", request);
       setPoll({ ...request.data.poll });
       setLoading(false);
@@ -63,7 +59,7 @@ function DisplayPoll() {
       console.log("ID: ", id);
       console.log("USER: ", user._id);
       let request = await axios.put(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/answer/${id}`,
+        `${config.apiUrl}/api/v1/polls/answer/${id}`,
         {
           answer: choice,
           user: user._id,
@@ -80,7 +76,7 @@ function DisplayPoll() {
     try {
       console.log("VOTING USEFUL");
       let request = await axios.put(
-        `https://pioneerpolls-da615733ad68.herokuapp.com/api/v1/polls/useful/${poll._id}`,
+        `${config.apiUrl}/api/v1/polls/useful/${poll._id}`,
         {
           user: user._id,
         }
